@@ -4,6 +4,7 @@ import { getArticle, getAllArticles } from "@/lib/articles";
 import { formatDate } from "@/lib/utils";
 import { ArticleImage } from "@/components/ArticleImage";
 import { AffiliateProductBox } from "@/components/AffiliateProductBox";
+import { BrandStory } from "@/components/BrandStory";
 import type { Metadata } from "next";
 
 export const revalidate = 60;
@@ -31,9 +32,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     hero = `https://via.placeholder.com/1200x630/0f172a/10b981?text=KI-Lampe`;
   }
 
+  // SEO: Spezielle Meta-Daten für LEGO-Artikel
+  const isLegoArticle = slug === 'ki-lego-objekte-bauen';
+  const seoKeywords = article.seoKeywords || [];
+  
   return {
     title: article.title,
     description: article.excerpt || "",
+    keywords: seoKeywords.length > 0 ? seoKeywords : undefined,
     alternates: {
       canonical: `https://ki-lampe.com/artikel/${slug}`,
     },
@@ -41,6 +47,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: article.title,
       description: article.excerpt || "",
       images: [hero], // OG Bild
+      type: 'article',
+      ...(isLegoArticle && {
+        // Zusätzliche OG-Daten für LEGO-Artikel
+        url: `https://ki-lampe.com/artikel/${slug}`,
+      }),
     },
   };
 }
@@ -123,6 +134,13 @@ export default async function ArticlePage({ params }: Props) {
             )}
           </div>
 
+          {/* BRAND-STORY für LEGO-Artikel */}
+          {slug === 'ki-lego-objekte-bauen' && (
+            <div className="mb-10">
+              <BrandStory />
+            </div>
+          )}
+
           {/* ARTIKEL-INHALT */}
           <div
             className="prose prose-invert prose-emerald max-w-none"
@@ -136,8 +154,25 @@ export default async function ArticlePage({ params }: Props) {
             <div className="sticky top-8">
               <h2 className="text-xl font-bold text-white mb-4">Empfohlene Produkte</h2>
               
-              {/* Affiliate Product Box */}
-              <AffiliateProductBox />
+              {/* Affiliate Product Box - LEGO Classic Set für Papa-Kind-Projekte */}
+              {/* Zeige LEGO-Box nur bei LEGO-Artikeln, sonst generische Box */}
+              {slug === 'ki-lego-objekte-bauen' ? (
+                <AffiliateProductBox
+                  title="LEGO Classic 10715 – Kreativ-Bauset Fahrzeuge"
+                  description="Perfektes Set für Papa-Kind-Projekte mit ChatGPT. Ideal für kreative KI-LEGO-Bauideen. Viele verschiedene Steine, keine feste Anleitung – maximale Kreativität."
+                  affiliateUrl="https://amzn.to/489ykSJ"
+                  imageSrc="/images/lego-classic-box.webp"
+                  imageAlt="LEGO Classic 10715 Kreativ-Bauset Fahrzeuge"
+                />
+              ) : (
+                <AffiliateProductBox
+                  title="LEGO Classic 10715 – Kreativ-Bauset Fahrzeuge"
+                  description="Perfektes Set für kreative Projekte. Ideal für KI-LEGO-Bauideen und gemeinsame Bauprojekte."
+                  affiliateUrl="https://amzn.to/489ykSJ"
+                  imageSrc="/images/lego-classic-box.webp"
+                  imageAlt="LEGO Classic 10715 Kreativ-Bauset"
+                />
+              )}
             </div>
           </aside>
         )}
