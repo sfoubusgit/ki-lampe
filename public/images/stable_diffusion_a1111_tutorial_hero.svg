@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stable Diffusion A1111 tutorial hero">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0f766e" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="16" fill="url(#g1)" />
+
+  <!-- Abstract bulb / network motif -->
+  <g transform="translate(120 80)">
+    <ellipse cx="420" cy="220" rx="360" ry="200" fill="rgba(255,255,255,0.04)" />
+    <g transform="translate(220 40)">
+      <path d="M200 0c55 0 100 45 100 100s-45 100-100 100-100-45-100-100S145 0 200 0z" fill="url(#g2)" opacity="0.95" />
+      <g transform="translate(120 70) scale(0.9)" fill="#fff" opacity="0.06">
+        <rect x="0" y="0" width="480" height="220" rx="18" />
+      </g>
+      <g transform="translate(80 30)" fill="#fff" opacity="0.85">
+        <circle cx="24" cy="24" r="6" />
+        <circle cx="120" cy="40" r="6" />
+        <circle cx="220" cy="16" r="6" />
+        <circle cx="320" cy="60" r="6" />
+        <path d="M24 24C80 60 140 40 220 64" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3" fill="none"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Text label -->
+  <g transform="translate(60 460)">
+    <rect width="1080" height="88" rx="12" fill="rgba(255,255,255,0.03)" />
+    <text x="36" y="56" font-family="Inter, Roboto, Arial, sans-serif" font-size="36" fill="#f8fafc">Stable Diffusion — Automatic1111 (A1111) Tutorial</text>
+  </g>
+
+</svg>

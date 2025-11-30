@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#0f172a" />
+      <stop offset="1" stop-color="#0b1220" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)" />
+  <g fill="#94a3b8" opacity="0.12">
+    <circle cx="220" cy="200" r="160" />
+    <circle cx="980" cy="420" r="120" />
+  </g>
+  <g transform="translate(200,150)">
+    <!-- simple droid icon -->
+    <rect x="40" y="40" width="160" height="160" rx="20" fill="#0ea5a4" />
+    <rect x="80" y="120" width="80" height="80" rx="10" fill="#072023" opacity="0.95" />
+    <circle cx="120" cy="100" r="18" fill="#fff" />
+    <circle cx="160" cy="100" r="10" fill="#fff" opacity="0.9" />
+    <rect x="20" y="220" width="240" height="18" rx="9" fill="#0ea5a4" />
+  </g>
+  <text x="520" y="330" font-family="Inter, Arial, sans-serif" font-size="48" fill="#e6eef1" font-weight="700">Die Macht der KI: Was Star Wars über unsere technologische Zukunft verrät</text>
+</svg>
