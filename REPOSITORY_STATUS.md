@@ -100,3 +100,4 @@ After deployment:
 - All images are properly tracked in git
 - Next.js configuration is correct for external images
 - ArticleImage component handles errors gracefully
+

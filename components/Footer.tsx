@@ -84,6 +84,9 @@ export function Footer() {
           <p>
             © {currentYear} <span className="text-emerald-400">{process.env.BLOG_NAME || 'KI-Lampe'}</span>. Alle Rechte vorbehalten.
           </p>
+          <p className="mt-4 text-slate-400">
+            Hinweis: Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.
+          </p>
         </div>
       </div>
     </footer>

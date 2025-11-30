@@ -20,11 +20,7 @@ export function AdSidebar({ adClient, adSlot }: AdSidebarProps) {
   }, [])
 
   if (!adClient) {
-    return (
-      <div className="bg-slate-800 border-2 border-dashed border-slate-600 rounded-lg p-8 text-center">
-        <p className="text-slate-400 text-sm">Sidebar Ad Platzhalter</p>
-      </div>
-    )
+    return null
   }
 
   return (

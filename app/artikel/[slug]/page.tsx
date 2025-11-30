@@ -3,8 +3,8 @@ import { getHeroImage } from "@/lib/getHeroImage";
 import { getArticle, getAllArticles } from "@/lib/articles";
 import { formatDate } from "@/lib/utils";
 import { ArticleImage } from "@/components/ArticleImage";
+import { AffiliateProductBox } from "@/components/AffiliateProductBox";
 import type { Metadata } from "next";
-import { AdSidebar } from "@/components/AdSidebar";
 
 export const revalidate = 60;
 
@@ -83,8 +83,8 @@ export default async function ArticlePage({ params }: Props) {
     `)}`;
   }
   
-  // Check if this is the Lego article that should have sidebar ads
-  const showSidebar = slug === "ki-lego-objekte-bauen";
+  // Show sidebar with affiliate box for all articles
+  const showSidebar = true;
 
   return (
     <main className="min-h-screen bg-slate-900">
@@ -130,19 +130,14 @@ export default async function ArticlePage({ params }: Props) {
           />
         </article>
 
-        {/* SIDEBAR WITH AFFILIATE ADS (only for Lego article) */}
+        {/* SIDEBAR WITH AFFILIATE PRODUCT BOX (for all articles) */}
         {showSidebar && (
           <aside className="lg:col-span-4">
             <div className="sticky top-8">
               <h2 className="text-xl font-bold text-white mb-4">Empfohlene Produkte</h2>
-              <AdSidebar
-                adClient={process.env.GOOGLE_ADSENSE_CLIENT_ID}
-                adSlot="1234567897"
-              />
-              <AdSidebar
-                adClient={process.env.GOOGLE_ADSENSE_CLIENT_ID}
-                adSlot="1234567898"
-              />
+              
+              {/* Affiliate Product Box */}
+              <AffiliateProductBox />
             </div>
           </aside>
         )}

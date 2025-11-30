@@ -1,0 +1,30 @@
+=== PROMPT ZUM HINZUFÜGEN EINER NEUEN PRODUKTBOX ===
+
+Füge eine neue Affiliate-Produktbox zur Sidebar hinzu für den Artikel: 
+
+Erstelle eine neue Komponente oder erweitere die bestehende AffiliateProductBox-Komponente mit folgenden Informationen:
+
+AFFILIATE-LINK: [HIER DEN AFFILIATE-LINK EINFÜGEN]
+BILD-DATEI: [HIER DEN NAMEN DER WEBP-DATEI EINFÜGEN, z.B. "produkt-name.webp"]
+PRODUKTNAME: [OPTIONAL: Name des Produkts]
+BESCHREIBUNG: [OPTIONAL: Kurze Produktbeschreibung]
+
+Die WEBP-Datei befindet sich bereits im Ordner: public/images/
+
+Bitte:
+1. Stelle sicher, dass die Komponente das Bild aus /images/[BILD-DATEI] lädt
+2. Verwende den angegebenen Affiliate-Link
+3. Passe den Produktnamen, die Beschreibung und alle relevanten Texte an
+4. Behalte das bestehende Styling und Layout bei
+5. Stelle sicher, dass die Komponente für alle Artikel in der Sidebar angezeigt wird
+6. Verwende das gleiche Error-Handling wie in der bestehenden AffiliateProductBox
+
+=== BEISPIEL-VERWENDUNG ===
+
+AFFILIATE-LINK: https://amzn.to/48rIcpW
+BILD-DATEI: lego-classic-box.webp
+PRODUKTNAME: LEGO Classic 10715 – Kreativ-Bauset
+BESCHREIBUNG: Perfektes Set für Papa-Kind-Projekte mit ChatGPT. Ideal für kreative KI-LEGO-Bauideen.
+
+=== ENDE PROMPT ===
+
