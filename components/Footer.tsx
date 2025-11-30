@@ -1,7 +1,50 @@
+'use client'
+
 import Link from 'next/link'
+import { useState } from 'react'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [message, setMessage] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!email || !email.includes('@')) {
+      setStatus('error')
+      setMessage('Bitte geben Sie eine gültige E-Mail-Adresse ein.')
+      return
+    }
+
+    setStatus('loading')
+    setMessage('')
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setStatus('success')
+        setMessage(data.message || 'Vielen Dank für Ihre Anmeldung!')
+        setEmail('')
+      } else {
+        setStatus('error')
+        setMessage(data.error || 'Ein Fehler ist aufgetreten.')
+      }
+    } catch (error) {
+      setStatus('error')
+      setMessage('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.')
+    }
+  }
 
   return (
     <footer className="bg-slate-900 text-white mt-24 border-t border-emerald-500/20">
@@ -65,18 +108,36 @@ export function Footer() {
             <p className="text-slate-400 text-sm mb-4 leading-relaxed">
               Bleiben Sie auf dem Laufenden mit unseren neuesten Artikeln.
             </p>
-            <form className="flex flex-col gap-3">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Ihre E-Mail"
-                className="px-4 py-3 rounded-lg bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-slate-700"
+                disabled={status === 'loading'}
+                className="px-4 py-3 rounded-lg bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                required
               />
               <button
                 type="submit"
-                className="px-4 py-3 bg-emerald-500 text-white hover:bg-emerald-600 rounded-lg transition-all text-sm font-semibold"
+                disabled={status === 'loading'}
+                className="px-4 py-3 bg-emerald-500 text-white hover:bg-emerald-600 rounded-lg transition-all text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Abonnieren
+                {status === 'loading' ? 'Wird verarbeitet...' : 'Abonnieren'}
               </button>
+              {message && (
+                <p
+                  className={`text-sm mt-2 ${
+                    status === 'success'
+                      ? 'text-emerald-400'
+                      : status === 'error'
+                      ? 'text-red-400'
+                      : 'text-slate-400'
+                  }`}
+                >
+                  {message}
+                </p>
+              )}
             </form>
           </div>
         </div>

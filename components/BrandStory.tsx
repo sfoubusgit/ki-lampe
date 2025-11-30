@@ -18,7 +18,7 @@ export function BrandStory({ className = '' }: { className?: string }) {
 
         <div className="space-y-6 text-slate-200 text-lg leading-relaxed">
           <p className="text-xl md:text-2xl text-white font-medium">
-            Papa kommt nach der Arbeit nach Hause. Das Kind wartet schon mit leuchtenden Augen: "Papa, können wir LEGO bauen?"
+            Papa kommt nach der Arbeit nach Hause. Das Kind wartet schon mit leuchtenden Augen: &quot;Papa, können wir LEGO bauen?&quot;
           </p>
 
           <p>
