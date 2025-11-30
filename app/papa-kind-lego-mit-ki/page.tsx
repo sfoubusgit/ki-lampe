@@ -241,7 +241,7 @@ export default function PapaKindLegoPage() {
               Ist das für kleine Kinder geeignet?
             </h3>
             <p className="text-slate-300 leading-relaxed">
-              <strong className="text-emerald-400">Ja, ab etwa 4-5 Jahren.</strong> Für jüngere Kinder: Einfache Prompts verwenden ("Baue ein Auto") und beim Bauen helfen. Ältere Kinder können selbstständiger arbeiten.
+              <strong className="text-emerald-400">Ja, ab etwa 4-5 Jahren.</strong> Für jüngere Kinder: Einfache Prompts verwenden (&quot;Baue ein Auto&quot;) und beim Bauen helfen. Ältere Kinder können selbstständiger arbeiten.
             </p>
           </div>
 
@@ -250,7 +250,7 @@ export default function PapaKindLegoPage() {
               Was, wenn ChatGPT eine komplizierte Anleitung gibt?
             </h3>
             <p className="text-slate-300 leading-relaxed">
-              <strong className="text-emerald-400">Einfach anpassen!</strong> Sag ChatGPT: "Das ist zu kompliziert. Kannst du es einfacher machen?" oder "Wir haben nicht so viele Steine. Geht es auch mit weniger?"
+              <strong className="text-emerald-400">Einfach anpassen!</strong> Sag ChatGPT: &quot;Das ist zu kompliziert. Kannst du es einfacher machen?&quot; oder &quot;Wir haben nicht so viele Steine. Geht es auch mit weniger?&quot;
             </p>
           </div>
 
