@@ -84,19 +84,20 @@ export default async function ArticlePage({ params }: Props) {
   // If no image found, use a gradient placeholder that matches the blog theme
   if (!hero) {
     // Create a data URI for a gradient placeholder
-    hero = `data:image/svg+xml,${encodeURIComponent(`
-      <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#1e293b;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#064e3b;stop-opacity:1" />
-          </linearGradient>
-        </defs>
-        <rect width="1200" height="630" fill="url(#grad)"/>
-        <text x=&quot;50%&quot; y=&quot;50%&quot; font-family=&quot;Arial, sans-serif&quot; font-size=&quot;48&quot; fill=&quot;#10b981&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; opacity=&quot;0.3&quot;>KI-Lampe</text>
-      </svg>
-    `)}`;
+    const svgContent = [
+      '<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">',
+      '<defs>',
+      '<linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">',
+      '<stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />',
+      '<stop offset="50%" style="stop-color:#1e293b;stop-opacity:1" />',
+      '<stop offset="100%" style="stop-color:#064e3b;stop-opacity:1" />',
+      '</linearGradient>',
+      '</defs>',
+      '<rect width="1200" height="630" fill="url(#grad)"/>',
+      '<text x="50%" y="50%" font-family="Arial, sans-serif" font-size="48" fill="#10b981" text-anchor="middle" dominant-baseline="middle" opacity="0.3">KI-Lampe</text>',
+      '</svg>'
+    ].join('');
+    hero = `data:image/svg+xml,${encodeURIComponent(svgContent)}`;
   }
   
   // Show sidebar with affiliate box for all articles
