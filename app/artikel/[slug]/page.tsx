@@ -93,7 +93,7 @@ export default async function ArticlePage({ params }: Props) {
           </linearGradient>
         </defs>
         <rect width="1200" height="630" fill="url(#grad)"/>
-        <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="48" fill="#10b981" text-anchor="middle" dominant-baseline="middle" opacity="0.3">KI-Lampe</text>
+        <text x="50%" y="50%" font-family=&quot;Arial, sans-serif&quot; font-size="48" fill="#10b981" text-anchor="middle" dominant-baseline="middle" opacity="0.3">KI-Lampe</text>
       </svg>
     `)}`;
   }

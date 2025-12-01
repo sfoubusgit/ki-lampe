@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 /**
  * Wiederverwendbare Affiliate-Produktbox-Komponente
@@ -48,12 +49,13 @@ export function AffiliateProductBox({
             <span className="text-4xl">🧱</span>
           </div>
         ) : (
-          <img
+          <Image
             src={imageSrc}
             alt={imageAlt}
+            width={160}
+            height={160}
             className="max-w-full w-40 h-auto rounded-lg mx-auto"
-            loading="lazy"
-            onError={() => setImageError(true)}
+            unoptimized={imageSrc.startsWith('http')}
           />
         )}
       </div>

@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { formatDate } from '@/lib/utils'
 
 interface SearchResult {
@@ -121,10 +122,11 @@ function SearchContent() {
                       {article.image && (
                         <Link href={`/artikel/${article.slug}`}>
                           <div className="relative overflow-hidden h-56 bg-slate-700">
-                            <img
+                            <Image
                               src={article.image}
                               alt={article.title}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-500"
                             />
                           </div>
                         </Link>

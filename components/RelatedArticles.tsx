@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { getRelatedArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/utils'
 
@@ -33,10 +34,11 @@ export async function RelatedArticles({
             {article.image && (
               <Link href={`/artikel/${article.slug}`}>
                 <div className="relative overflow-hidden h-40 bg-slate-700">
-                  <img
+                  <Image
                     src={article.image}
                     alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </Link>

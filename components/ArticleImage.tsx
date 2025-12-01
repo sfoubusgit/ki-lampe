@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 interface ArticleImageProps {
   src: string
@@ -42,17 +43,51 @@ export function ArticleImage({
     ? `${className} w-full h-full object-cover`
     : className
 
-  // Use regular img tag for better compatibility with external images
+  // Use Next.js Image component for optimization
+  // Note: Next.js Image doesn't support onError, so we use unoptimized for external images or handle errors differently
+  if (hasError) {
+    // Fallback to placeholder
+    const placeholderUrl = `https://via.placeholder.com/${width || 800}x${height || 450}/0f172a/10b981?text=${encodeURIComponent(alt.substring(0, 50))}`
+    if (fill) {
+      return (
+        <div className={finalClassName} style={{ background: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <span className="text-emerald-400 text-sm">Bild konnte nicht geladen werden</span>
+        </div>
+      )
+    }
+    return (
+      <div className={finalClassName} style={{ width: width || 800, height: height || 450, background: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <span className="text-emerald-400 text-sm">Bild konnte nicht geladen werden</span>
+      </div>
+    )
+  }
+
+  // For external images, use unoptimized to avoid optimization issues
+  const isExternal = imgSrc.startsWith('http') && !imgSrc.includes('via.placeholder.com')
+  
+  if (fill) {
+    return (
+      <Image
+        src={imgSrc}
+        alt={alt}
+        fill
+        className={finalClassName}
+        priority={priority}
+        style={{ objectFit: 'cover' }}
+        unoptimized={isExternal}
+      />
+    )
+  }
+  
   return (
-    <img
+    <Image
       src={imgSrc}
       alt={alt}
       className={finalClassName}
-      loading={loading}
-      width={fill ? undefined : (width || 800)}
-      height={fill ? undefined : (height || 450)}
-      onError={handleError}
-      style={fill ? { objectFit: 'cover' } : undefined}
+      width={width || 800}
+      height={height || 450}
+      priority={priority}
+      unoptimized={isExternal}
     />
   )
 }
