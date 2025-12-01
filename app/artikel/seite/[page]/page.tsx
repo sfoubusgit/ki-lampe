@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getPaginatedArticles } from '@/lib/articles'
 import { AdBanner } from '@/components/AdBanner'
@@ -104,10 +105,11 @@ export default async function ArticlesPagePage({ params }: Props) {
               {article.image && (
                 <Link href={`/artikel/${article.slug}`}>
                   <div className="relative overflow-hidden h-56 bg-slate-700">
-                    <img
+                    <Image
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                 </Link>

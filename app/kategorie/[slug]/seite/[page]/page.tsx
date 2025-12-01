@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 import { getAllCategories, getPaginatedArticlesByCategory } from '@/lib/articles'
 import { AdBanner } from '@/components/AdBanner'
 import { Pagination } from '@/components/Pagination'
@@ -114,10 +115,11 @@ export default async function CategoryPagePage({ params }: Props) {
               {article.image && (
                 <Link href={`/artikel/${article.slug}`}>
                   <div className="relative overflow-hidden h-56 bg-slate-700">
-                    <img
+                    <Image
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                 </Link>
