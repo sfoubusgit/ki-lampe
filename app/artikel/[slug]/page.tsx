@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { getHeroImage } from "@/lib/getHeroImage";
 import { getArticle, getAllArticles, getRelatedArticles } from "@/lib/articles";
 import { formatDate } from "@/lib/utils";
@@ -93,7 +94,7 @@ export default async function ArticlePage({ params }: Props) {
           </linearGradient>
         </defs>
         <rect width="1200" height="630" fill="url(#grad)"/>
-        <text x="50%" y="50%" font-family=&quot;Arial, sans-serif&quot; font-size="48" fill="#10b981" text-anchor="middle" dominant-baseline="middle" opacity="0.3">KI-Lampe</text>
+        <text x=&quot;50%&quot; y=&quot;50%&quot; font-family=&quot;Arial, sans-serif&quot; font-size=&quot;48&quot; fill=&quot;#10b981&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; opacity=&quot;0.3&quot;>KI-Lampe</text>
       </svg>
     `)}`;
   }
@@ -166,10 +167,11 @@ export default async function ArticlePage({ params }: Props) {
                   >
                     {related.image && (
                       <div className="relative overflow-hidden h-40 bg-slate-700">
-                        <img
+                        <Image
                           src={related.image}
                           alt={related.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                     )}
