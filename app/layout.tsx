@@ -10,8 +10,8 @@ import Script from "next/script"
 const inter = Inter({ subsets: ['latin'] })
 
 const siteUrl = process.env.BLOG_URL || 'https://yourblog.com'
-const siteName = process.env.BLOG_NAME || 'KI-Lampe'
-const siteDescription = process.env.BLOG_DESCRIPTION || 'Der intelligente KI-Blog - Erleuchtung durch künstliche Intelligenz'
+const siteName = process.env.BLOG_NAME || 'KI.LAMPE - Der Künstliche Intelligenz Blog für Kreative Leuchten'
+const siteDescription = process.env.BLOG_DESCRIPTION || 'KI.LAMPE - Der Künstliche Intelligenz Blog für Kreative Leuchten'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
