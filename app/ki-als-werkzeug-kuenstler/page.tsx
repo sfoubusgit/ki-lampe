@@ -98,21 +98,21 @@ export default function KIAlsWerkzeugKuenstlerPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <p className="text-slate-300 leading-relaxed mb-4 italic">
-              "Endlich jemand, der meine Bedenken versteht. KI-Lampe hat mir gezeigt, wie ich KI nutzen kann, ohne meinen Stil zu verlieren. Game-Changer!"
+              &quot;Endlich jemand, der meine Bedenken versteht. KI-Lampe hat mir gezeigt, wie ich KI nutzen kann, ohne meinen Stil zu verlieren. Game-Changer!&quot;
             </p>
             <p className="text-emerald-400 font-semibold">— Alex M., Concept Artist</p>
           </div>
 
           <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <p className="text-slate-300 leading-relaxed mb-4 italic">
-              "Ich war sehr skeptisch gegenüber KI-Kunst. Aber die praktischen Workflows hier haben mir gezeigt, dass KI wirklich nur ein Werkzeug ist – wie mein Grafiktablett."
+              &quot;Ich war sehr skeptisch gegenüber KI-Kunst. Aber die praktischen Workflows hier haben mir gezeigt, dass KI wirklich nur ein Werkzeug ist – wie mein Grafiktablett.&quot;
             </p>
             <p className="text-emerald-400 font-semibold">— Sarah K., Illustratorin</p>
           </div>
 
           <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <p className="text-slate-300 leading-relaxed mb-4 italic">
-              "Die ethische Perspektive hier ist genau das, was ich gesucht habe. Endlich eine Quelle, die die schwierigen Fragen nicht umgeht."
+              &quot;Die ethische Perspektive hier ist genau das, was ich gesucht habe. Endlich eine Quelle, die die schwierigen Fragen nicht umgeht.&quot;
             </p>
             <p className="text-emerald-400 font-semibold">— Max T., Grafikdesigner</p>
           </div>
