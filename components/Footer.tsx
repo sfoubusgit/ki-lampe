@@ -52,7 +52,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div>
             <h3 className="text-2xl font-black mb-4 text-white">
-              <span className="text-emerald-400">{process.env.BLOG_NAME || 'KI-Lampe'}</span>
+              <span className="text-white">KI</span>
+              <span className="text-amber-400">.</span>
+              <span className="text-white">LAMPE</span>
             </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
               {process.env.BLOG_DESCRIPTION || 'Der intelligente KI-Blog - Erleuchtung durch künstliche Intelligenz'}
@@ -143,7 +145,7 @@ export function Footer() {
         </div>
         <div className="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-500">
           <p>
-            © {currentYear} <span className="text-emerald-400">{process.env.BLOG_NAME || 'KI-Lampe'}</span>. Alle Rechte vorbehalten.
+            © {currentYear} <span className="text-white">KI</span><span className="text-amber-400">.</span><span className="text-white">LAMPE</span>. Alle Rechte vorbehalten.
           </p>
           <p className="mt-4 text-slate-400">
             Hinweis: Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.

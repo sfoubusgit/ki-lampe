@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { CookieBanner } from '@/components/CookieBanner'
 import { Analytics } from '@/components/Analytics'
-import { Navigation } from '@/components/Navigation'
+import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import Script from "next/script"
 
@@ -90,7 +90,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <Navigation />
+        <Header />
         {children}
         <Footer />
         <CookieBanner />
