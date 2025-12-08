@@ -80,3 +80,4 @@ Wir verstehen diese Gefühle. Wir respektieren sie. Und wir zeigen einen Weg, wi
 > "Deine Stimme ist unersetzlich. KI ist nur ein Werkzeug. Wir zeigen dir, wie du beides zusammenbringst – ohne deine Authentizität zu verlieren."
 
 
+

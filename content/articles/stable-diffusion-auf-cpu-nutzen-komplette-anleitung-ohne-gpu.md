@@ -569,3 +569,4 @@ Wenn du später mehr Performance brauchst, kannst du immer noch auf Cloud-Lösun
 
 - ["Home-Office Produktivität mit KI: So steigerst du deine Effizienz"](/artikel/home-office-produktivitaet-mit-ki-so-steigerst-du-deine-effizienz)
 - ["KI für Content-Erstellung: Professionelle Texte mit ChatGPT erstellen"](/artikel/ki-content-erstellung-professionelle-texte-mit-chatgpt-erstellen)
+

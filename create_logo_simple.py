@@ -30,3 +30,4 @@ desktop = os.path.join(os.path.expanduser("~"), "Desktop", "KI_LAMPE_logo.png")
 img.save(desktop, "PNG")
 print(f"Logo saved to {desktop}")
 
+

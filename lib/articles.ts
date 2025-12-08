@@ -91,15 +91,12 @@ let articlesCache: Article[] | null = null
 let cacheTimestamp: number = 0
 const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
 
-<<<<<<< HEAD
 // Function to clear cache manually
 export function clearArticlesCache() {
   articlesCache = null
   cacheTimestamp = 0
 }
 
-=======
->>>>>>> ee8bc7af3a09222c845ffa7249dbc63710755287
 export async function getAllArticles(): Promise<Article[]> {
   // Return cached articles if still valid
   const now = Date.now()

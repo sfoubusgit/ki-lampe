@@ -9,11 +9,7 @@ import { AffiliateProductBox } from "@/components/AffiliateProductBox";
 import { BrandStory } from "@/components/BrandStory";
 import type { Metadata } from "next";
 
-<<<<<<< HEAD
-export const revalidate = 0 // Disable cache for development;
-=======
 export const revalidate = 60;
->>>>>>> ee8bc7af3a09222c845ffa7249dbc63710755287
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -251,19 +247,10 @@ export default async function ArticlePage({ params }: Props) {
                 </>
               ) : (
                 <>
-<<<<<<< HEAD
                   {/* LEGO-Box NUR für den spezifischen LEGO-Artikel anzeigen */}
                   {slug === 'ki-lego-objekte-bauen' && (
                     <section>
                       <h2 className="text-xl font-bold text-white mb-4">Empfohlene Produkte</h2>
-=======
-                  {/* Standard Sidebar für andere Artikel */}
-                  <section>
-                    <h2 className="text-xl font-bold text-white mb-4">Empfohlene Produkte</h2>
-                    
-                    {/* Affiliate Product Box - LEGO Classic Set für Papa-Kind-Projekte */}
-                    {slug === 'ki-lego-objekte-bauen' ? (
->>>>>>> ee8bc7af3a09222c845ffa7249dbc63710755287
                       <AffiliateProductBox
                         title="LEGO Classic 10715 – Kreativ-Bauset Fahrzeuge"
                         description="Perfektes Set für Papa-Kind-Projekte mit ChatGPT. Ideal für kreative KI-LEGO-Bauideen. Viele verschiedene Steine, keine feste Anleitung – maximale Kreativität."
@@ -272,23 +259,9 @@ export default async function ArticlePage({ params }: Props) {
                         imageAlt="LEGO Classic 10715 Kreativ-Bauset Fahrzeuge"
                         className="max-w-full"
                       />
-<<<<<<< HEAD
                     </section>
                   )}
                   {/* Für alle anderen Artikel: keine Produktbox in der Sidebar */}
-=======
-                    ) : (
-                      <AffiliateProductBox
-                        title="LEGO Classic 10715 – Kreativ-Bauset Fahrzeuge"
-                        description="Perfektes Set für kreative Projekte. Ideal für KI-LEGO-Bauideen und gemeinsame Bauprojekte."
-                        affiliateUrl="https://amzn.to/489ykSJ"
-                        imageSrc="/images/lego-classic-box.webp"
-                        imageAlt="LEGO Classic 10715 Kreativ-Bauset"
-                        className="max-w-full"
-                      />
-                    )}
-                  </section>
->>>>>>> ee8bc7af3a09222c845ffa7249dbc63710755287
                 </>
               )}
             </div>

@@ -116,3 +116,4 @@ Oder direkt im `public/images/` Ordner speichern und referenzieren.
 ---
 
 **Viel Erfolg bei der Bildgenerierung! 🎨**
+

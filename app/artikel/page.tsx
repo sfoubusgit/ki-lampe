@@ -6,11 +6,7 @@ import { ArticleImage } from '@/components/ArticleImage'
 import { formatDate } from '@/lib/utils'
 import type { Metadata } from 'next'
 
-<<<<<<< HEAD
-export const revalidate = 0 // Disable cache for development
-=======
 export const revalidate = 60
->>>>>>> ee8bc7af3a09222c845ffa7249dbc63710755287
 
 const siteUrl = process.env.BLOG_URL || 'https://yourblog.com'
 
