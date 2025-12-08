@@ -34,7 +34,8 @@ const EXCLUDE_PATTERNS = [
   /\.next/,
   /\.git/,
   /dist/,
-  /build/
+  /build/,
+  /troubleshooting/, // Exclude troubleshooting documentation (contains example conflict markers)
 ];
 
 /**
@@ -55,7 +56,10 @@ function checkFile(filePath) {
 
     lines.forEach((line, index) => {
       CONFLICT_MARKERS.forEach(marker => {
-        if (line.includes(marker)) {
+        // Only check if marker is at the start of the line (not in comments or strings)
+        // This prevents false positives from documentation examples
+        const trimmedLine = line.trim();
+        if (trimmedLine.startsWith(marker) || trimmedLine === marker) {
           issues.push({
             file: filePath,
             line: index + 1,
@@ -90,8 +94,8 @@ function findFiles(dir, fileList = []) {
     if (stat.isDirectory()) {
       findFiles(filePath, fileList);
     } else if (stat.isFile()) {
-      // Check TypeScript, JavaScript, and Markdown files
-      if (/\.(ts|tsx|js|jsx|md)$/.test(file)) {
+      // Check TypeScript and JavaScript files only (exclude Markdown to avoid false positives in docs)
+      if (/\.(ts|tsx|js|jsx)$/.test(file)) {
         fileList.push(filePath);
       }
     }
