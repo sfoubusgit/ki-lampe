@@ -23,6 +23,26 @@ This folder contains detailed documentation for errors and issues encountered du
 
 ---
 
+### 02_prebuild-script-false-positives.md
+**Issue:** Pre-build script detected false positives in documentation  
+**Date:** 2025-01-28  
+**Severity:** Medium  
+**Status:** ✅ Resolved
+
+**Summary:**
+- Pre-build conflict detection script found conflict markers in documentation files
+- Script was checking Markdown files and found example conflict markers in troubleshooting docs
+- Vercel build failed due to false positives
+- **Solution:** Updated script to only check TS/JS files, exclude documentation directories, and improve marker detection
+
+**Key Takeaways:**
+- Scripts should only check relevant file types (TS/JS, not Markdown)
+- Exclude documentation directories from automated checks
+- Use precise pattern matching (start of line) instead of simple `includes()`
+- Always test scripts locally before pushing
+
+---
+
 ## 🎯 How to Use This Folder
 
 ### When You Encounter an Error:
@@ -87,6 +107,7 @@ When creating new troubleshooting docs, use this structure:
 | Issue | File | Status |
 |-------|------|--------|
 | Merge Conflict Markers | `01_merge-conflict-vercel-build-error.md` | ✅ Resolved |
+| Pre-Build Script False Positives | `02_prebuild-script-false-positives.md` | ✅ Resolved |
 | [Add more as they occur] | | |
 
 ---
@@ -120,4 +141,5 @@ Add to `package.json`:
 
 ---
 
-**Last Updated:** 2025-01-28
+**Last Updated:** 2025-01-28  
+**Total Issues Documented:** 2

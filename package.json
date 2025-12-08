@@ -22,6 +22,7 @@
     "generate:remaining": "tsx scripts/generate-remaining-articles.ts",
     "fix-images": "node scripts/fix-image-paths.js",
     "fix-all-images": "node scripts/fix-all-images.js",
+    "set-date": "tsx scripts/set-article-date.ts",
     "deploy": "vercel",
     "deploy:prod": "vercel --prod",
     "optimize": "node optimize.js"

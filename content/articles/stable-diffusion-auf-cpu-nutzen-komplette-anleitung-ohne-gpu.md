@@ -1,8 +1,8 @@
 ---
 image: '/images/sd-cpu-artikel.webp'
 title: "Stable Diffusion auf CPU nutzen: Komplette Anleitung ohne GPU"
-date: '2025-01-28T10:00:00.000Z'
-dateModified: '2025-01-28T10:00:00.000Z'
+date: '2025-12-08T10:00:00.000Z'
+dateModified: '2025-12-08T10:00:00.000Z'
 excerpt: >-
   Lerne, wie du Stable Diffusion auf einem normalen PC ohne GPU installierst und nutzt. Komplette Schritt-für-Schritt-Anleitung für Windows, Mac und Linux. KI-Bildgenerierung für alle zugänglich – keine teure Hardware nötig.
 category: Praktisch
