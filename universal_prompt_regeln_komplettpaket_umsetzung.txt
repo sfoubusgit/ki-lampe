@@ -1,0 +1,195 @@
+Du bekommst von mir regelmäßig ein „Komplettpaket“ für neue Blogartikel.  
+Dieses Komplettpaket enthält IMMER folgende Dateien:
+
+01_Brand-Story.md
+02_Messaging-Core.md
+03_Messaging-Core.md
+03_SEO-System.md
+04_Hauptartikel.md
+05_Landingpage.md
+06_Pinterest-Content-Paket.md
+07_Bildgenerator-Prompts.md
+08_Social-Media-Paket.md
+09_Affiliate-Integration.md
+10_7-Tage-Plan.md
+
+und einen Unterordner /images mit MANUELL generierten Bildern.
+
+=====================================================
+❗ **UNVERLETZBARE OBERREGEL**
+DAS ORIGINAL-KOMPLETTPAKET DARF NIEMALS VERÄNDERT WERDEN.
+=====================================================
+Das bedeutet:
+- nicht löschen  
+- nicht umbenennen  
+- nicht verschieben  
+- nicht überschreiben  
+- nicht optimieren  
+- nicht editieren  
+- nur lesen, NIE schreiben  
+
+=====================================================
+# 🚀 DEIN AUFTRAG – FÜR JEDES ZUKÜNFTIGE PAKET (UNIVERSELL)
+=====================================================
+
+Wenn ich dir ein neues Paket gebe (Pfad wird jedes Mal angegeben),  
+sollst du folgendes tun:
+
+=========================================
+1️⃣ NAMESPACE BESTIMMEN
+=========================================
+Der Namespace wird aus dem Paketordnernamen bestimmt, z. B.:
+
+/artikel_pakete/ki-skeptische-künstler
+
+→ namespace = ki-skeptische-künstler  
+→ slug = ki-skeptische-kuenstler (Umlaute umwandeln, Leerzeichen zu "-")
+
+Namespace und Slug müssen:
+- URL-sicher sein  
+- keine Großbuchstaben enthalten  
+- „ä, ö, ü“ durch „ae, oe, ue“ ersetzen  
+- Leerzeichen durch Bindestriche ersetzen  
+
+=========================================
+2️⃣ DATEIEN IN NEUEN ZIELORDNER KOPIEREN
+=========================================
+Erstelle folgende neue Ordnerstruktur:
+
+/content/pakete/[namespace]/
+    brand-story.mdx
+    messaging-core.mdx
+    seo-system.mdx
+    pinterest.mdx
+    bildprompts.mdx
+    social-media.mdx
+    affiliate.mdx
+    7-tage-plan.mdx
+
+Inhalte 1:1 aus den Paketen kopieren.
+
+WICHTIG:
+- niemals die Originaldateien anfassen  
+- nur neue Kopien schreiben  
+
+=========================================
+3️⃣ ARTIKEL IN DEN BLOG EINBAUEN (Markdown)
+=========================================
+Der Hauptartikel kommt in:
+
+/content/articles/[slug].md
+
+Regeln:
+- Inhalt aus 04_Hauptartikel.md 1:1 übernehmen
+- Frontmatter hinzufügen:
+  ---
+  title: "Titel aus H1 Überschrift"
+  description: "Meta Description aus SEO-System"
+  date: neues Datum
+  slug: "[slug]"
+  tags: []
+  category: ""
+  ---
+
+- Hero-Bild einfügen (Bildpfad siehe Punkt 5)
+- AffiliateProductBox-Komponente NICHT ersetzen, nur einbauen
+- interne Links korrekt setzen:
+    → Link zur Landingpage
+    → Link zu relevanten Artikeln (falls vorhanden)
+
+=========================================
+4️⃣ LANDINGPAGE ERSTELLEN (TSX)
+=========================================
+Lege folgende Datei an:
+
+/app/[slug]/page.tsx
+
+Regeln:
+- Inhalt aus 05_Landingpage.md übernehmen
+- Hero-Bild oben einfügen
+- CTA-Button: „Zum Artikel“ → Link zu /artikel/[slug]
+- keine Sidebar verwenden
+- kein Markdown → TSX-Struktur einhalten
+- SEO-Header aus dem SEO-System einbauen
+
+=========================================
+5️⃣ BILDER KORREKT EINBINDEN
+=========================================
+Die Bilder im Paket werden NICHT generiert.  
+Sie existieren bereits.
+
+Du sollst:
+
+1. Alle Bilder aus /images in:
+   /public/images/[slug]/
+   kopieren.
+
+2. Im Artikel & Landingpage immer folgende Pfade verwenden:
+   /images/[slug]/DATEINAME
+
+3. Keine eigenen Bilder generieren.
+
+=========================================
+6️⃣ AFFILIATE-BOX VERWENDEN
+=========================================
+Benutze die bestehende Komponente:
+
+/components/AffiliateProductBox.tsx
+
+Niemals verändern oder ersetzen.
+
+Einbau-Beispiel im Artikel:
+
+<AffiliateProductBox
+  title="Empfohlenes Produkt"
+  text="Kurzbeschreibung"
+  link="https://amazon.de/..."
+  image="/images/[slug]/produktbild.png"
+/>
+
+=========================================
+7️⃣ WAS NICHT IN DIE WEBSITE GEHÖRT
+=========================================
+Folgende Paketinhalte dürfen NICHT in die Webseite integriert werden:
+
+- 01_Brand-Story.md
+- 02_Messaging-Core.md
+- 03_SEO-System.md
+- 06_Pinterest-Content-Paket.md
+- 07_Bildgenerator-Prompts.md
+- 08_Social-Media-Paket.md
+- 10_7-Tage-Plan.md
+
+Diese Dateien dienen nur zur strategischen Nutzung  
+und sollen ausschließlich im Ordner:
+
+/content/pakete/[namespace]/
+
+abgelegt werden.
+
+=========================================
+8️⃣ FEHLER VERMEIDEN
+=========================================
+Nicht tun:
+- keine Navigation automatisch ändern
+- keine bestehenden Artikel überschreiben
+- keine globalen Dateien ändern
+- keine Scripts verändern
+- keine Bilder generieren
+- keine MD-Dateien formatieren oder umschreiben
+
+=========================================
+9️⃣ KLARHEIT
+=========================================
+Wenn irgendetwas unklar oder zweideutig ist:
+
+❗ stelle eine einzige präzise Rückfrage statt zu raten.
+
+=====================================================
+# STARTSIGNAL
+=====================================================
+Wenn ich schreibe:
+
+„Cursor: Neues Paket ist bereit — Pfad: [Paketpfad]“
+
+→ dann startest du.

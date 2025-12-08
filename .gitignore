@@ -1,0 +1,68 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel
+
+# sensitive files
+*.pem
+*.key
+*.pfx
+*.p12
+*secret*
+*token*
+*credential*
+*password*
+*_push*.sh
+*PUSH*.md
+*TOKEN*.md
+*SECRET*.md
+*CREDENTIAL*.md
+
+# logs that might contain secrets
+*.log
+article-generation.log
+seo-report.txt
+vercel-env-vars.txt
+
+# backup files
+*.bak
+*.backup
+*~
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# content
+# /content/articles/*.md
+# /content/articles/*.mdx
+# !content/articles/.gitkeep
+

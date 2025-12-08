@@ -1,0 +1,314 @@
+import Link from 'next/link'
+import { Logo } from './Logo'
+import { SearchBar } from './SearchBar'
+
+export function Navigation() {
+  return (
+    <nav className="bg-white backdrop-blur-sm shadow-sm border-b border-slate-200 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          <div className="flex items-center">
+            <Logo size="md" />
+          </div>
+          <div className="hidden md:flex items-center space-x-4 flex-1 justify-end">
+            <Link
+              href="/"
+              className="px-4 py-2 text-slate-700 hover:text-emerald-600 hover:bg-slate-50 rounded-lg transition-all font-medium text-sm"
+            >
+              Home
+            </Link>
+            <Link
+              href="/artikel"
+              className="px-4 py-2 text-slate-700 hover:text-emerald-600 hover:bg-slate-50 rounded-lg transition-all font-medium text-sm"
+            >
+              Artikel
+            </Link>
+            <Link
+              href="/ueber"
+              className="px-4 py-2 text-slate-700 hover:text-emerald-600 hover:bg-slate-50 rounded-lg transition-all font-medium text-sm"
+            >
+              Über uns
+            </Link>
+            <Link
+              href="/kontakt"
+              className="px-4 py-2 text-slate-700 hover:text-emerald-600 hover:bg-slate-50 rounded-lg transition-all font-medium text-sm"
+            >
+              Kontakt
+            </Link>
+            <div className="ml-4">
+              <SearchBar light />
+            </div>
+          </div>
+          {/* Mobile menu with search */}
+          <div className="md:hidden">
+            <SearchBar light />
+          </div>
+        </div>
+      </div>
+    </nav>
+  )
+}
+
+[1mdiff --git a/app/api/newsletter/route.ts b/app/api/newsletter/route.ts[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d8e2e17[m
+[1m--- /dev/null[m
+[1m+++ b/app/api/newsletter/route.ts[m
+[36m@@ -0,0 +1,104 @@[m
+[32m+[m[32mimport { NextRequest, NextResponse } from 'next/server'[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Newsletter API Route[m
+[32m+[m[32m *[m[41m [m
+[32m+[m[32m * Unterstützt zwei Modi:[m
+[32m+[m[32m * 1. Mailchimp Integration (wenn MAILCHIMP_API_KEY gesetzt)[m
+[32m+[m[32m * 2. Einfache E-Mail-Sammlung (E-Mails werden in Console geloggt)[m
+[32m+[m[32m *[m[41m [m
+[32m+[m[32m * Um Mailchimp zu nutzen:[m
+[32m+[m[32m * 1. Erstelle einen Account auf mailchimp.com[m
+[32m+[m[32m * 2. Erstelle eine Audience/Liste[m
+[32m+[m[32m * 3. Hole dir den API Key: Account → Extras → API Keys[m
+[32m+[m[32m * 4. Hole dir die Audience ID: Audience → Settings → Audience name and defaults[m
+[32m+[m[32m * 5. Setze in .env:[m
+[32m+[m[32m *    MAILCHIMP_API_KEY=dein-api-key[m
+[32m+[m[32m *    MAILCHIMP_AUDIENCE_ID=deine-audience-id[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mexport async function POST(request: NextRequest) {[m
+[32m+[m[32m  try {[m
+[32m+[m[32m    const { email } = await request.json()[m
+[32m+[m
+[32m+[m[32m    // Validierung[m
+[32m+[m[32m    if (!email || !email.includes('@')) {[m
+[32m+[m[32m      return NextResponse.json([m
+[32m+[m[32m        { error: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.' },[m
+[32m+[m[32m        { status: 400 }[m
+[32m+[m[32m      )[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    const mailchimpApiKey = process.env.MAILCHIMP_API_KEY[m
+[32m+[m[32m    const mailchimpAudienceId = process.env.MAILCHIMP_AUDIENCE_ID[m
+[32m+[m
+[32m+[m[32m    // Mailchimp Integration[m
+[32m+[m[32m    if (mailchimpApiKey && mailchimpAudienceId) {[m
+[32m+[m[32m      try {[m
+[32m+[m[32m        // Extrahiere den Server-Prefix aus dem API Key (z.B. "us1" aus "xxxx-us1")[m
+[32m+[m[32m        const serverPrefix = mailchimpApiKey.split('-')[1][m
+[32m+[m[32m        if (!serverPrefix) {[m
+[32m+[m[32m          throw new Error('Ungültiger Mailchimp API Key Format')[m
+[32m+[m[32m        }[m
+[32m+[m[41m        [m
+[32m+[m[32m        const mailchimpUrl = `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${mailchimpAudienceId}/members`[m
+[32m+[m
+[32m+[m[32m        // Mailchimp verwendet Basic Auth: beliebiger Username, API Key als Password[m
+[32m+[m[32m        const authString = Buffer.from(`anystring:${mailchimpApiKey}`).toString('base64')[m
+[32m+[m
+[32m+[m[32m        const response = await fetch(mailchimpUrl, {[m
+[32m+[m[32m          method: 'POST',[m
+[32m+[m[32m          headers: {[m
+[32m+[m[32m            'Content-Type': 'application/json',[m
+[32m+[m[32m            Authorization: `Basic ${authString}`,[m
+[32m+[m[32m          },[m
+[32m+[m[32m          body: JSON.stringify({[m
+[32m+[m[32m            email_address: email,[m
+[32m+[m[32m            status: 'subscribed',[m
+[32m+[m[32m            status_if_new: 'subscribed',[m
+[32m+[m[32m          }),[m
+[32m+[m[32m        })[m
+[32m+[m
+[32m+[m[32m        if (!response.ok) {[m
+[32m+[m[32m          const errorData = await response.json()[m
+[32m+[m[32m          // Wenn E-Mail bereits existiert, ist das OK[m
+[32m+[m[32m          if (response.status === 400 && errorData.title === 'Member Exists') {[m
+[32m+[m[32m            return NextResponse.json([m
+[32m+[m[32m              { message: 'Sie sind bereits für den Newsletter angemeldet!' },[m
+[32m+[m[32m              { status: 200 }[m
+[32m+[m[32m            )[m
+[32m+[m[32m          }[m
+[32m+[m[32m          throw new Error(errorData.detail || 'Mailchimp Fehler')[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        return NextResponse.json([m
+[32m+[m[32m          { message: 'Vielen Dank für Ihre Anmeldung!' },[m
+[32m+[m[32m          { status: 200 }[m
+[32m+[m[32m        )[m
+[32m+[m[32m      } catch (error: any) {[m
+[32m+[m[32m        console.error('Mailchimp Fehler:', error)[m
+[32m+[m[32m        return NextResponse.json([m
+[32m+[m[32m          { error: 'Fehler bei der Anmeldung. Bitte versuchen Sie es später erneut.' },[m
+[32m+[m[32m          { status: 500 }[m
+[32m+[m[32m        )[m
+[32m+[m[32m      }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    // Fallback: Einfache Logging (für Entwicklung)[m
+[32m+[m[32m    console.log('Newsletter Anmeldung:', email)[m
+[32m+[m[32m    console.log('HINWEIS: Mailchimp nicht konfiguriert. E-Mail wurde nur geloggt.')[m
+[32m+[m[32m    console.log('Um Mailchimp zu nutzen, setze MAILCHIMP_API_KEY und MAILCHIMP_AUDIENCE_ID in .env')[m
+[32m+[m
+[32m+[m[32m    return NextResponse.json([m
+[32m+[m[32m      { message: 'Vielen Dank für Ihre Anmeldung! (Demo-Modus)' },[m
+[32m+[m[32m      { status: 200 }[m
+[32m+[m[32m    )[m
+[32m+[m[32m  } catch (error) {[m
+[32m+[m[32m    console.error('Newsletter API Fehler:', error)[m
+[32m+[m[32m    return NextResponse.json([m
+[32m+[m[32m      { error: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.' },[m
+[32m+[m[32m      { status: 500 }[m
+[32m+[m[32m    )[m
+[32m+[m[32m  }[m
+[32m+[m[32m}[m
+[32m+[m
+[1mdiff --git a/components/Footer.tsx b/components/Footer.tsx[m
+[1mindex 89aa852..54ec726 100644[m
+[1m--- a/components/Footer.tsx[m
+[1m+++ b/components/Footer.tsx[m
+[36m@@ -1,7 +1,50 @@[m
+[32m+[m[32m'use client'[m
+[32m+[m
+ import Link from 'next/link'[m
+[32m+[m[32mimport { useState } from 'react'[m
+ [m
+ export function Footer() {[m
+   const currentYear = new Date().getFullYear()[m
+[32m+[m[32m  const [email, setEmail] = useState('')[m
+[32m+[m[32m  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')[m
+[32m+[m[32m  const [message, setMessage] = useState('')[m
+[32m+[m
+[32m+[m[32m  const handleSubmit = async (e: React.FormEvent) => {[m
+[32m+[m[32m    e.preventDefault()[m
+[32m+[m[41m    [m
+[32m+[m[32m    if (!email || !email.includes('@')) {[m
+[32m+[m[32m      setStatus('error')[m
+[32m+[m[32m      setMessage('Bitte geben Sie eine gültige E-Mail-Adresse ein.')[m
+[32m+[m[32m      return[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    setStatus('loading')[m
+[32m+[m[32m    setMessage('')[m
+[32m+[m
+[32m+[m[32m    try {[m
+[32m+[m[32m      const response = await fetch('/api/newsletter', {[m
+[32m+[m[32m        method: 'POST',[m
+[32m+[m[32m        headers: {[m
+[32m+[m[32m          'Content-Type': 'application/json',[m
+[32m+[m[32m        },[m
+[32m+[m[32m        body: JSON.stringify({ email }),[m
+[32m+[m[32m      })[m
+[32m+[m
+[32m+[m[32m      const data = await response.json()[m
+[32m+[m
+[32m+[m[32m      if (response.ok) {[m
+[32m+[m[32m        setStatus('success')[m
+[32m+[m[32m        setMessage(data.message || 'Vielen Dank für Ihre Anmeldung!')[m
+[32m+[m[32m        setEmail('')[m
+[32m+[m[32m      } else {[m
+[32m+[m[32m        setStatus('error')[m
+[32m+[m[32m        setMessage(data.error || 'Ein Fehler ist aufgetreten.')[m
+[32m+[m[32m      }[m
+[32m+[m[32m    } catch (error) {[m
+[32m+[m[32m      setStatus('error')[m
+[32m+[m[32m      setMessage('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.')[m
+[32m+[m[32m    }[m
+[32m+[m[32m  }[m
+ [m
+   return ([m
+     <footer className="bg-slate-900 text-white mt-24 border-t border-emerald-500/20">[m
+[36m@@ -65,18 +108,36 @@[m [mexport function Footer() {[m
+             <p className="text-slate-400 text-sm mb-4 leading-relaxed">[m
+               Bleiben Sie auf dem Laufenden mit unseren neuesten Artikeln.[m
+             </p>[m
+[31m-            <form className="flex flex-col gap-3">[m
+[32m+[m[32m            <form onSubmit={handleSubmit} className="flex flex-col gap-3">[m
+               <input[m
+                 type="email"[m
+[32m+[m[32m                value={email}[m
+[32m+[m[32m                onChange={(e) => setEmail(e.target.value)}[m
+                 placeholder="Ihre E-Mail"[m
+[31m-                className="px-4 py-3 rounded-lg bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-slate-700"[m
+[32m+[m[32m                disabled={status === 'loading'}[m
+[32m+[m[32m                className="px-4 py-3 rounded-lg bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"[m
+[32m+[m[32m                required[m
+               />[m
+               <button[m
+                 type="submit"[m
+[31m-                className="px-4 py-3 bg-emerald-500 text-white hover:bg-emerald-600 rounded-lg transition-all text-sm font-semibold"[m
+[32m+[m[32m                disabled={status === 'loading'}[m
+[32m+[m[32m                className="px-4 py-3 bg-emerald-500 text-white hover:bg-emerald-600 rounded-lg transition-all text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"[m
+               >[m
+[31m-                Abonnieren[m
+[32m+[m[32m                {status === 'loading' ? 'Wird verarbeitet...' : 'Abonnieren'}[m
+               </button>[m
+[32m+[m[32m              {message && ([m
+[32m+[m[32m                <p[m
+[32m+[m[32m                  className={`text-sm mt-2 ${[m
+[32m+[m[32m                    status === 'success'[m
+[32m+[m[32m                      ? 'text-emerald-400'[m
+[32m+[m[32m                      : status === 'error'[m
+[32m+[m[32m                      ? 'text-red-400'[m
+[32m+[m[32m                      : 'text-slate-400'[m
+[32m+[m[32m                  }`}[m
+[32m+[m[32m                >[m
+[32m+[m[32m                  {message}[m
+[32m+[m[32m                </p>[m
+[32m+[m[32m              )}[m
+             </form>[m
+           </div>[m
+         </div>[m
+[1mdiff --git a/tatus --short b/tatus --short[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3dcfa64[m
+[1m--- /dev/null[m
+[1m+++ b/tatus --short[m	
+[36m@@ -0,0 +1,51 @@[m
+[32m+[m[32mimport Link from 'next/link'[m
+[32m+[m[32mimport { Logo } from './Logo'[m
+[32m+[m[32mimport { SearchBar } from './SearchBar'[m
+[32m+[m
+[32m+[m[32mexport function Navigation() {[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <nav className="bg-white backdrop-blur-sm shadow-sm border-b border-slate-200 sticky top-0 z-50">[m
+[32m+[m[32m      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">[m
+[32m+[m[32m        <div className="flex justify-between items-center h-20">[m
+[32m+[m[32m          <div className="flex items-center">[m
+[32m+[m[32m            <Logo size="md" />[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m          <div className="hidden md:flex items-center space-x-4 flex-1 justify-end">[m
+[32m+[m[32m            <Link[m
+[32m+[m[32m              href="/"[m
+[32m+[m[32m              className="px-4 py-2 text-slate-700 hover:text-emerald-600 hover:bg-slate-50 rounded-lg transition-all font-medium text-sm"[m
+[32m+[m[32m            >[m
+[32m+[m[32m              Home[m
+[32m+[m[32m            </Link>[m
+[32m+[m[32m            <Link[m
+[32m+[m[32m              href="/artikel"[m
+[32m+[m[32m              className="px-4 py-2 text-slate-700 hover:text-emerald-600 hover:bg-slate-50 rounded-lg transition-all font-medium text-sm"[m
+[32m+[m[32m            >[m
+[32m+[m[32m              Artikel[m
+[32m+[m[32m            </Link>[m
+[32m+[m[32m            <Link[m
+[32m+[m[32m              href="/ueber"[m
+[32m+[m[32m              className="px-4 py-2 text-slate-700 hover:text-emerald-600 hover:bg-slate-50 rounded-lg transition-all font-medium text-sm"[m
+[32m+[m[32m            >[m
+[32m+[m[32m              Über uns[m
+[32m+[m[32m            </Link>[m
+[32m+[m[32m            <Link[m
+[32m+[m[32m              href="/kontakt"[m
+[32m+[m[32m              className="px-4 py-2 text-slate-700 hover:text-emerald-600 hover:bg-slate-50 rounded-lg transition-all font-medium text-sm"[m
+[32m+[m[32m            >[m
+[32m+[m[32m              Kontakt[m
+[32m+[m[32m            </Link>[m
+[32m+[m[32m            <div className="ml-4">[m
+[32m+[m[32m              <SearchBar light />[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m          {/* Mobile menu with search */}[m
+[32m+[m[32m          <div className="md:hidden">[m
+[32m+[m[32m            <SearchBar light />[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m      </div>[m
+[32m+[m[32m    </nav>[m
+[32m+[m[32m  )[m
+[32m+[m[32m}[m
+[32m+[m

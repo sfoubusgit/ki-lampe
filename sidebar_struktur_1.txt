@@ -1,0 +1,16 @@
+-----------------------------
+|    Sidebar                |
+|---------------------------|
+|  🎨 „Empfohlen“           |
+|  AffiliateProductBox     |
+|---------------------------|
+|  ⚡ „Budget-Option“       |
+|  AffiliateProductBox     |
+|---------------------------|
+|  🚀 „Profi-Option“        |
+|  AffiliateProductBox     |
+|---------------------------|
+|  Verwandte Artikel       |
+|---------------------------|
+|  Pinterest Widget        |
+-----------------------------
