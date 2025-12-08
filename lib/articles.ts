@@ -89,7 +89,7 @@ export async function getArticle(slug: string): Promise<Article | null> {
 // Cache for articles to improve performance
 let articlesCache: Article[] | null = null
 let cacheTimestamp: number = 0
-const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+const CACHE_DURATION = 2 * 60 * 1000 // 2 minutes (reduced for faster updates)
 
 // Function to clear cache manually
 export function clearArticlesCache() {
@@ -128,9 +128,11 @@ export async function getAllArticles(): Promise<Article[]> {
   const filteredArticles = articles
     .filter((article): article is Article => article !== null)
     .sort((a, b) => {
-      const dateA = new Date(a.date).getTime()
-      const dateB = new Date(b.date).getTime()
-      return dateB - dateA
+      // Use dateModified if available, otherwise use date
+      // This ensures recently updated articles appear first
+      const dateA = new Date(a.dateModified || a.date).getTime()
+      const dateB = new Date(b.dateModified || b.date).getTime()
+      return dateB - dateA // Sort descending (newest first)
     })
 
   // Update cache

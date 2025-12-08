@@ -5,7 +5,7 @@ import { ArticleImage } from '@/components/ArticleImage'
 import { Hero } from '@/components/Hero'
 import { formatDate, slugify } from '@/lib/utils'
 
-export const revalidate = 60 // ISR: Revalidate every 60 seconds
+export const revalidate = 0 // Disable cache for development - ensures latest articles show immediately
 
 export default async function Home() {
   const articles = await getAllArticles()
