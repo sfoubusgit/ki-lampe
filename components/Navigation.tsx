@@ -24,6 +24,12 @@ export function Navigation() {
               Artikel
             </Link>
             <Link
+              href="/news"
+              className="px-4 py-2 text-slate-700 hover:text-emerald-600 hover:bg-slate-50 rounded-lg transition-all font-medium text-sm"
+            >
+              News
+            </Link>
+            <Link
               href="/ueber"
               className="px-4 py-2 text-slate-700 hover:text-emerald-600 hover:bg-slate-50 rounded-lg transition-all font-medium text-sm"
             >

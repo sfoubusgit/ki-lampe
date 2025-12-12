@@ -183,3 +183,8 @@ head -n 5 content/articles/<slug>.md | grep date
 ---
 
 **Letzte Aktualisierung:** 2025-12-08
+
+
+
+
+

@@ -56,3 +56,8 @@ fi
 
 echo "${GREEN}✅ No merge conflict markers found. Proceeding with commit...${NC}"
 exit 0
+
+
+
+
+

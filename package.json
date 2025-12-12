@@ -23,6 +23,8 @@
     "fix-images": "node scripts/fix-image-paths.js",
     "fix-all-images": "node scripts/fix-all-images.js",
     "set-date": "tsx scripts/set-article-date.ts",
+    "traffic:list": "tsx \"Traffic Generierungs Strategien/generate-traffic.ts\" list",
+    "traffic:generate": "tsx \"Traffic Generierungs Strategien/generate-traffic.ts\" generate",
     "deploy": "vercel",
     "deploy:prod": "vercel --prod",
     "optimize": "node optimize.js"

@@ -31,3 +31,8 @@ img.save(desktop, "PNG")
 print(f"Logo saved to {desktop}")
 
 
+
+
+
+
+

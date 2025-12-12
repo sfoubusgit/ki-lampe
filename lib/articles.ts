@@ -323,6 +323,46 @@ export async function getPaginatedArticlesByAuthor(
 }
 
 /**
+ * Get all news articles (articles with category "News" or tag "News")
+ */
+export async function getNewsArticles(): Promise<Article[]> {
+  const allArticles = await getAllArticles()
+  return allArticles.filter((article) => 
+    article.category === 'News' || 
+    (article.tags && article.tags.includes('News'))
+  )
+}
+
+/**
+ * Get paginated news articles
+ */
+export async function getPaginatedNewsArticles(
+  page: number = 1,
+  pageSize: number = 10
+): Promise<{
+  articles: Article[]
+  totalPages: number
+  currentPage: number
+  totalArticles: number
+}> {
+  const newsArticles = await getNewsArticles()
+  const totalArticles = newsArticles.length
+  const totalPages = Math.ceil(totalArticles / pageSize)
+  const currentPage = Math.max(1, Math.min(page, totalPages))
+  
+  const startIndex = (currentPage - 1) * pageSize
+  const endIndex = startIndex + pageSize
+  const articles = newsArticles.slice(startIndex, endIndex)
+
+  return {
+    articles,
+    totalPages,
+    currentPage,
+    totalArticles,
+  }
+}
+
+/**
  * Get related articles based on category and tags
  * Priority: category > tags > random
  */
