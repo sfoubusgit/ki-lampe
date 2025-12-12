@@ -1,5 +1,5 @@
 ---
-image: '/images/ki-investitionen-wirtschaft.webp'
+image: '/images/riMix_Illustrious_Detailer_00011_.webp'
 title: "Große Investitionen & wirtschaftliche Verschiebungen: Was Microsofts 17,5 Milliarden und NVIDIAs Dominanz wirklich bedeuten"
 date: '2025-12-10T10:00:00.000Z'
 dateModified: '2025-12-10T10:00:00.000Z'
