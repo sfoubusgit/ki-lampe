@@ -1,0 +1,169 @@
+================================================================================
+PROBLEM: Falsches Datum in neuen Artikeln
+================================================================================
+
+DATUM DER ANALYSE: 2025-12-13
+STATUS: ✅ GELÖST
+
+================================================================================
+WARUM ES DAZU KAM
+================================================================================
+
+1. VAGE ANWEISUNGEN IN DEN PROMPTS
+   - In "universal_prompt_regeln_komplettpaket_umsetzung.txt" steht nur:
+     "date: neues Datum"
+     → Keine klare Anweisung, WELCHES Datum verwendet werden soll
+   
+   - In "artikelprompt.txt" steht:
+     "date: '[HEUTIGES DATUM IM ISO-FORMAT]'"
+     → Platzhalter, der von der KI interpretiert werden muss
+     → KI kann das falsch interpretieren oder ein Beispiel-Datum verwenden
+
+2. MANUELLE DATUMS-SETZUNG
+   - Beim Erstellen von Artikeln wurde manchmal ein festes Datum verwendet
+     (z.B. 2025-01-27 statt dem aktuellen Datum)
+   - Keine automatische Validierung, ob das Datum aktuell ist
+
+3. KEINE AUTOMATISCHE DATUMS-FUNKTION
+   - Es gibt zwar ein Script "set-article-date.ts", aber:
+     → Es wird nicht automatisch beim Erstellen aufgerufen
+     → Muss manuell ausgeführt werden
+     → Wird oft vergessen
+
+4. BEISPIEL-DATEN IN VORLAGEN
+   - In Dokumentationen stehen Beispiel-Daten wie "2025-12-08"
+   - Diese werden manchmal kopiert statt durch aktuelles Datum ersetzt
+
+================================================================================
+WIE ICH ES GELÖST HABE
+================================================================================
+
+1. KLARE ANWEISUNG FÜR ZUKÜNFTIGE ARTIKEL-ERSTELLUNG
+   
+   Beim Erstellen neuer Artikel IMMER:
+   
+   a) Aktuelles Datum abrufen:
+      PowerShell: Get-Date -Format "yyyy-MM-ddTHH:mm:ss.fffZ"
+      Oder: new Date().toISOString() in JavaScript/TypeScript
+   
+   b) Datum im Frontmatter setzen:
+      date: '[AKTUELLES_DATUM_IM_ISO_FORMAT]'
+      dateModified: '[AKTUELLES_DATUM_IM_ISO_FORMAT]'
+   
+   c) Format muss sein: '2025-12-13T17:10:00.000Z'
+      ✅ Korrekt: '2025-12-13T17:10:00.000Z'
+      ❌ Falsch: '2025-12-13' (fehlt Zeit)
+      ❌ Falsch: '2025-01-27' (altes Datum)
+
+2. AUTOMATISCHE DATUMS-SETZUNG BEIM ERSTELLEN
+   
+   Wenn ich einen neuen Artikel erstelle, muss ich:
+   
+   a) Zuerst das aktuelle Datum abrufen
+   b) Dieses Datum IMMER im Frontmatter verwenden
+   c) NIE ein festes/Beispiel-Datum verwenden
+
+3. VALIDIERUNG NACH DEM ERSTELLEN
+   
+   Nach dem Erstellen eines Artikels:
+   
+   a) Prüfen, ob das Datum aktuell ist
+   b) Falls nicht, mit Script korrigieren:
+      tsx scripts/set-article-date.ts <slug>
+   
+   c) Oder manuell im Frontmatter korrigieren
+
+4. UPDATE DER ANWEISUNGEN
+   
+   Die Anweisungen wurden aktualisiert:
+   - Klare Anweisung: "IMMER aktuelles Datum verwenden"
+   - Format-Spezifikation: ISO 8601 mit Zeit
+   - Automatische Datums-Abfrage vor dem Erstellen
+
+================================================================================
+LÖSUNG FÜR BESTEHENDE ARTIKEL
+================================================================================
+
+Falls ein Artikel ein falsches Datum hat:
+
+1. EINZELNEN ARTIKEL KORRIGIEREN:
+   cd KILAMPE_AKTUELL
+   tsx scripts/set-article-date.ts <slug>
+
+2. ALLE ARTIKEL KORRIGIEREN:
+   cd KILAMPE_AKTUELL
+   tsx scripts/set-article-date.ts --all
+
+3. MANUELL KORRIGIEREN:
+   - Öffne: content/articles/<slug>.md
+   - Ändere date und dateModified auf aktuelles Datum
+   - Format: '2025-12-13T17:10:00.000Z'
+
+================================================================================
+PRÄVENTION FÜR DIE ZUKUNFT
+================================================================================
+
+1. BEIM ERSTELLEN NEUER ARTIKEL:
+   
+   ✅ IMMER zuerst aktuelles Datum abrufen:
+      PowerShell: Get-Date -Format "yyyy-MM-ddTHH:mm:ss.fffZ"
+   
+   ✅ Dieses Datum im Frontmatter verwenden
+   
+   ✅ NIE Beispiel-Daten oder alte Daten kopieren
+
+2. NACH DEM ERSTELLEN:
+   
+   ✅ Prüfen, ob Datum korrekt ist
+   
+   ✅ Falls nicht, sofort korrigieren
+
+3. REGELMÄSSIGE PRÜFUNG:
+   
+   ✅ Alle neuen Artikel auf korrektes Datum prüfen
+   
+   ✅ Script verwenden: tsx scripts/set-article-date.ts --new-only
+
+================================================================================
+TECHNISCHE DETAILS
+================================================================================
+
+KORREKTES DATUMS-FORMAT:
+- Format: ISO 8601 mit UTC-Zeitzone
+- Beispiel: '2025-12-13T17:10:00.000Z'
+- Struktur: YYYY-MM-DDTHH:mm:ss.fffZ
+
+WARUM DIESES FORMAT:
+- Wird von Next.js korrekt geparst
+- Funktioniert mit JavaScript Date-Objekten
+- Sortierung funktioniert korrekt
+- Wird in RSS-Feeds korrekt angezeigt
+
+SCRIPT ZUM KORRIGIEREN:
+- Pfad: scripts/set-article-date.ts
+- Verwendung: tsx scripts/set-article-date.ts <slug>
+- Setzt automatisch aktuelles Datum
+
+================================================================================
+ZUSAMMENFASSUNG
+================================================================================
+
+PROBLEM:
+- Artikel erhalten oft falsche/veraltete Daten
+- Ursache: Vage Anweisungen, manuelle Fehler, keine Automatisierung
+
+LÖSUNG:
+- Klare Anweisung: IMMER aktuelles Datum verwenden
+- Automatische Datums-Abfrage vor dem Erstellen
+- Validierung nach dem Erstellen
+- Script zum Korrigieren vorhanden
+
+PRÄVENTION:
+- Beim Erstellen: Aktuelles Datum abrufen und verwenden
+- Nach dem Erstellen: Datum prüfen
+- Regelmäßig: Neue Artikel validieren
+
+================================================================================
+ENDE DER DOKUMENTATION
+================================================================================
+
