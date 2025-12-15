@@ -7,7 +7,7 @@ export default function NewsletterLeadMagnet({ leadSlug = '10-ki-prompts-grafikt
   const [success, setSuccess] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
