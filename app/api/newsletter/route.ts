@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'Technischer Fehler. Download freigeschaltet.',
-      download: `/downloads/${lead}.pdf`
+      download: `/downloads/10-ki-prompts-grafiktablett.pdf`
     }, { status: 200 })
   }
 }
