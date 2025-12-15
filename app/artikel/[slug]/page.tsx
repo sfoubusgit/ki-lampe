@@ -6,6 +6,7 @@ import { getArticle, getAllArticles, getRelatedArticles } from "@/lib/articles";
 import { formatDate } from "@/lib/utils";
 import { ArticleImage } from "@/components/ArticleImage";
 import { AffiliateProductBox } from "@/components/AffiliateProductBox";
+import NewsletterLeadMagnet from "@/components/NewsletterLeadMagnet";
 import { BrandStory } from "@/components/BrandStory";
 import type { Metadata } from "next";
 
@@ -152,6 +153,33 @@ export default async function ArticlePage({ params }: Props) {
             className="prose prose-invert prose-emerald max-w-none"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
+
+	{slug === 'ki-als-werkzeug-kuenstler' && (
+  <section className="mt-28 pt-16 pb-8 bg-gradient-to-br from-emerald-900/20 to-slate-900/30 rounded-3xl shadow-xl mb-16">
+    <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-2xl mx-auto -mt-6 relative z-10">
+        <div className="bg-slate-800/90 backdrop-blur-md shadow-xl rounded-2xl p-8 space-y-6">
+          
+          {/* DOWNLOAD FORMULAR OBEN */}
+          <NewsletterLeadMagnet leadSlug="10-ki-prompts-grafiktablett" />
+          
+          {/* BESCHREIBUNG UNTEN */}
+          <div className="text-center p-6 bg-emerald-500/10 rounded-xl border border-emerald-500/30">
+            <h3 className="text-lg font-bold text-emerald-300 mb-3">📄 Was du bekommst:</h3>
+            <ul className="text-left text-slate-300 text-sm space-y-1 max-w-md mx-auto">
+              <li>• <span className="font-bold text-emerald-200">10 Schritt-für-Schritt KI-Prompts</span></li>
+              <li>• Speziell für Wacom/iPad Künstler</li>
+              <li>• <span className="font-bold text-emerald-200">Von grober Skizze → Artstation-Ready</span></li>
+              <li>• Detaillierte Anleitungen + Pro-Tipps</li>
+            </ul>
+            <p className="text-xs text-slate-400 mt-4 font-medium">100% kostenlos – nur deine E-Mail!</p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+)}
 
           {/* VERWANDTE ARTIKEL - Unter dem Artikel */}
           {relatedArticles.length > 0 && (
