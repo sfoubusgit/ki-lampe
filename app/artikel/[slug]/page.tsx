@@ -8,6 +8,7 @@ import { ArticleImage } from "@/components/ArticleImage";
 import { AffiliateProductBox } from "@/components/AffiliateProductBox";
 import NewsletterLeadMagnet from "@/components/NewsletterLeadMagnet";
 import { BrandStory } from "@/components/BrandStory";
+import { AdBanner } from "@/components/AdBanner";
 import type { Metadata } from "next";
 
 export const revalidate = 60;
@@ -94,19 +95,21 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
-      {/* STICKY BUTTON */}
-      <div className="fixed top-4 right-4 z-50 md:right-8 lg:right-12">
-        <a 
-          href="#lead-magnet" 
-          className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 flex items-center space-x-2 text-sm"
-        >
-          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-            <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd"/>
-          </svg>
-          <span>🎁 Gratis PDF sichern</span>
-        </a>
-      </div>
+      {/* ✅ STICKY BUTTON - NUR für KI-Künstler Artikel */}
+      {slug === 'ki-als-werkzeug-kuenstler' && (
+        <div className="fixed top-4 right-4 z-50 md:right-8 lg:right-12">
+          <a 
+            href="#lead-magnet" 
+            className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 flex items-center space-x-2 text-sm"
+          >
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+              <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd"/>
+            </svg>
+            <span>🎁 Gratis PDF sichern</span>
+          </a>
+        </div>
+      )}
 
       <main className="min-h-screen bg-slate-900 pt-20">
         <div className={`max-w-7xl mx-auto px-4 py-16 ${showSidebar ? 'grid grid-cols-1 lg:grid-cols-12 gap-8' : ''}`}>
@@ -256,7 +259,7 @@ export default async function ArticlePage({ params }: Props) {
                       />
                     </div>
                   </section>
-                ) : slug === 'ki-lego-objekte-bauen' && (
+                ) : slug === 'ki-lego-objekte-bauen' ? (
                   <section>
                     <h2 className="text-xl font-bold text-white mb-4">Empfohlene Produkte</h2>
                     <AffiliateProductBox
@@ -268,7 +271,16 @@ export default async function ArticlePage({ params }: Props) {
                       className="max-w-full"
                     />
                   </section>
-                )}
+                ) : slug === 'grosse-investitionen-wirtschaftliche-verschiebungen-microsoft-nvidia' ? (
+                  <section>
+                    <h3 className="text-sm font-semibold text-slate-300 mb-3">Anzeige</h3>
+                    <AdBanner
+                      placement="article-sidebar"
+                      adClient={process.env.GOOGLE_ADSENSE_CLIENT_ID}
+                      adSlot="8758260091"
+                    />
+                  </section>
+                ) : null}
               </div>
             </aside>
           )}

@@ -66,6 +66,13 @@ export default function RootLayout({
   return (
     <html lang="de">
       <head>
+        {/* Globaler Google AdSense Code für Domain-Verifikation und Auslieferung */}
+        <Script
+          id="adsense-init"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5102126204268147"
+          crossOrigin="anonymous"
+        />
         <link rel="canonical" href={siteUrl} />
         <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
         <script

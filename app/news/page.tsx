@@ -45,7 +45,7 @@ export default async function NewsPage() {
         <AdBanner 
           placement="top"
           adClient={process.env.GOOGLE_ADSENSE_CLIENT_ID}
-          adSlot="1234567896"
+          adSlot="3697505106"
         />
 
         {/* News-Artikel-Grid */}
