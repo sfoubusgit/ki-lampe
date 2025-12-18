@@ -29,7 +29,14 @@ async function getArticleSlugs(): Promise<string[]> {
   }
   const fileNames = fs.readdirSync(articlesDirectory)
   return fileNames
-    .filter((name) => name.endsWith('.md') || name.endsWith('.mdx'))
+    .filter((name) => {
+      // Exclude README.md and other non-article files
+      const lowerName = name.toLowerCase()
+      if (lowerName === 'readme.md' || lowerName === 'readme.mdx') {
+        return false
+      }
+      return name.endsWith('.md') || name.endsWith('.mdx')
+    })
     .map((name) => name.replace(/\.(md|mdx)$/, ''))
 }
 
@@ -89,22 +96,86 @@ export async function getArticle(slug: string): Promise<Article | null> {
 // Cache for articles to improve performance
 let articlesCache: Article[] | null = null
 let cacheTimestamp: number = 0
-const CACHE_DURATION = 2 * 60 * 1000 // 2 minutes (reduced for faster updates)
+let cacheFileModTimes: Map<string, number> = new Map()
+const CACHE_DURATION = 30 * 1000 // 30 seconds (reduced for faster updates during development)
 
 // Function to clear cache manually
 export function clearArticlesCache() {
   articlesCache = null
   cacheTimestamp = 0
+  cacheFileModTimes.clear()
+}
+
+/**
+ * Check if any article files have been modified since cache was created
+ */
+async function hasArticlesChanged(): Promise<boolean> {
+  const currentModTimes = new Map<string, number>()
+  
+  if (!fs.existsSync(articlesDirectory)) {
+    return true
+  }
+  
+  const fileNames = fs.readdirSync(articlesDirectory)
+  const mdFiles = fileNames.filter((name) => name.endsWith('.md') || name.endsWith('.mdx'))
+  
+  for (const fileName of mdFiles) {
+    const filePath = path.join(articlesDirectory, fileName)
+    try {
+      const stats = fs.statSync(filePath)
+      const modTime = stats.mtimeMs
+      currentModTimes.set(fileName, modTime)
+      
+      // Check if this file's mod time has changed
+      const cachedModTime = cacheFileModTimes.get(fileName)
+      if (cachedModTime !== modTime) {
+        return true // File has changed
+      }
+    } catch (error) {
+      // If we can't access a file, assume changed
+      return true
+    }
+  }
+  
+  // Check if any files were deleted (exist in cache but not in filesystem)
+  for (const [fileName] of cacheFileModTimes) {
+    if (!currentModTimes.has(fileName)) {
+      return true // File was deleted
+    }
+  }
+  
+  return false
 }
 
 export async function getAllArticles(): Promise<Article[]> {
-  // Return cached articles if still valid
   const now = Date.now()
-  if (articlesCache && (now - cacheTimestamp) < CACHE_DURATION) {
+  
+  // Check if cache is still valid based on:
+  // 1. Time-based expiration (short duration)
+  // 2. File modification times
+  const cacheAge = now - cacheTimestamp
+  const isTimeValid = cacheAge < CACHE_DURATION
+  const filesUnchanged = articlesCache ? !(await hasArticlesChanged()) : false
+  
+  if (articlesCache && isTimeValid && filesUnchanged) {
     return articlesCache
   }
 
   const slugs = await getArticleSlugs()
+  
+  // Update file modification times cache
+  cacheFileModTimes.clear()
+  for (const slug of slugs) {
+    const filePath = path.join(articlesDirectory, `${slug}.md`)
+    try {
+      if (fs.existsSync(filePath)) {
+        const stats = fs.statSync(filePath)
+        cacheFileModTimes.set(`${slug}.md`, stats.mtimeMs)
+      }
+    } catch (error) {
+      // Skip files that can't be accessed
+    }
+  }
   
   // Process articles in batches to avoid overwhelming the system
   const batchSize = 10

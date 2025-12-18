@@ -61,7 +61,7 @@ export default function NewsletterLeadMagnet({ leadSlug = '10-ki-prompts-grafikt
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-gradient-to-r from-emerald-600 to-emerald-500 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-emerald-700 hover:to-emerald-600 disabled:opacity-50 transition-all"
+          className="w-full bg-[#fbbf24] text-slate-950 py-4 px-6 rounded-xl font-bold text-lg hover:bg-[#facc15] disabled:opacity-50 transition-all"
         >
           {loading ? '🔄 Lade...' : '📥 Jetzt herunterladen'}
         </button>

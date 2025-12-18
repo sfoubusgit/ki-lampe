@@ -23,7 +23,7 @@ export default async function Home() {
     .slice(0, 6) // Top 6 categories
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+    <main className="min-h-screen bg-[#020617]">
       {/* Hero Section - Cyber Neon Design */}
       <Hero />
 
@@ -37,7 +37,7 @@ export default async function Home() {
       {/* Popular Topics Section */}
       {popularCategories.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 py-16 border-b border-slate-700">
-          <div className="mb-8">
+          <div className="mb-8 text-center">
             <h2 className="text-3xl md:text-4xl font-black text-white mb-2 tracking-tight">
               Beliebte <span className="text-emerald-400">Themen</span>
             </h2>
@@ -81,7 +81,7 @@ export default async function Home() {
 
       {/* Featured Articles - Dark Card Design with Green Accents */}
       <section className="max-w-7xl mx-auto px-4 py-20">
-        <div className="mb-12">
+        <div className="mb-12 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
             Aktuelle <span className="text-emerald-400">Artikel</span>
           </h2>
@@ -106,18 +106,26 @@ export default async function Home() {
                 </Link>
               )}
               <div className="p-6">
-                <div className="flex items-center text-xs text-slate-400 mb-3 font-medium">
+                <div className="flex items-center flex-wrap gap-2 text-xs text-slate-400 mb-3 font-medium">
                   <time dateTime={article.date}>
                     {formatDate(article.date)}
                   </time>
                   {article.category && (
                     <>
-                      <span className="mx-2">•</span>
+                      <span className="mx-1">•</span>
                       <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold border border-emerald-500/30">
                         {article.category}
                       </span>
                     </>
                   )}
+                  {article.tags && article.tags.filter(tag => tag !== article.category).map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold border border-amber-500/30"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
                 <Link href={`/artikel/${article.slug}`}>
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors leading-tight line-clamp-2">
@@ -152,7 +160,7 @@ export default async function Home() {
         <section className="max-w-7xl mx-auto px-4 py-12 text-center border-t border-slate-700">
           <Link
             href="/artikel"
-            className="inline-flex items-center gap-2 bg-emerald-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-600 transition-all shadow-lg hover:shadow-emerald-500/50 transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 bg-[#fbbf24] text-slate-950 px-8 py-4 rounded-lg font-semibold hover:bg-[#facc15] transition-all shadow-lg hover:shadow-amber-400/50 transform hover:-translate-y-0.5"
           >
             Alle Artikel anzeigen ({articles.length})
             <span>→</span>

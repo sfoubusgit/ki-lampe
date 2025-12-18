@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function PapaKindLegoPage() {
   return (
-    <main className="min-h-screen bg-slate-900">
+    <main className="min-h-screen bg-[#020617]">
       {/* Hero Section */}
       <section className="py-24 px-4 border-b border-emerald-500/20">
         <div className="max-w-4xl mx-auto text-center">
@@ -48,7 +48,7 @@ export default function PapaKindLegoPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/artikel/ki-lego-objekte-bauen"
-              className="px-8 py-4 bg-emerald-500 text-white rounded-lg font-semibold hover:bg-emerald-600 transition-all shadow-lg hover:shadow-emerald-500/50 transform hover:-translate-y-0.5"
+              className="px-8 py-4 bg-[#fbbf24] text-slate-950 rounded-lg font-semibold hover:bg-[#facc15] transition-all shadow-lg hover:shadow-amber-400/50 transform hover:-translate-y-0.5"
             >
               Jetzt erste Bauidee mit ChatGPT generieren
             </Link>

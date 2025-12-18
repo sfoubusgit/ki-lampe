@@ -6,23 +6,18 @@ export function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
-        <div className={styles.bulbWrapper}>
-          <Image
-            src="/images/front.png"
-            alt="KI Lampe Illustration"
-            width={800}
-            height={800}
-            priority
-            className={styles.bulbImage}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-          />
-        </div>
         <div className={styles.textBlock}>
           <p className={styles.kicker}>WILLKOMMEN BEI</p>
           <h1 className={styles.title}>
             <span className={styles.brandGlow}>
               <span className="text-white">KI</span>
-              <span className="text-amber-400">.</span>
+              <Image
+                src="/logo/logo-icon.svg"
+                alt=""
+                width={80}
+                height={80}
+                className={`inline-block mx-2 align-middle ${styles.logoIcon}`}
+              />
               <span className="text-white">LAMPE</span>
             </span>
           </h1>

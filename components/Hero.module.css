@@ -2,29 +2,27 @@
 .hero {
   width: 100%;
   min-height: 90vh;
-  padding: 4rem 1rem;
+  padding: 0 1rem 4rem 1rem;
+  padding-top: calc(5rem + 80px);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(0, 255, 200, 0.18), transparent 60%),
-    radial-gradient(circle at 80% 60%, rgba(0, 120, 255, 0.12), transparent 70%),
-    linear-gradient(180deg, #041423 0%, #02040a 100%);
+  /* Vertikaler Verlauf: unten dunkles Blau wie Seitenhintergrund, nach oben in das Akzent-Grün */
+  /* Gradient: unten dunkel (#020617), oben hell-türkis (#059669) */
+  background: linear-gradient(
+    to top,
+    #020617 0%,
+    #0f172a 40%,
+    #059669 100%
+  );
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  margin-top: -80px;
 }
 
 .hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.15) 1px, transparent 0);
-  background-size: 20px 20px;
-  opacity: 0.07;
-  z-index: 1;
+  content: none;
 }
 
 .inner {
@@ -33,12 +31,16 @@
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  display: flex;
   align-items: center;
-  justify-items: center;
-  gap: 4rem;
+  justify-content: center;
   padding: 2rem;
+}
+
+.logoBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bulbWrapper {
@@ -70,13 +72,12 @@
 }
 
 .textBlock {
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
-  max-width: 600px;
-  order: 2;
+  max-width: 800px;
 }
 
 .kicker {
@@ -110,6 +111,17 @@
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.15));
 }
 
+.logoIcon {
+  transition: all 0.3s ease;
+}
+
+.logoIcon:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.9)) 
+          drop-shadow(0 0 40px rgba(251, 191, 36, 0.6))
+          drop-shadow(0 0 60px rgba(251, 191, 36, 0.3));
+}
+
 .subtitle {
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   font-weight: 400;
@@ -141,7 +153,8 @@
   line-height: 1.6;
   margin: 0;
   margin-bottom: 2rem;
-  max-width: 600px;
+  max-width: 700px;
+  text-align: center;
 }
 
 .actions {
@@ -157,17 +170,18 @@
   padding: 14px 28px;
   font-size: 1.2rem;
   border-radius: 999px;
-  background: linear-gradient(90deg, #00ffa9, #00e6ff);
-  color: #000;
+  background: #fbbf24;
+  color: #0f172a;
   font-weight: 600;
   text-decoration: none;
   transition: 0.25s ease;
-  box-shadow: 0 0 20px rgba(0, 255, 200, 0.45);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.45);
 }
 
 .primaryButton:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 0 32px rgba(0, 255, 230, 0.65);
+  background: #facc15;
+  box-shadow: 0 0 32px rgba(251, 191, 36, 0.65);
 }
 
 .primaryButton:active {
@@ -177,18 +191,11 @@
 /* Responsive Design */
 @media (max-width: 968px) {
   .inner {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .bulbWrapper {
-    order: 1;
+    padding: 1.5rem;
   }
 
   .textBlock {
-    order: 2;
-    text-align: center;
-    align-items: center;
+    max-width: 100%;
   }
 
   .bulbImage {

@@ -111,7 +111,7 @@ export default async function ArticlePage({ params }: Props) {
         </div>
       )}
 
-      <main className="min-h-screen bg-slate-900 pt-20">
+      <main className="min-h-screen bg-[#020617] pt-20">
         <div className={`max-w-7xl mx-auto px-4 py-16 ${showSidebar ? 'grid grid-cols-1 lg:grid-cols-12 gap-8' : ''}`}>
           {/* MAIN CONTENT */}
           <article className={showSidebar ? "lg:col-span-8" : "max-w-4xl mx-auto"}>
@@ -134,16 +134,26 @@ export default async function ArticlePage({ params }: Props) {
             </h1>
 
             {/* META-DATEN */}
-            <div className="flex items-center text-slate-400 mb-10 text-sm font-medium">
+            <div className="flex items-center flex-wrap gap-2 text-slate-400 mb-10 text-sm font-medium">
               <time dateTime={article.date}>{formatDate(article.date)}</time>
               {article.category && (
                 <>
-                  <span className="mx-2">•</span>
+                  <span className="mx-1">•</span>
                   <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold border border-emerald-500/30">
                     {article.category}
                   </span>
                 </>
               )}
+              {article.tags && article.tags.length > 0 && article.tags.map((tag) => (
+                tag !== article.category && (
+                  <span
+                    key={tag}
+                    className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold border border-amber-500/30"
+                  >
+                    {tag}
+                  </span>
+                )
+              ))}
             </div>
 
             {/* BRAND-STORY */}

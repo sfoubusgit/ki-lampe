@@ -65,7 +65,7 @@ export function Pagination({ currentPage, totalPages, baseUrl, className = '' }:
       {prevPage ? (
         <Link
           href={prevPage === 1 ? baseUrl : `${baseUrl}/seite/${prevPage}`}
-          className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg border border-slate-700 hover:bg-emerald-500/20 hover:text-emerald-400 hover:border-emerald-500/50 transition-all font-medium"
+          className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg border border-slate-700 hover:bg-amber-500/20 hover:text-amber-400 hover:border-amber-500/50 transition-all font-medium"
           aria-label="Vorherige Seite"
         >
           ← Zurück
@@ -101,8 +101,8 @@ export function Pagination({ currentPage, totalPages, baseUrl, className = '' }:
               href={pageUrl}
               className={`px-4 py-2 rounded-lg border font-medium transition-all ${
                 isActive
-                  ? 'bg-emerald-500 text-white border-emerald-500 shadow-lg shadow-emerald-500/20'
-                  : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-emerald-500/20 hover:text-emerald-400 hover:border-emerald-500/50'
+                  ? 'bg-[#fbbf24] text-slate-950 border-[#fbbf24] shadow-lg shadow-amber-400/20'
+                  : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-amber-500/20 hover:text-amber-400 hover:border-amber-500/50'
               }`}
               aria-label={`Seite ${pageNum}`}
               aria-current={isActive ? 'page' : undefined}
@@ -117,7 +117,7 @@ export function Pagination({ currentPage, totalPages, baseUrl, className = '' }:
       {nextPage ? (
         <Link
           href={`${baseUrl}/seite/${nextPage}`}
-          className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg border border-slate-700 hover:bg-emerald-500/20 hover:text-emerald-400 hover:border-emerald-500/50 transition-all font-medium"
+          className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg border border-slate-700 hover:bg-amber-500/20 hover:text-amber-400 hover:border-amber-500/50 transition-all font-medium"
           aria-label="Nächste Seite"
         >
           Weiter →

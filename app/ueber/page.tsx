@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AboutPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+    <main className="min-h-screen bg-[#020617]">
       <div className="max-w-4xl mx-auto px-4 py-20">
         
         {/* Header */}
@@ -155,7 +155,7 @@ export default async function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/artikel"
-              className="inline-block px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-lg transition-all shadow-lg shadow-emerald-500/30"
+              className="inline-block px-6 py-3 bg-[#fbbf24] hover:bg-[#facc15] text-slate-950 font-semibold rounded-lg transition-all shadow-lg shadow-amber-400/30"
             >
               Artikel entdecken
             </Link>

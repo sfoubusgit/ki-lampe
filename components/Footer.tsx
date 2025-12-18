@@ -47,8 +47,17 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-slate-900 text-white mt-24 border-t border-emerald-500/20">
-      <div className="max-w-7xl mx-auto px-4 py-16">
+    <footer className="relative bg-gradient-to-b from-[#020617] to-[#01030c] text-white mt-24 overflow-hidden">
+      {/* Sternenhimmel Hintergrund */}
+      <div 
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='twinkle'%3E%3CfeGaussianBlur stdDeviation='0.5'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle cx='20' cy='30' r='1' fill='white' filter='url(%23twinkle)'/%3E%3Ccircle cx='60' cy='70' r='1.5' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3Ccircle cx='50' cy='50' r='1' fill='white' opacity='0.9' filter='url(%23twinkle)'/%3E%3Ccircle cx='80' cy='10' r='1' fill='white' opacity='0.7' filter='url(%23twinkle)'/%3E%3Ccircle cx='90' cy='40' r='1.5' fill='white' opacity='0.6' filter='url(%23twinkle)'/%3E%3Ccircle cx='33' cy='60' r='1' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3Ccircle cx='15' cy='80' r='1' fill='white' opacity='0.7' filter='url(%23twinkle)'/%3E%3Ccircle cx='45' cy='90' r='1.5' fill='white' opacity='0.6' filter='url(%23twinkle)'/%3E%3Ccircle cx='75' cy='20' r='1' fill='white' opacity='0.9' filter='url(%23twinkle)'/%3E%3Ccircle cx='25' cy='50' r='1' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3Ccircle cx='120' cy='35' r='1' fill='white' opacity='0.7' filter='url(%23twinkle)'/%3E%3Ccircle cx='150' cy='65' r='1.5' fill='white' opacity='0.6' filter='url(%23twinkle)'/%3E%3Ccircle cx='170' cy='25' r='1' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3Ccircle cx='110' cy='85' r='1' fill='white' opacity='0.7' filter='url(%23twinkle)'/%3E%3Ccircle cx='130' cy='55' r='1.5' fill='white' opacity='0.6' filter='url(%23twinkle)'/%3E%3Ccircle cx='35' cy='15' r='1' fill='white' opacity='0.9' filter='url(%23twinkle)'/%3E%3Ccircle cx='95' cy='75' r='1' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3Ccircle cx='155' cy='95' r='1.5' fill='white' opacity='0.6' filter='url(%23twinkle)'/%3E%3Ccircle cx='175' cy='45' r='1' fill='white' opacity='0.7' filter='url(%23twinkle)'/%3E%3Ccircle cx='105' cy='5' r='1' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3C/svg%3E")`,
+          backgroundSize: '200px 200px',
+          backgroundRepeat: 'repeat',
+        }}
+      />
+      <div className="relative max-w-7xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div>
             <h3 className="text-2xl font-black mb-4 text-white">
@@ -123,7 +132,7 @@ export function Footer() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="px-4 py-3 bg-emerald-500 text-white hover:bg-emerald-600 rounded-lg transition-all text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-3 bg-[#fbbf24] text-slate-950 hover:bg-[#facc15] rounded-lg transition-all text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status === 'loading' ? 'Wird verarbeitet...' : 'Abonnieren'}
               </button>

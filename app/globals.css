@@ -4,8 +4,8 @@
 
 :root {
   --foreground-rgb: 241, 245, 249;
-  --background-start-rgb: 15, 23, 42;
-  --background-end-rgb: 30, 41, 59;
+  --background-start-rgb: 2, 6, 23;
+  --background-end-rgb: 2, 6, 23;
   --accent-color: #10b981;
   --accent-hover: #059669;
   --card-bg: #1e293b;
@@ -24,11 +24,7 @@ html {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    );
+  background: #020617;
   min-height: 100vh;
   line-height: 1.7;
   font-feature-settings: "kern" 1, "liga" 1;

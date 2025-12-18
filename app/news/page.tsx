@@ -6,7 +6,7 @@ import { ArticleImage } from '@/components/ArticleImage'
 import { formatDate } from '@/lib/utils'
 import type { Metadata } from 'next'
 
-export const revalidate = 60
+export const revalidate = 0 // Disable cache to ensure latest articles show immediately
 
 const siteUrl = process.env.BLOG_URL || 'https://yourblog.com'
 
@@ -28,7 +28,7 @@ export default async function NewsPage() {
     await getPaginatedNewsArticles(1, 10)
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+    <main className="min-h-screen bg-[#020617]">
       <div className="max-w-7xl mx-auto px-4 py-20">
 
         {/* Header */}
@@ -74,18 +74,26 @@ export default async function NewsPage() {
 
               {/* Text Content */}
               <div className="p-6">
-                <div className="flex items-center text-xs text-slate-400 mb-3 font-medium">
+                <div className="flex items-center flex-wrap gap-2 text-xs text-slate-400 mb-3 font-medium">
                   <time dateTime={article.date}>{formatDate(article.date)}</time>
 
                   {article.category && (
                     <>
-                      <span className="mx-2">•</span>
+                      <span className="mx-1">•</span>
                       <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full 
                                        text-xs font-semibold border border-emerald-500/30">
                         {article.category}
                       </span>
                     </>
                   )}
+                  {article.tags && article.tags.filter(tag => tag !== article.category).map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold border border-amber-500/30"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
 
                 <Link href={`/artikel/${article.slug}`}>
@@ -138,7 +146,7 @@ export default async function NewsPage() {
             </p>
             <Link
               href="/news"
-              className="inline-block px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-lg transition-all"
+              className="inline-block px-6 py-3 bg-[#fbbf24] hover:bg-[#facc15] text-slate-950 font-semibold rounded-lg transition-all"
             >
               Zur ersten Seite
             </Link>

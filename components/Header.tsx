@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { HeaderSearchBar } from './HeaderSearchBar'
 
@@ -46,7 +47,7 @@ export function Header() {
       {/* Glassmorphism Header */}
       <div className="relative">
         {/* Main Header Bar */}
-        <div className="relative bg-slate-900/20 backdrop-blur-[14px] shadow-[0_0_40px_rgba(34,211,238,0.15)]" style={{ background: 'linear-gradient(to bottom, rgba(4, 20, 35, 0.3), rgba(2, 4, 10, 0.2))' }}>
+        <div className="relative bg-gradient-to-b from-emerald-600/10 via-emerald-500/5 to-transparent backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16 md:h-20">
               {/* Logo */}
@@ -56,9 +57,26 @@ export function Header() {
                 aria-label="KI.LAMPE — Home"
               >
                 {/* Logo Text */}
-                <span className="font-black text-xl md:text-2xl tracking-tight leading-none">
+                <span className="font-black text-xl md:text-2xl tracking-tight leading-none flex items-center">
                   <span className="text-white">KI</span>
-                  <span className="text-amber-400">.</span>
+                  <span className="inline-block mx-1 align-middle shrink-0">
+                    <Image
+                      src="/logo/logo-icon.svg"
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="transition-all duration-300 group-hover:scale-125 cursor-pointer"
+                      style={{
+                        filter: 'drop-shadow(0 0 0px rgba(251, 191, 36, 0))',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.filter = 'drop-shadow(0 0 20px rgba(251, 191, 36, 0.9)) drop-shadow(0 0 40px rgba(251, 191, 36, 0.6)) drop-shadow(0 0 60px rgba(251, 191, 36, 0.3))';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.filter = 'drop-shadow(0 0 0px rgba(251, 191, 36, 0))';
+                      }}
+                    />
+                  </span>
                   <span className="text-white">LAMPE</span>
                 </span>
               </Link>
@@ -97,7 +115,7 @@ export function Header() {
                 {/* CTA Button */}
                 <Link
                   href="/artikel"
-                  className="rounded-full bg-emerald-500 hover:bg-emerald-400 text-sm font-semibold text-slate-950 px-4 py-2 shadow-lg shadow-emerald-500/30 transition-all duration-200 hover:shadow-emerald-500/50 hover:scale-105"
+                  className="rounded-full bg-[#fbbf24] hover:bg-[#facc15] text-sm font-semibold text-slate-950 px-4 py-2 shadow-lg shadow-amber-400/40 transition-all duration-200 hover:shadow-amber-400/60 hover:scale-105"
                 >
                   Artikel entdecken
                 </Link>
@@ -143,9 +161,6 @@ export function Header() {
               </button>
             </div>
           </div>
-
-          {/* Gradient Bottom Border */}
-          <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent" />
         </div>
 
         {/* Mobile Menu - Glass Sheet */}
@@ -204,7 +219,7 @@ export function Header() {
                 <Link
                   href="/artikel"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-center rounded-full bg-emerald-500 hover:bg-emerald-400 text-base font-semibold text-slate-950 px-6 py-3 shadow-lg shadow-emerald-500/30 transition-all duration-200"
+                  className="block w-full text-center rounded-full bg-[#fbbf24] hover:bg-[#facc15] text-base font-semibold text-slate-950 px-6 py-3 shadow-lg shadow-amber-400/40 transition-all duration-200"
                 >
                   Artikel entdecken
                 </Link>

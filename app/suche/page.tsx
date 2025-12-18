@@ -57,7 +57,7 @@ function SearchContent() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+    <main className="min-h-screen bg-[#020617]">
       <div className="max-w-7xl mx-auto px-4 py-20">
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
@@ -89,7 +89,7 @@ function SearchContent() {
               </svg>
               <button
                 type="submit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors font-semibold"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2 bg-[#fbbf24] text-slate-950 rounded-lg hover:bg-[#facc15] transition-colors font-semibold"
               >
                 Suchen
               </button>
@@ -132,18 +132,26 @@ function SearchContent() {
                         </Link>
                       )}
                       <div className="p-6">
-                        <div className="flex items-center text-xs text-slate-400 mb-3 font-medium">
+                        <div className="flex items-center flex-wrap gap-2 text-xs text-slate-400 mb-3 font-medium">
                           <time dateTime={article.date}>
                             {formatDate(article.date)}
                           </time>
                           {article.category && (
                             <>
-                              <span className="mx-2">•</span>
+                              <span className="mx-1">•</span>
                               <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold border border-emerald-500/30">
                                 {article.category}
                               </span>
                             </>
                           )}
+                          {article.tags && article.tags.filter(tag => tag !== article.category).map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold border border-amber-500/30"
+                            >
+                              {tag}
+                            </span>
+                          ))}
                         </div>
                         <Link href={`/artikel/${article.slug}`}>
                           <h2 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors leading-tight line-clamp-2">

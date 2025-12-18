@@ -1,0 +1,60 @@
+# Cursor Rules für KILAMPE Blog
+
+## 🚨 WICHTIG: Beim Erstellen neuer Artikel
+
+**IMMER das aktuelle Datum verwenden!**
+
+Beim Erstellen eines neuen Artikels in `content/articles/`:
+
+1. **ZUERST das aktuelle Datum abrufen:**
+   ```
+   powershell -Command "Get-Date -Format 'yyyy-MM-ddTHH:mm:ss.fffZ'"
+   ```
+
+2. **Dieses Datum im Frontmatter verwenden:**
+   ```yaml
+   date: '<AKTUELLES_DATUM>'
+   dateModified: '<AKTUELLES_DATUM>'
+   ```
+
+3. **ODER das Helper-Script verwenden:**
+   ```bash
+   tsx scripts/create-article.ts "slug" "Titel"
+   ```
+
+**NIEMALS:**
+- ❌ Ein Datum raten
+- ❌ Ein Datum aus einem anderen Artikel kopieren
+- ❌ Ein veraltetes Datum verwenden
+
+**IMMER:**
+- ✅ Zuerst das aktuelle Datum abrufen
+- ✅ Das abgerufene Datum verwenden
+- ✅ Oder das Script `scripts/create-article.ts` verwenden
+
+---
+
+## Datum-Format
+
+**Korrekt:**
+```yaml
+date: '2025-12-18T10:00:00Z'
+dateModified: '2025-12-18T10:00:00Z'
+```
+
+**Format:** `'YYYY-MM-DDTHH:mm:ssZ'` (ISO 8601)
+
+---
+
+## Weitere Regeln
+
+- Artikel gehören in `content/articles/`
+- Frontmatter ist erforderlich (siehe `TEMPLATE_NEW_ARTICLE.md`)
+- Slug sollte URL-freundlich sein (Kleinbuchstaben, Bindestriche)
+- Bilder: `/images/` oder Unsplash URLs
+- Category: News, Praktisch, KI & Kreativität, etc.
+
+---
+
+**Siehe auch:** `NEW_ARTICLE_INSTRUCTIONS.md` für detaillierte Anweisungen
+
