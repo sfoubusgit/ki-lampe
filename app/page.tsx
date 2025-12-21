@@ -27,16 +27,9 @@ export default async function Home() {
       {/* Hero Section - Cyber Neon Design */}
       <Hero />
 
-      {/* Ad Banner Top */}
-      <AdBanner 
-        placement="top" 
-        adClient={process.env.GOOGLE_ADSENSE_CLIENT_ID}
-        adSlot="1234567890"
-      />
-
       {/* Popular Topics Section */}
       {popularCategories.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 py-16 border-b border-slate-700">
+        <section className="max-w-7xl mx-auto px-4 pt-32 pb-16 border-b border-slate-700">
           <div className="mb-8 text-center">
             <h2 className="text-3xl md:text-4xl font-black text-white mb-2 tracking-tight">
               Beliebte <span className="text-emerald-400">Themen</span>
@@ -48,10 +41,10 @@ export default async function Home() {
               <Link
                 key={category.name}
                 href={`/kategorie/${slugify(category.name)}`}
-                className="group relative bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 rounded-xl p-4 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 transform hover:-translate-y-1"
+                className="group relative bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 rounded-[4px] p-4 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 transform hover:-translate-y-1"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 group-hover:bg-emerald-500/30 flex items-center justify-center mb-3 transition-colors">
+                  <div className="w-12 h-12 rounded-[4px] bg-emerald-500/20 group-hover:bg-emerald-500/30 flex items-center justify-center mb-3 transition-colors">
                     <svg
                       className="w-6 h-6 text-emerald-400"
                       fill="none"
@@ -91,7 +84,7 @@ export default async function Home() {
           {featuredArticles.map((article) => (
             <article
               key={article.slug}
-              className="group bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 transform hover:-translate-y-1"
+              className="group bg-slate-800 rounded-[4px] border border-slate-700 overflow-hidden hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 transform hover:-translate-y-1"
             >
               {article.image && (
                 <Link href={`/artikel/${article.slug}`}>
@@ -113,7 +106,7 @@ export default async function Home() {
                   {article.category && (
                     <>
                       <span className="mx-1">•</span>
-                      <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold border border-emerald-500/30">
+                      <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-[4px] text-xs font-semibold border border-emerald-500/30">
                         {article.category}
                       </span>
                     </>
@@ -121,7 +114,7 @@ export default async function Home() {
                   {article.tags && article.tags.filter(tag => tag !== article.category).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold border border-amber-500/30"
+                      className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-[4px] text-xs font-semibold border border-amber-500/30"
                     >
                       {tag}
                     </span>
@@ -157,14 +150,17 @@ export default async function Home() {
 
       {/* More Articles Link */}
       {articles.length > 6 && (
-        <section className="max-w-7xl mx-auto px-4 py-12 text-center border-t border-slate-700">
-          <Link
-            href="/artikel"
-            className="inline-flex items-center gap-2 bg-[#fbbf24] text-slate-950 px-8 py-4 rounded-lg font-semibold hover:bg-[#facc15] transition-all shadow-lg hover:shadow-amber-400/50 transform hover:-translate-y-0.5"
-          >
-            Alle Artikel anzeigen ({articles.length})
-            <span>→</span>
-          </Link>
+        <section className="max-w-7xl mx-auto px-4 py-16 text-center relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/20 to-transparent pointer-events-none"></div>
+          <div className="relative">
+            <Link
+              href="/artikel"
+              className="inline-flex items-center gap-2 bg-[#fbbf24] text-slate-950 px-8 py-4 rounded-[4px] font-semibold hover:bg-[#facc15] transition-all shadow-lg hover:shadow-amber-400/50 transform hover:-translate-y-0.5"
+            >
+              Alle Artikel anzeigen ({articles.length})
+              <span>→</span>
+            </Link>
+          </div>
         </section>
       )}
     </main>

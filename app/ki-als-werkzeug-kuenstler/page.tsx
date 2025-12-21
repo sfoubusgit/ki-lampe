@@ -92,7 +92,7 @@ export default function KIAlsWerkzeugKuenstlerPage() {
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
             Was andere Künstler sagen
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-sm"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -131,7 +131,7 @@ export default function KIAlsWerkzeugKuenstlerPage() {
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
             Was du bekommst
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-sm"></div>
         </div>
 
         <div className="space-y-12">
@@ -267,7 +267,7 @@ export default function KIAlsWerkzeugKuenstlerPage() {
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
             Was du bekommst
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-sm"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -312,7 +312,7 @@ export default function KIAlsWerkzeugKuenstlerPage() {
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
             Empfohlene Tools für deinen Workflow
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full mb-6"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-sm mb-6"></div>
           <p className="text-slate-300 text-lg max-w-2xl mx-auto">
             Diese Tools helfen dir, KI als Werkzeug zu nutzen und deinen persönlichen Stil zu bewahren.
           </p>
@@ -335,7 +335,7 @@ export default function KIAlsWerkzeugKuenstlerPage() {
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
             Häufige Fragen: KI als Werkzeug für Künstler
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-sm"></div>
         </div>
 
         <div className="space-y-6">

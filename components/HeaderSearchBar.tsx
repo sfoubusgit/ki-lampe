@@ -71,7 +71,7 @@ export function HeaderSearchBar() {
           onChange={(e) => handleSearch(e.target.value)}
           onFocus={() => query.length >= 2 && setIsOpen(true)}
           placeholder="Artikel suchen..."
-          className="w-full px-4 pl-9 py-2 text-sm bg-slate-900/40 border border-slate-700/60 rounded-full text-slate-100 placeholder:text-slate-400 backdrop-blur focus:outline-none focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/30 transition-all"
+          className="w-full px-4 pl-9 py-2 text-sm bg-slate-900/40 border border-slate-700/60 rounded-2xl text-slate-100 placeholder:text-slate-400 backdrop-blur focus:outline-none focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/30 transition-all"
           aria-label="Artikel suchen"
         />
         <svg

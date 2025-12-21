@@ -13,7 +13,7 @@ export function BrandStory({ className = '' }: { className?: string }) {
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
             Aus Bausteinen werden <span className="text-emerald-400">Erinnerungen</span>
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-sm"></div>
         </div>
 
         <div className="space-y-6 text-slate-200 text-lg leading-relaxed">

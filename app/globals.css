@@ -47,7 +47,7 @@ body {
   align-items: center;
   justify-content: center;
   background: var(--card-bg);
-  border-radius: 12px;
+  border-radius: 4px;
   padding: 1rem;
   border: 1px solid var(--card-border);
 }
@@ -143,7 +143,7 @@ body {
 .prose img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 4px;
   margin: 2em 0;
 }
 
@@ -155,7 +155,7 @@ body {
   color: #94a3b8;
   background: var(--card-bg);
   padding: 1.5em;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 1.1em;
   border: 1px solid var(--card-border);
 }
@@ -164,7 +164,7 @@ body {
   background-color: rgba(249,250,251,0.04);
   color: #f1f5f9;
   padding: 0.18em 0.45em;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 0.9em;
   border: 1px solid rgba(255,255,255,0.03);
 }
@@ -173,7 +173,7 @@ body {
   background-color: #1f2937;
   color: #f9fafb;
   padding: 1.5em;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow-x: auto;
   margin: 2em 0;
 }

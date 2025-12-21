@@ -72,7 +72,7 @@ function SearchContent() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Artikel durchsuchen..."
-                className="w-full px-6 py-4 pl-12 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-lg"
+                className="w-full px-6 py-4 pl-12 bg-slate-800 border border-slate-700 rounded-md text-slate-300 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all text-lg"
               />
               <svg
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-500"
@@ -89,7 +89,7 @@ function SearchContent() {
               </svg>
               <button
                 type="submit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2 bg-[#fbbf24] text-slate-950 rounded-lg hover:bg-[#facc15] transition-colors font-semibold"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2 bg-[#fbbf24] text-slate-950 rounded-md hover:bg-[#facc15] transition-colors font-semibold"
               >
                 Suchen
               </button>
@@ -137,17 +137,17 @@ function SearchContent() {
                             {formatDate(article.date)}
                           </time>
                           {article.category && (
-                            <>
-                              <span className="mx-1">•</span>
-                              <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold border border-emerald-500/30">
-                                {article.category}
-                              </span>
-                            </>
+                          <>
+                            <span className="mx-1">•</span>
+                            <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-[4px] text-xs font-semibold border border-emerald-500/30">
+                              {article.category}
+                            </span>
+                          </>
                           )}
                           {article.tags && article.tags.filter(tag => tag !== article.category).map((tag) => (
                             <span
                               key={tag}
-                              className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold border border-amber-500/30"
+                              className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-[4px] text-xs font-semibold border border-amber-500/30"
                             >
                               {tag}
                             </span>

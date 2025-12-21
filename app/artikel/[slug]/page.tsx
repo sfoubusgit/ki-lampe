@@ -139,7 +139,7 @@ export default async function ArticlePage({ params }: Props) {
               {article.category && (
                 <>
                   <span className="mx-1">•</span>
-                  <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold border border-emerald-500/30">
+                  <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-[4px] text-xs font-semibold border border-emerald-500/30">
                     {article.category}
                   </span>
                 </>
@@ -148,7 +148,7 @@ export default async function ArticlePage({ params }: Props) {
                 tag !== article.category && (
                   <span
                     key={tag}
-                    className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold border border-amber-500/30"
+                    className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-[4px] text-xs font-semibold border border-amber-500/30"
                   >
                     {tag}
                   </span>
