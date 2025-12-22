@@ -53,6 +53,7 @@ dateModified: '2025-12-18T10:00:00Z'
 - Slug sollte URL-freundlich sein (Kleinbuchstaben, Bindestriche)
 - Bilder: `/images/` oder Unsplash URLs
 - Category: News, Praktisch, KI & Kreativität, etc.
+- **KEIN H1-Titel (# Titel) im Markdown-Content verwenden!** Der Titel wird automatisch aus dem Frontmatter als H1 gerendert. Beginne den Content direkt mit Text oder H2-Überschriften (##).
 
 ---
 
