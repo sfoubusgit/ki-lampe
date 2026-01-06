@@ -139,7 +139,7 @@ export default async function ArticlePage({ params }: Props) {
               {article.category && (
                 <>
                   <span className="mx-1">•</span>
-                  <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-[4px] text-xs font-semibold border border-emerald-500/30">
+                  <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold border border-emerald-500/30">
                     {article.category}
                   </span>
                 </>
@@ -148,7 +148,7 @@ export default async function ArticlePage({ params }: Props) {
                 tag !== article.category && (
                   <span
                     key={tag}
-                    className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-[4px] text-xs font-semibold border border-amber-500/30"
+                    className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold border border-amber-500/30"
                   >
                     {tag}
                   </span>
@@ -290,7 +290,19 @@ export default async function ArticlePage({ params }: Props) {
                       adSlot="8758260091"
                     />
                   </section>
-                ) : null}
+) : slug === 'runpod-artikel' ? (
+  <section>
+    <Link href="https://runpod.io?ref=jo7pk601" target="_blank" rel="noopener noreferrer">
+      <Image
+        src="/images/runpod_image_banner.webp"
+        alt="RunPod Erklärt - Klicken für mehr Infos"
+        width={300}
+        height={600}
+        className="w-full h-auto rounded-lg object-contain hover:opacity-90 transition-opacity cursor-pointer"
+      />
+    </Link>
+  </section>
+) : null}
               </div>
             </aside>
           )}

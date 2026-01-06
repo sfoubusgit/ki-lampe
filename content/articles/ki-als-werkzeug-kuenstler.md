@@ -30,8 +30,6 @@ seoKeywords:
 slug: "ki-als-werkzeug-kuenstler"
 ---
 
-# KI als Werkzeug: Wie Künstler ihre Kreativität stärken, ohne ihre Seele zu verlieren
-
 *Ein ehrlicher Leitfaden für Künstler, die skeptisch sind – aber neugierig genug, um zu verstehen, wie KI ihre Kunst verstärken kann.*
 
 ---

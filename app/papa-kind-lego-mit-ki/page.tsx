@@ -67,7 +67,7 @@ export default function PapaKindLegoPage() {
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
             Warum LEGO + KI das perfekte <span className="text-emerald-400">Papa-Kind-Hobby</span> ist
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-sm"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -127,12 +127,12 @@ export default function PapaKindLegoPage() {
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
             So funktioniert es
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-sm"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
         </div>
 
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="flex gap-6 items-start">
-            <div className="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-md flex items-center justify-center text-white font-bold text-xl">
+            <div className="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
               1
             </div>
             <div>
@@ -144,7 +144,7 @@ export default function PapaKindLegoPage() {
           </div>
 
           <div className="flex gap-6 items-start">
-            <div className="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-md flex items-center justify-center text-white font-bold text-xl">
+            <div className="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
               2
             </div>
             <div>
@@ -156,7 +156,7 @@ export default function PapaKindLegoPage() {
           </div>
 
           <div className="flex gap-6 items-start">
-            <div className="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-md flex items-center justify-center text-white font-bold text-xl">
+            <div className="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
               3
             </div>
             <div>
@@ -168,7 +168,7 @@ export default function PapaKindLegoPage() {
           </div>
 
           <div className="flex gap-6 items-start">
-            <div className="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-md flex items-center justify-center text-white font-bold text-xl">
+            <div className="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
               4
             </div>
             <div>
@@ -180,7 +180,7 @@ export default function PapaKindLegoPage() {
           </div>
 
           <div className="flex gap-6 items-start">
-            <div className="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-md flex items-center justify-center text-white font-bold text-xl">
+            <div className="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
               5
             </div>
             <div>
@@ -199,7 +199,7 @@ export default function PapaKindLegoPage() {
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
             Unsere LEGO-Empfehlungen für euch
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-sm mb-6"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full mb-6"></div>
           <p className="text-slate-300 text-lg max-w-2xl mx-auto">
             Für kreative Projekte mit ChatGPT eignen sich besonders Sets mit vielen verschiedenen Steinen. 
             Classic Sets sind ideal, weil sie keine feste Anleitung haben – perfekt für ChatGPT-Ideen!
@@ -223,7 +223,7 @@ export default function PapaKindLegoPage() {
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
             Häufige Fragen
           </h2>
-          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-sm"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
         </div>
 
         <div className="space-y-6">

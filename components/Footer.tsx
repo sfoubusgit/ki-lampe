@@ -126,13 +126,13 @@ export function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Ihre E-Mail"
                 disabled={status === 'loading'}
-                className="px-4 py-3 rounded-md bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-3 rounded-lg bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
                 required
               />
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="px-4 py-3 bg-[#fbbf24] text-slate-950 hover:bg-[#facc15] rounded-md transition-all text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-3 bg-[#fbbf24] text-slate-950 hover:bg-[#facc15] rounded-lg transition-all text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status === 'loading' ? 'Wird verarbeitet...' : 'Abonnieren'}
               </button>

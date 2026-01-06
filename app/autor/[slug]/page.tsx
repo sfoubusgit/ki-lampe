@@ -119,7 +119,7 @@ export default async function AuthorPage({ params, searchParams }: Props) {
                           <span className="mx-1">•</span>
                           <Link
                             href={`/kategorie/${slugify(article.category)}`}
-                            className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-[4px] text-xs font-semibold border border-emerald-500/30 hover:bg-emerald-500/30 transition-colors"
+                            className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold border border-emerald-500/30 hover:bg-emerald-500/30 transition-colors"
                           >
                             {article.category}
                           </Link>
@@ -129,7 +129,7 @@ export default async function AuthorPage({ params, searchParams }: Props) {
                         <Link
                           key={tag}
                           href={`/tag/${slugify(tag)}`}
-                          className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-[4px] text-xs font-semibold border border-amber-500/30 hover:bg-amber-500/30 transition-colors"
+                          className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold border border-amber-500/30 hover:bg-amber-500/30 transition-colors"
                         >
                           {tag}
                         </Link>

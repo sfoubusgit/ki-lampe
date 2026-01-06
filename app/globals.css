@@ -47,7 +47,7 @@ body {
   align-items: center;
   justify-content: center;
   background: var(--card-bg);
-  border-radius: 4px;
+  border-radius: 12px;
   padding: 1rem;
   border: 1px solid var(--card-border);
 }
@@ -124,6 +124,31 @@ body {
   border-bottom-color: var(--accent-hover);
 }
 
+/* Download Button Styles - für Links die mit 📥 beginnen */
+.prose p > a[href*="ki-lampe.com/workflows"],
+.prose p > a[href*="github.com/xinntao/Real-ESRGAN"],
+.prose p > a[href*="huggingface.co/black-forest-labs/FLUX.1-schnell"] {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #2563eb;
+  color: white !important;
+  text-decoration: none !important;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-bottom: none !important;
+  margin: 8px 0;
+}
+
+.prose p > a[href*="ki-lampe.com/workflows"]:hover,
+.prose p > a[href*="github.com/xinntao/Real-ESRGAN"]:hover,
+.prose p > a[href*="huggingface.co/black-forest-labs/FLUX.1-schnell"]:hover {
+  background-color: #1d4ed8;
+  color: white !important;
+  border-bottom: none !important;
+}
+
 .prose ul,
 .prose ol {
   margin: 1.25em 0;
@@ -143,7 +168,7 @@ body {
 .prose img {
   max-width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: 8px;
   margin: 2em 0;
 }
 
@@ -155,7 +180,7 @@ body {
   color: #94a3b8;
   background: var(--card-bg);
   padding: 1.5em;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 1.1em;
   border: 1px solid var(--card-border);
 }
@@ -164,7 +189,7 @@ body {
   background-color: rgba(249,250,251,0.04);
   color: #f1f5f9;
   padding: 0.18em 0.45em;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 0.9em;
   border: 1px solid rgba(255,255,255,0.03);
 }
@@ -173,7 +198,7 @@ body {
   background-color: #1f2937;
   color: #f9fafb;
   padding: 1.5em;
-  border-radius: 4px;
+  border-radius: 8px;
   overflow-x: auto;
   margin: 2em 0;
 }

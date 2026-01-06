@@ -7,17 +7,6 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    borderRadius: {
-      none: '0px',
-      sm: '4px',
-      DEFAULT: '4px',
-      md: '4px',
-      lg: '4px',
-      xl: '4px',
-      '2xl': '4px',
-      '3xl': '4px',
-      full: '4px',
-    },
     extend: {
       typography: {
         DEFAULT: {

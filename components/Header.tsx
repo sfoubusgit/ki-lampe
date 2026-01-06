@@ -100,7 +100,7 @@ export function Header() {
                     >
                       {link.label}
                       {active && (
-                        <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-cyan-400 rounded-sm" />
+                        <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-cyan-400 rounded-full" />
                       )}
                     </Link>
                   )
@@ -115,7 +115,7 @@ export function Header() {
                 {/* CTA Button */}
                 <Link
                   href="/artikel"
-                  className="rounded-2xl bg-[#fbbf24] hover:bg-[#facc15] text-sm font-semibold text-slate-950 px-4 py-2 shadow-lg shadow-amber-400/40 transition-all duration-200 hover:shadow-amber-400/60 hover:scale-105"
+                  className="rounded-full bg-[#fbbf24] hover:bg-[#facc15] text-sm font-semibold text-slate-950 px-4 py-2 shadow-lg shadow-amber-400/40 transition-all duration-200 hover:shadow-amber-400/60 hover:scale-105"
                 >
                   Artikel entdecken
                 </Link>
@@ -219,7 +219,7 @@ export function Header() {
                 <Link
                   href="/artikel"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-center rounded-2xl bg-[#fbbf24] hover:bg-[#facc15] text-base font-semibold text-slate-950 px-6 py-3 shadow-lg shadow-amber-400/40 transition-all duration-200"
+                  className="block w-full text-center rounded-full bg-[#fbbf24] hover:bg-[#facc15] text-base font-semibold text-slate-950 px-6 py-3 shadow-lg shadow-amber-400/40 transition-all duration-200"
                 >
                   Artikel entdecken
                 </Link>

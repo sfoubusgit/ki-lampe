@@ -67,9 +67,9 @@ seoKeywords:
   - 'keyword2'
 ---
 
-# ${title}
-
 Artikel-Inhalt hier...
+
+**Hinweis:** Der Titel steht bereits im Frontmatter und wird automatisch angezeigt. Keinen H1-Titel (# Titel) im Content verwenden!
 
 `
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "So installierst du Vibe Voice in ComfyUI – dein Einstieg in die Open-Source Sprachsynthese"
 date: '2025-12-21T17:22:10.516Z'
 dateModified: '2025-12-21T17:22:10.516Z'
@@ -40,7 +40,7 @@ Vor der Installation benötigst du:
 - **Git** ist installiert, um Repositories zu klonen.
 
 Falls du ComfyUI noch nicht besitzt, bekommst du es hier:
-👉 https://github.com/comfyanonymous/ComfyUI
+🔗 https://github.com/comfyanonymous/ComfyUI
 
 ## 2. Vibe Voice Node in ComfyUI installieren
 
@@ -64,8 +64,8 @@ Damit Vibe Voice funktioniert, musst du das eigentliche Sprachmodell herunterlad
 ### a) Modell von Hugging Face laden
 
 1. Besuche:
-   👉 https://huggingface.co/microsoft/VibeVoice-1.5B
-2. Scrolle nach unten zum Bereich "Files and versions" bzw. „Models".
+   🔗 https://huggingface.co/microsoft/VibeVoice-1.5B
+2. Scrolle nach unten zum Bereich "Files and versions" bzw. "Models".
 3. Lade alle Dateien des gewünschten Modells herunter (z. B. VibeVoice-1.5B).
 4. Lege anschließend einen neuen Ordner mit dem Namen deines Modells an, etwa:
    ```
@@ -88,7 +88,7 @@ Vibe Voice benötigt außerdem Tokenizer-Dateien zur korrekten Textverarbeitung.
    C:\Users\<DeinName>\ComfyUI\models\vibevoice\tokenizer
    ```
 2. Lade die folgenden Dateien von Hugging Face herunter und speichere sie in diesem Ordner:
-   👉 https://huggingface.co/Qwen/Qwen2.5-1.5B/tree/main
+   🔗 https://huggingface.co/Qwen/Qwen2.5-1.5B/tree/main
    - `merges.txt`
    - `tokenizer.json`
    - `tokenizer_config.json`
@@ -139,7 +139,7 @@ Wähle in der Node aus:
 
 - **Free memory after generate**: → `False` (wenn du mehrere Durchläufe planst)
 - **Diffusion steps**: → `20` (ausgewogener Kompromiss aus Qualität & Geschwindigkeit)
-- **Temperature / CFG / Top‑P**: → feinjustierbar für Emotion und Ausdruck
+- **Temperature / CFG / Top—P**: → feinjustierbar für Emotion und Ausdruck
 
 ## 6. Audio generieren
 
@@ -153,7 +153,7 @@ Falls du lieber mit gespeicherten Texten arbeitest:
 
 1. Füge einen **Load Text File** Node hinzu.
 2. Lade deine `.txt`-Datei aus dem Ordner `/ComfyUI/input/`.
-3. Verbinde sie mit dem „Transcript"-Node im Workflow.
+3. Verbinde sie mit dem "Transcript"-Node im Workflow.
 
 ## 8. Wichtige Hinweise
 
@@ -164,7 +164,6 @@ Falls du lieber mit gespeicherten Texten arbeitest:
 
 ## Fazit
 
-Mit Vibe Voice und ComfyUI kannst du beeindruckende KI-Stimmen direkt auf deinem PC generieren – ohne Online-Abhängigkeit oder Limitierungen. Mit etwas Feintuning erhältst du Ergebnisse, die professionellen TTS‑Systemen kaum nachstehen.
+Mit Vibe Voice und ComfyUI kannst du beeindruckende KI-Stimmen direkt auf deinem PC generieren – ohne Online-Abhängigkeit oder Limitierungen. Mit etwas Feintuning erhältst du Ergebnisse, die professionellen TTS—Systemen kaum nachstehen.
 
-Besonders spannend ist die offene Struktur: Wer mag, kann eigene Modelle, Tokenizer oder Custom-Workflows hinzufügen und so seine eigene KI‑Sprecherlandschaft aufbauen.
-
+Besonders spannend ist die offene Struktur: Wer mag, kann eigene Modelle, Tokenizer oder Custom-Workflows hinzufügen und so seine eigene KI—Sprecherlandschaft aufbauen.

@@ -1,5 +1,5 @@
 ---
-image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=630&fit=crop'
+image: "/images/ComfyUI_00009_.webp"
 title: >-
   "Die Psychologie des Obi-Wan Kenobi – KI, Liebe und die Schatten unserer Vergangenheit"
 date: '2025-11-29'

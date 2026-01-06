@@ -7,29 +7,28 @@ export function Hero() {
     <section className={styles.hero}>
       <div className={styles.inner}>
         <div className={styles.textBlock}>
+          <p className={styles.kicker}>WILLKOMMEN BEI</p>
+          <h1 className={styles.title}>
+            <span className={styles.brandGlow}>
+              <span className="text-white">KI</span>
+              <Image
+                src="/logo/logo-icon.svg"
+                alt=""
+                width={80}
+                height={80}
+                className={`inline-block mx-2 align-middle ${styles.logoIcon}`}
+              />
+              <span className="text-white">LAMPE</span>
+            </span>
+          </h1>
+          <p className={styles.lead}>
+            Erleuchtung durch künstliche Intelligenz – verständlich erklärt,
+            praxisnah und alltagstauglich.
+          </p>
           <div className={styles.actions}>
-            <div className={styles.articlePrompt}>
-              <div className={styles.promptBrand}>
-                <span className="text-white">KI</span>
-                <Image
-                  src="/logo/logo-icon.svg"
-                  alt=""
-                  width={48}
-                  height={48}
-                  className={`inline-block mx-2 align-middle ${styles.logoIcon}`}
-                />
-                <span className="text-white">LAMPE</span>
-              </div>
-              <p className={styles.promptDescription}>
-                Der Blog über Künstliche Intelligenz
-              </p>
-              <Link href="/artikel" className={styles.promptCommand}>
-                <span className={styles.promptText}>&gt; alle artikel öffnen</span>
-                <span className={styles.promptKey}>
-                  <span className={styles.keyCap}>Enter</span>
-                </span>
-              </Link>
-            </div>
+            <Link href="/artikel" className={styles.primaryButton}>
+              Artikel entdecken
+            </Link>
           </div>
         </div>
       </div>

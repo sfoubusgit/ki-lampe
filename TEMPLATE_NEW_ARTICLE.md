@@ -42,9 +42,9 @@ seoKeywords:
   - 'Keyword 3'
 ---
 
-⚠️ **WICHTIG:** KEIN H1-Titel (# Titel) im Content verwenden! Der Titel wird automatisch aus dem Frontmatter als H1 gerendert.
+Dein Artikel-Inhalt hier...
 
-Dein Artikel-Inhalt hier beginnt direkt mit dem Text oder mit H2-Überschriften (##)...
+**Hinweis:** Der Titel steht bereits im Frontmatter und wird automatisch angezeigt. Keinen H1-Titel (# Titel) im Content verwenden!
 ```
 
 ---
