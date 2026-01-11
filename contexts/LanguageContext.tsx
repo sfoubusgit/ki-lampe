@@ -3,10 +3,12 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { Language, translations } from '@/lib/translations'
 
+type TranslationType = typeof translations[Language]
+
 interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
-  t: typeof translations.de
+  t: TranslationType
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
