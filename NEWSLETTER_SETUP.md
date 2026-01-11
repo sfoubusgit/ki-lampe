@@ -102,7 +102,7 @@ Der Newsletter ist bereits implementiert und funktioniert im Demo-Modus. Um ihn 
    - **WICHTIG**: Ersetze die Platzhalter mit deinen echten Werten!
    - Beispiel:
    ```env
-   BREVO_API_KEY=xkeysib-abc123def456...
+   BREVO_API_KEY=dein-api-key-hier
    BREVO_LIST_ID=2
    ```
 
