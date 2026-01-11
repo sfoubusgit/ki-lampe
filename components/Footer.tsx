@@ -24,6 +24,8 @@ export function Footer() {
     setMessage('')
 
     try {
+      console.log('Newsletter: Sending request for email:', email)
+      
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: {
@@ -32,19 +34,36 @@ export function Footer() {
         body: JSON.stringify({ email }),
       })
 
-      const data = await response.json()
+      console.log('Newsletter: Response status:', response.status)
+      console.log('Newsletter: Response ok:', response.ok)
 
-      if (response.ok) {
+      let data
+      try {
+        const text = await response.text()
+        console.log('Newsletter: Response text:', text)
+        data = text ? JSON.parse(text) : {}
+      } catch (parseError) {
+        console.error('Newsletter: Failed to parse response:', parseError)
+        setStatus('error')
+        setMessage('Ungültige Antwort vom Server. Bitte versuchen Sie es später erneut.')
+        return
+      }
+
+      console.log('Newsletter: Parsed data:', data)
+
+      if (response.ok || data.success) {
         setStatus('success')
         setMessage(data.message || t.footer.subscribeSuccess)
         setEmail('')
       } else {
         setStatus('error')
-        setMessage(data.error || t.footer.subscribeError)
+        setMessage(data.error || data.message || t.footer.subscribeError)
+        console.error('Newsletter: Error response:', data)
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Newsletter: Fetch error:', error)
       setStatus('error')
-      setMessage(t.footer.subscribeErrorRetry)
+      setMessage(error.message || t.footer.subscribeErrorRetry)
     }
   }
 

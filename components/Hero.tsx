@@ -10,30 +10,38 @@ export function Hero() {
 
   return (
     <section className={styles.hero}>
+      {/* Subtle AI grid pattern background */}
+      <div className={styles.gridPattern} aria-hidden="true"></div>
+      
       <div className={styles.inner}>
-        <div className={styles.textBlock}>
-          <p className={styles.kicker}>{t.hero.welcome}</p>
-          <h1 className={styles.title}>
-            <span className={styles.brandGlow}>
-              <span className="text-white">KI</span>
-              <Image
-                src="/logo/logo-icon.svg"
-                alt=""
-                width={80}
-                height={80}
-                className={`inline-block mx-2 align-middle ${styles.logoIcon}`}
-              />
-              <span className="text-white">LAMPE</span>
-            </span>
-          </h1>
-          <p className={styles.lead}>
-            {t.hero.tagline}
-          </p>
-          <div className={styles.actions}>
-            <Link href="/artikel" className={styles.primaryButton}>
-              {t.hero.discoverArticles}
-            </Link>
+        <div className={styles.unifiedContent}>
+          {/* Integrated brand and tagline */}
+          <div className={styles.brandSection}>
+            <h1 className={styles.title}>
+              <span className={styles.brandName}>
+                <span className={styles.brandKI}>KI</span>
+                <Image
+                  src="/logo/logo-icon.svg"
+                  alt=""
+                  width={56}
+                  height={56}
+                  className={styles.logoIcon}
+                />
+                <span className={styles.brandLAMPE}>LAMPE</span>
+              </span>
+            </h1>
+            <p className={styles.tagline}>
+              {t.hero.tagline}
+            </p>
           </div>
+          
+          {/* Integrated CTA */}
+          <Link href="/artikel" className={styles.ctaButton}>
+            {t.hero.discoverArticles}
+            <svg className={styles.arrowIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Link>
         </div>
       </div>
     </section>

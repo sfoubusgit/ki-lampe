@@ -19,18 +19,28 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('de')
   const [mounted, setMounted] = useState(false)
 
-  // Load language from localStorage on mount
+  // Load language from localStorage on mount (client-side only)
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     setMounted(true)
-    const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) as Language | null
-    if (savedLanguage === 'de' || savedLanguage === 'en') {
-      setLanguageState(savedLanguage)
-    } else {
-      // Try to detect browser language
-      const browserLang = navigator.language.split('-')[0]
-      if (browserLang === 'en') {
-        setLanguageState('en')
+    try {
+      const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) as Language | null
+      if (savedLanguage === 'de' || savedLanguage === 'en') {
+        setLanguageState(savedLanguage)
+      } else {
+        // Try to detect browser language
+        if (navigator?.language) {
+          const browserLang = navigator.language.split('-')[0]
+          if (browserLang === 'en') {
+            setLanguageState('en')
+          }
+        }
       }
+    } catch (error) {
+      console.error('Error loading language preference:', error)
+      // Default to German if there's an error
+      setLanguageState('de')
     }
   }, [])
 
@@ -50,7 +60,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [language, mounted])
 
-  const t = translations[language]
+  // Safely get translations, fallback to German if language is invalid
+  const t = (translations[language] || translations.de) as typeof translations.de
 
   // Always provide the context, even before mounting
   // This prevents the "must be used within a LanguageProvider" error

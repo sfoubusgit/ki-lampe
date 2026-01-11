@@ -10,7 +10,18 @@ import { NextRequest, NextResponse } from 'next/server'
  */
 export async function POST(request: NextRequest) {
   try {
-    const { email, lead = '10-ki-prompts-grafiktablett' } = await request.json()
+    let body
+    try {
+      body = await request.json()
+    } catch (parseError) {
+      console.error('Newsletter API: Failed to parse request body:', parseError)
+      return NextResponse.json(
+        { error: 'Ungültige Anfrage. Bitte versuchen Sie es erneut.' },
+        { status: 400 }
+      )
+    }
+
+    const { email, lead = '10-ki-prompts-grafiktablett' } = body
 
     if (!email || !email.includes('@')) {
       return NextResponse.json(
@@ -22,11 +33,29 @@ export async function POST(request: NextRequest) {
     const brevoApiKey = process.env.BREVO_API_KEY
     const brevoListId = process.env.BREVO_LIST_ID
 
+    // Debug logging
+    console.log('Newsletter API - Environment Check:')
+    console.log('BREVO_API_KEY exists:', !!brevoApiKey)
+    console.log('BREVO_LIST_ID exists:', !!brevoListId)
+    console.log('BREVO_LIST_ID value:', brevoListId)
+
     // Brevo Integration (Priorität)
     if (brevoApiKey && brevoListId) {
       try {
         const brevoUrl = 'https://api.brevo.com/v3/contacts'
         
+        const listIdNumber = parseInt(brevoListId, 10)
+        if (isNaN(listIdNumber)) {
+          console.error('BREVO_LIST_ID ist keine gültige Zahl:', brevoListId)
+          throw new Error('Ungültige List ID')
+        }
+
+        console.log('Sending to Brevo:', {
+          email,
+          listIds: [listIdNumber],
+          apiKeyLength: brevoApiKey.length
+        })
+
         const response = await fetch(brevoUrl, {
           method: 'POST',
           headers: {
@@ -35,16 +64,29 @@ export async function POST(request: NextRequest) {
           },
           body: JSON.stringify({
             email: email,
-            listIds: [parseInt(brevoListId)],
+            listIds: [listIdNumber],
             updateEnabled: true, // Aktualisiert bestehende Kontakte
           }),
         })
 
+        const responseText = await response.text()
+        console.log('Brevo Response Status:', response.status)
+        console.log('Brevo Response:', responseText)
+
         if (!response.ok) {
-          const errorData = await response.json()
+          let errorData
+          try {
+            errorData = JSON.parse(responseText)
+          } catch {
+            errorData = { message: responseText }
+          }
           
           // Wenn Kontakt bereits existiert, ist das OK
-          if (response.status === 400 && errorData.code === 'duplicate_parameter') {
+          if (response.status === 400 && (
+            errorData.code === 'duplicate_parameter' || 
+            errorData.message?.includes('already exists') ||
+            errorData.message?.includes('Contact already exist')
+          )) {
             return NextResponse.json({
               success: true,
               message: 'Sie sind bereits für den Newsletter angemeldet!',
@@ -52,9 +94,20 @@ export async function POST(request: NextRequest) {
             }, { status: 200 })
           }
           
-          console.error('Brevo Fehler:', errorData)
-          throw new Error(errorData.message || 'Brevo Fehler')
+          console.error('Brevo Fehler Details:', {
+            status: response.status,
+            error: errorData
+          })
+          throw new Error(errorData.message || `Brevo Fehler: ${response.status}`)
         }
+
+        let successData
+        try {
+          successData = responseText ? JSON.parse(responseText) : {}
+        } catch {
+          successData = {}
+        }
+        console.log('Brevo Erfolg:', successData)
 
         return NextResponse.json({
           success: true,
@@ -62,8 +115,18 @@ export async function POST(request: NextRequest) {
           download: `/downloads/${lead}.pdf`
         }, { status: 200 })
       } catch (error: any) {
-        console.error('Brevo Fehler:', error)
-        // Fallback zu Mailchimp oder Demo-Modus
+        console.error('Brevo Fehler Details:', {
+          message: error.message,
+          stack: error.stack,
+          email: email
+        })
+        // Don't silently fail - return error if Brevo is configured
+        // This ensures we know when Brevo fails vs when it's not configured
+        return NextResponse.json({
+          success: false,
+          error: `Brevo Fehler: ${error.message || 'Unbekannter Fehler'}`,
+          message: 'Die Newsletter-Anmeldung ist fehlgeschlagen. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns.',
+        }, { status: 500 })
       }
     }
 
@@ -108,12 +171,18 @@ export async function POST(request: NextRequest) {
           message: 'Vielen Dank für Ihre Anmeldung!',
           download: `/downloads/${lead}.pdf`
         }, { status: 200 })
-      } catch (error) {
+      } catch (error: any) {
         console.error('Mailchimp Fehler:', error)
+        // Don't silently fail - return error if Mailchimp is configured
+        return NextResponse.json({
+          success: false,
+          error: `Mailchimp Fehler: ${error.message || 'Unbekannter Fehler'}`,
+          message: 'Die Newsletter-Anmeldung ist fehlgeschlagen. Bitte versuchen Sie es später erneut.',
+        }, { status: 500 })
       }
     }
 
-    // Demo-Modus
+    // Demo-Modus - nur wenn weder Brevo noch Mailchimp konfiguriert sind
     console.log('Newsletter Anmeldung:', email, 'Lead:', lead)
     console.log('HINWEIS: Weder Brevo noch Mailchimp konfiguriert. E-Mail geloggt.')
     console.log('Um Brevo zu nutzen, setze BREVO_API_KEY und BREVO_LIST_ID in .env')
