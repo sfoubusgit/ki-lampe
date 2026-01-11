@@ -5,6 +5,7 @@ import { CookieBanner } from '@/components/CookieBanner'
 import { Analytics } from '@/components/Analytics'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { LanguageProvider } from '@/contexts/LanguageContext'
 import Script from "next/script"
 
 const inter = Inter({ subsets: ['latin'] })
@@ -96,11 +97,13 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer />
-        <CookieBanner />
-        <Analytics />
+        <LanguageProvider>
+          <Header />
+          {children}
+          <Footer />
+          <CookieBanner />
+          <Analytics />
+        </LanguageProvider>
 
         {/* Google Analytics */}
           <Script

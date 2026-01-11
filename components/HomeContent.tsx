@@ -1,0 +1,164 @@
+'use client'
+
+import Link from 'next/link'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { ArticleImage } from './ArticleImage'
+import { formatDate, slugify } from '@/lib/utils'
+
+interface Article {
+  slug: string
+  title: string
+  date: string
+  excerpt: string
+  image?: string
+  category?: string
+  tags?: string[]
+}
+
+interface Category {
+  name: string
+  count: number
+}
+
+interface HomeContentProps {
+  popularCategories: Category[]
+  featuredArticles: Article[]
+  totalArticles: number
+}
+
+export function HomeContent({ popularCategories, featuredArticles, totalArticles }: HomeContentProps) {
+  const { t } = useLanguage()
+
+  return (
+    <>
+      {/* Popular Topics Section */}
+      {popularCategories.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 py-16 border-b border-slate-700">
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-2 tracking-tight">
+              {t.home.popularTopics.split(' ').slice(0, -1).join(' ')}{' '}
+              <span className="text-emerald-400">{t.home.popularTopics.split(' ').slice(-1)}</span>
+            </h2>
+            <p className="text-slate-300 text-base">{t.home.popularTopicsSubtitle}</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {popularCategories.map((category) => (
+              <Link
+                key={category.name}
+                href={`/kategorie/${slugify(category.name)}`}
+                className="group relative bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 rounded-xl p-4 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 transform hover:-translate-y-1"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 group-hover:bg-emerald-500/30 flex items-center justify-center mb-3 transition-colors">
+                    <svg
+                      className="w-6 h-6 text-emerald-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors line-clamp-2">
+                    {category.name}
+                  </h3>
+                  <p className="text-xs text-slate-400">
+                    {category.count} {category.count === 1 ? t.home.article : t.home.articles}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Featured Articles - Dark Card Design with Green Accents */}
+      <section className="max-w-7xl mx-auto px-4 py-20">
+        <div className="mb-12 text-center">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
+            {t.home.currentArticles.split(' ').slice(0, -1).join(' ')}{' '}
+            <span className="text-emerald-400">{t.home.currentArticles.split(' ').slice(-1)}</span>
+          </h2>
+          <p className="text-slate-300 text-lg">{t.home.currentArticlesSubtitle}</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredArticles.map((article) => (
+            <article
+              key={article.slug}
+              className="group bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 transform hover:-translate-y-1"
+            >
+              {article.image && (
+                <Link href={`/artikel/${article.slug}`}>
+                  <div className="relative overflow-hidden h-56 bg-slate-700">
+                    <ArticleImage
+                      src={article.image}
+                      alt={article.title}
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                    />
+                  </div>
+                </Link>
+              )}
+              <div className="p-6">
+                <div className="flex items-center flex-wrap gap-2 text-xs text-slate-400 mb-3 font-medium">
+                  <time dateTime={article.date}>
+                    {formatDate(article.date)}
+                  </time>
+                  {article.category && (
+                    <>
+                      <span className="mx-1">•</span>
+                      <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold border border-emerald-500/30">
+                        {article.category}
+                      </span>
+                    </>
+                  )}
+                  {article.tags && article.tags.filter(tag => tag !== article.category).map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold border border-amber-500/30"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <Link href={`/artikel/${article.slug}`}>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors leading-tight line-clamp-2">
+                    {article.title}
+                  </h3>
+                </Link>
+                <p className="text-slate-300 mb-5 line-clamp-3 leading-relaxed text-sm">
+                  {article.excerpt}
+                </p>
+                <Link
+                  href={`/artikel/${article.slug}`}
+                  className="inline-flex items-center text-emerald-400 font-semibold text-sm hover:gap-2 transition-all group-hover:underline"
+                >
+                  {t.home.readMore}
+                  <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* More Articles Link */}
+      {totalArticles > 6 && (
+        <section className="max-w-7xl mx-auto px-4 py-12 text-center border-t border-slate-700">
+          <Link
+            href="/artikel"
+            className="inline-flex items-center gap-2 bg-[#fbbf24] text-slate-950 px-8 py-4 rounded-lg font-semibold hover:bg-[#facc15] transition-all shadow-lg hover:shadow-amber-400/50 transform hover:-translate-y-0.5"
+          >
+            {t.home.showAllArticles} ({totalArticles})
+            <span>→</span>
+          </Link>
+        </section>
+      )}
+    </>
+  )
+}

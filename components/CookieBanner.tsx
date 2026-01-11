@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function CookieBanner() {
+  const { t } = useLanguage()
   const [showBanner, setShowBanner] = useState(false)
 
   useEffect(() => {
@@ -33,10 +35,9 @@ export function CookieBanner() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex-1">
           <p className="text-sm">
-            Wir verwenden Cookies, um Ihnen die beste Erfahrung auf unserer Website zu bieten. 
-            Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.{' '}
+            {t.cookies.description}{' '}
             <a href="/datenschutz" className="underline hover:text-blue-300">
-              Mehr erfahren
+              {t.cookies.learnMore}
             </a>
           </p>
         </div>
@@ -45,13 +46,13 @@ export function CookieBanner() {
             onClick={rejectCookies}
             className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded transition-colors"
           >
-            Ablehnen
+            {t.cookies.reject}
           </button>
           <button
             onClick={acceptCookies}
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded transition-colors"
           >
-            Akzeptieren
+            {t.cookies.accept}
           </button>
         </div>
       </div>

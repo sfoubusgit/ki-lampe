@@ -5,10 +5,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { HeaderSearchBar } from './HeaderSearchBar'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const { language, setLanguage, t } = useLanguage()
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -28,12 +30,16 @@ export function Header() {
   }, [isMobileMenuOpen])
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/artikel', label: 'Artikel' },
-    { href: '/news', label: 'News' },
-    { href: '/ueber', label: 'Über uns' },
-    { href: '/kontakt', label: 'Kontakt' },
+    { href: '/', label: t.nav.home },
+    { href: '/artikel', label: t.nav.articles },
+    { href: '/news', label: t.nav.news },
+    { href: '/ueber', label: t.nav.about },
+    { href: '/kontakt', label: t.nav.contact },
   ]
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'de' ? 'en' : 'de')
+  }
 
   const isActive = (href: string) => {
     if (href === '/') {
@@ -107,17 +113,40 @@ export function Header() {
                 })}
               </nav>
 
-              {/* Desktop: Search + CTA */}
+              {/* Desktop: Search + Language Toggle + CTA */}
               <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
                 {/* Search Field - Glass Style */}
                 <HeaderSearchBar />
+
+                {/* Language Toggle Button */}
+                <button
+                  onClick={toggleLanguage}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 text-sm font-medium text-slate-200 hover:text-white transition-all duration-200"
+                  aria-label="Switch language"
+                  title={language === 'de' ? 'Switch to English' : 'Zu Deutsch wechseln'}
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                    />
+                  </svg>
+                  <span className="font-semibold">{language === 'de' ? 'DE' : 'EN'}</span>
+                </button>
 
                 {/* CTA Button */}
                 <Link
                   href="/artikel"
                   className="rounded-full bg-[#fbbf24] hover:bg-[#facc15] text-sm font-semibold text-slate-950 px-4 py-2 shadow-lg shadow-amber-400/40 transition-all duration-200 hover:shadow-amber-400/60 hover:scale-105"
                 >
-                  Artikel entdecken
+                  {t.hero.discoverArticles}
                 </Link>
               </div>
 
@@ -214,14 +243,40 @@ export function Header() {
                 </ul>
               </nav>
 
-              {/* Mobile CTA */}
-              <div className="p-4 border-t border-slate-800/50">
+              {/* Mobile Language Toggle + CTA */}
+              <div className="p-4 border-t border-slate-800/50 space-y-3">
+                {/* Language Toggle */}
+                <button
+                  onClick={() => {
+                    toggleLanguage()
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 text-base font-medium text-slate-200 hover:text-white transition-all duration-200"
+                  aria-label="Switch language"
+                  title={language === 'de' ? 'Switch to English' : 'Zu Deutsch wechseln'}
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                    />
+                  </svg>
+                  <span className="font-semibold">{language === 'de' ? 'DE' : 'EN'}</span>
+                </button>
+                {/* CTA Button */}
                 <Link
                   href="/artikel"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block w-full text-center rounded-full bg-[#fbbf24] hover:bg-[#facc15] text-base font-semibold text-slate-950 px-6 py-3 shadow-lg shadow-amber-400/40 transition-all duration-200"
                 >
-                  Artikel entdecken
+                  {t.hero.discoverArticles}
                 </Link>
               </div>
             </div>

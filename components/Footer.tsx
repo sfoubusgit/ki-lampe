@@ -2,9 +2,11 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const { t } = useLanguage()
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
@@ -14,7 +16,7 @@ export function Footer() {
     
     if (!email || !email.includes('@')) {
       setStatus('error')
-      setMessage('Bitte geben Sie eine gültige E-Mail-Adresse ein.')
+      setMessage(t.footer.invalidEmail)
       return
     }
 
@@ -34,15 +36,15 @@ export function Footer() {
 
       if (response.ok) {
         setStatus('success')
-        setMessage(data.message || 'Vielen Dank für Ihre Anmeldung!')
+        setMessage(data.message || t.footer.subscribeSuccess)
         setEmail('')
       } else {
         setStatus('error')
-        setMessage(data.error || 'Ein Fehler ist aufgetreten.')
+        setMessage(data.error || t.footer.subscribeError)
       }
     } catch (error) {
       setStatus('error')
-      setMessage('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.')
+      setMessage(t.footer.subscribeErrorRetry)
     }
   }
 
@@ -70,61 +72,61 @@ export function Footer() {
             </p>
           </div>
           <div>
-            <h4 className="font-bold mb-6 text-emerald-400">Navigation</h4>
+            <h4 className="font-bold mb-6 text-emerald-400">{t.footer.navigation}</h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li>
                 <Link href="/" className="hover:text-emerald-400 transition-colors">
-                  Home
+                  {t.nav.home}
                 </Link>
               </li>
               <li>
                 <Link href="/artikel" className="hover:text-emerald-400 transition-colors">
-                  Artikel
+                  {t.nav.articles}
                 </Link>
               </li>
               <li>
                 <Link href="/ueber" className="hover:text-emerald-400 transition-colors">
-                  Über uns
+                  {t.nav.about}
                 </Link>
               </li>
               <li>
                 <Link href="/kontakt" className="hover:text-emerald-400 transition-colors">
-                  Kontakt
+                  {t.nav.contact}
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold mb-6 text-emerald-400">Rechtliches</h4>
+            <h4 className="font-bold mb-6 text-emerald-400">{t.footer.legal}</h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li>
                 <Link href="/impressum" className="hover:text-emerald-400 transition-colors">
-                  Impressum
+                  {t.footer.imprint}
                 </Link>
               </li>
               <li>
                 <Link href="/datenschutz" className="hover:text-emerald-400 transition-colors">
-                  Datenschutz
+                  {t.footer.privacy}
                 </Link>
               </li>
               <li>
                 <Link href="/agb" className="hover:text-emerald-400 transition-colors">
-                  AGB
+                  {t.footer.terms}
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold mb-6 text-emerald-400">Newsletter</h4>
+            <h4 className="font-bold mb-6 text-emerald-400">{t.footer.newsletter}</h4>
             <p className="text-slate-400 text-sm mb-4 leading-relaxed">
-              Bleiben Sie auf dem Laufenden mit unseren neuesten Artikeln.
+              {t.footer.newsletterDescription}
             </p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Ihre E-Mail"
+                placeholder={t.footer.emailPlaceholder}
                 disabled={status === 'loading'}
                 className="px-4 py-3 rounded-lg bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
                 required
@@ -134,7 +136,7 @@ export function Footer() {
                 disabled={status === 'loading'}
                 className="px-4 py-3 bg-[#fbbf24] text-slate-950 hover:bg-[#facc15] rounded-lg transition-all text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {status === 'loading' ? 'Wird verarbeitet...' : 'Abonnieren'}
+                {status === 'loading' ? t.footer.processing : t.footer.subscribe}
               </button>
               {message && (
                 <p
@@ -154,10 +156,10 @@ export function Footer() {
         </div>
         <div className="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-500">
           <p>
-            © {currentYear} <span className="text-white">KI</span><span className="text-amber-400">.</span><span className="text-white">LAMPE</span>. Alle Rechte vorbehalten.
+            © {currentYear} <span className="text-white">KI</span><span className="text-amber-400">.</span><span className="text-white">LAMPE</span>. {t.footer.allRightsReserved}
           </p>
           <p className="mt-4 text-slate-400">
-            Hinweis: Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.
+            {t.footer.amazonNote}
           </p>
         </div>
       </div>
