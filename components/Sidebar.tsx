@@ -3,6 +3,7 @@ import { Divider } from "./Divider";
 import { DarkModeToggle } from "./DarkModeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Navigation } from "./Navigation";
+import { PlayGameLink } from "./PlayGameLink";
 
 /**
  * Complete Sidebar Component
@@ -53,6 +54,11 @@ export function Sidebar() {
         
         {/* Navigation items (7 items) */}
         <Navigation />
+      </div>
+
+      {/* Play the game CTA — pinned to the bottom, always visible */}
+      <div className="w-full px-3 pb-6 desktop:pb-8">
+        <PlayGameLink />
       </div>
     </aside>
   );
