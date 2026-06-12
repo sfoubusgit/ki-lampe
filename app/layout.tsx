@@ -1,126 +1,68 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { CookieBanner } from '@/components/CookieBanner'
-import { Analytics } from '@/components/Analytics'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
-import { LanguageProvider } from '@/contexts/LanguageContext'
-import Script from "next/script"
+import type { Metadata } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/lib/theme";
+import { LanguageProvider } from "@/lib/language";
+import { Sidebar } from "@/components/Sidebar";
+import { MobileMenu } from "@/components/MobileMenu";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
-const siteUrl = process.env.BLOG_URL || 'https://yourblog.com'
-const siteName = process.env.BLOG_NAME || 'KI.LAMPE - Der Künstliche Intelligenz Blog für Kreative Leuchten'
-const siteDescription = process.env.BLOG_DESCRIPTION || 'KI.LAMPE - Der Künstliche Intelligenz Blog für Kreative Leuchten'
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: siteName,
-    template: `%s | ${siteName}`,
-  },
-  description: siteDescription,
-  keywords: ['AI', 'Blog', 'Technology', 'SEO', 'Content Marketing'],
-  authors: [{ name: 'AI Content Team' }],
-  creator: 'AI Content Team',
-  publisher: siteName,
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'de_DE',
-    url: siteUrl,
-    siteName: siteName,
-    title: siteName,
-    description: siteDescription,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteName,
-    description: siteDescription,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: process.env.GOOGLE_VERIFICATION,
-  },
-}
+  title: "KI-LAMPE",
+  description: "A minimal, calm blog for ideas and thoughts",
+};
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="de">
-      <head>
-        {/* Globaler Google AdSense Code für Domain-Verifikation und Auslieferung */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5102126204268147"
-          crossOrigin="anonymous"
-        />
-        <link rel="canonical" href={siteUrl} />
-        <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebSite',
-              name: siteName,
-              url: siteUrl,
-              description: siteDescription,
-              potentialAction: {
-                '@type': 'SearchAction',
-                target: {
-                  '@type': 'EntryPoint',
-                  urlTemplate: `${siteUrl}/search?q={search_term_string}`,
-                },
-                'query-input': 'required name=search_term_string',
-              },
-            }),
-          }}
-        />
-      </head>
-      <body className={inter.className}>
-        <LanguageProvider>
-          <Header />
-          {children}
-          <Footer />
-          <CookieBanner />
-          <Analytics />
-        </LanguageProvider>
-
-        {/* Google Analytics */}
-          <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-FZ6K9TC66R"
-            strategy="afterInteractive"
-          />
-
-          <Script id="ga4" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-FZ6K9TC66R');
-            `}
-          </Script>
+    <html lang="en" suppressHydrationWarning className="m-0 p-0">
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans m-0 p-0`}>
+        {/* Skip to content link for accessibility */}
+        <a
+          href="#main-content"
+          className="
+            sr-only
+            focus:not-sr-only
+            focus:absolute
+            focus:top-4
+            focus:left-4
+            focus:z-50
+            focus:px-4
+            focus:py-2
+            focus:bg-accent
+            focus:text-white
+            focus:rounded-sm
+            focus:font-semibold
+            focus:outline-none
+            focus:ring-2
+            focus:ring-accent
+            focus:ring-offset-2
+          "
+        >
+          Skip to main content
+        </a>
+        <ThemeProvider>
+          <LanguageProvider>
+            <Sidebar />
+            <MobileMenu />
+            {children}
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
-

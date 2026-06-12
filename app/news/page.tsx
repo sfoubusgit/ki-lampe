@@ -1,55 +1,117 @@
-import { getPaginatedNewsArticles } from '@/lib/articles'
-import { AdBanner } from '@/components/AdBanner'
-import { Pagination } from '@/components/Pagination'
-import { NewsPageContent } from '@/components/NewsPageContent'
-import type { Metadata } from 'next'
+import { MainContent } from "@/components/MainContent";
+import { ArticleGrid } from "@/components/ArticleGrid";
+import { ArticleCard } from "@/components/ArticleCard";
+import { MetadataLabels } from "@/components/MetadataLabels";
+import { CompleteFooter } from "@/components/CompleteFooter";
+import { AdBar } from "@/components/AdBar";
+import { getAllArticles } from "@/lib/content";
+import { NewsHeader } from "@/components/NewsHeader";
 
-export const revalidate = 0 // Disable cache to ensure latest articles show immediately
+export default function NewsPage() {
+  const articles = getAllArticles();
 
-const siteUrl = process.env.BLOG_URL || 'https://yourblog.com'
+  // Categorize articles into hierarchy (same as homepage)
+  // Primary: First 2 most recent articles (large, prominent, up to half-width)
+  // Secondary: Next 4 articles (medium size)
+  // Tertiary: Remaining older articles (compact)
+  const primaryArticles = articles.slice(0, 2); // First 2 articles (newest)
+  const secondaryArticles = articles.slice(2, 6); // Next 4 articles
+  const tertiaryArticles = articles.slice(6); // Remaining articles
 
-// SEO
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'KI News - Aktuelle Nachrichten und Updates',
-    description: 'Bleibe auf dem Laufenden mit den neuesten KI-News, Updates und Entwicklungen aus der Welt der künstlichen Intelligenz',
-    alternates: {
-      canonical: `${siteUrl}/news`,
+  // Build grid items with hierarchy information (same structure as homepage)
+  const gridItems = [
+    // Primary articles (large, span 2 columns on desktop)
+    ...primaryArticles.map((article) => ({
+      node: (
+        <ArticleCard
+          key={article.slug}
+          href={`/article/${article.slug}`}
+          title={article.title}
+          image={article.image}
+          size="primary"
+          metadata={
+            <MetadataLabels
+              topic={article.topic}
+              level={article.level}
+              readTime={article.readTime}
+            />
+          }
+        />
+      ),
+      hierarchy: 'primary' as const,
+    })),
+    // AD Bar - spans 2 columns, positioned after first two primary articles
+    {
+      node: <AdBar />,
+      hierarchy: 'primary' as const,
+      isAd: true,
     },
-  }
-}
-
-export default async function NewsPage() {
-  // Hole nur News-Artikel (Seite 1, 10 Artikel pro Seite)
-  // News-Artikel haben category: "News" oder tag: "News"
-  const { articles, totalPages, currentPage, totalArticles } =
-    await getPaginatedNewsArticles(1, 10)
+    // Secondary articles (medium)
+    ...secondaryArticles.map((article) => ({
+      node: (
+        <ArticleCard
+          key={article.slug}
+          href={`/article/${article.slug}`}
+          title={article.title}
+          image={article.image}
+          size="secondary"
+          metadata={
+            <MetadataLabels
+              topic={article.topic}
+              level={article.level}
+              readTime={article.readTime}
+            />
+          }
+        />
+      ),
+      hierarchy: 'secondary' as const,
+    })),
+    // Tertiary articles (compact)
+    ...tertiaryArticles.map((article) => ({
+      node: (
+        <ArticleCard
+          key={article.slug}
+          href={`/article/${article.slug}`}
+          title={article.title}
+          image={article.image}
+          size="tertiary"
+          metadata={
+            <MetadataLabels
+              topic={article.topic}
+              level={article.level}
+              readTime={article.readTime}
+            />
+          }
+        />
+      ),
+      hierarchy: 'tertiary' as const,
+    })),
+  ];
 
   return (
-    <main className="min-h-screen bg-[#020617]">
-      <div className="max-w-7xl mx-auto px-4 py-20">
-        {/* Ads */}
-        <AdBanner 
-          placement="top"
-          adClient={process.env.GOOGLE_ADSENSE_CLIENT_ID}
-          adSlot="3697505106"
-        />
-
-        <NewsPageContent 
-          articles={articles} 
-          totalArticles={totalArticles}
-          currentPage={currentPage}
-        />
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            baseUrl="/news"
-          />
-        )}
+    <MainContent>
+      <div className="
+        grid
+        grid-cols-1
+        tablet:grid-cols-2
+        desktop:grid-cols-4
+        gap-2
+        tablet:gap-3
+        desktop:gap-4
+        tablet:-mx-4
+        desktop:-mx-8
+      ">
+        {/* News Header - aligned with grid */}
+        <div className="tablet:col-span-2 desktop:col-span-4 mb-2">
+          <NewsHeader />
+        </div>
+        
+        {/* Article Grid Items */}
+        <ArticleGrid items={gridItems} hideLabels={true} hideGridWrapper={true} />
       </div>
-    </main>
-  )
+
+      {/* Footer */}
+      <CompleteFooter />
+    </MainContent>
+  );
 }

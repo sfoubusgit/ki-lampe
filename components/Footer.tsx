@@ -1,188 +1,61 @@
-'use client'
+import { ReactNode } from "react";
 
-import Link from 'next/link'
-import { useState } from 'react'
-import { useLanguage } from '@/contexts/LanguageContext'
+/**
+ * Footer Container Component
+ * 
+ * Specifications:
+ * - Margin top: 80px mobile, 96px desktop
+ * - Border top: 1px divider color
+ * - Full width
+ * - Max width: 1200px (same as main content), centered
+ * - Padding: 32px mobile, 40px desktop vertical
+ * - Horizontal padding: 24px mobile, 32px desktop
+ * 
+ * Footer Layout:
+ * - Two-column grid on tablet/desktop (768px+)
+ * - Single column on mobile
+ * - Gap: 32px mobile, 48px desktop
+ */
+interface FooterProps {
+  children: ReactNode;
+}
 
-export function Footer() {
-  const currentYear = new Date().getFullYear()
-  const { t } = useLanguage()
-  const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [message, setMessage] = useState('')
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
-    if (!email || !email.includes('@')) {
-      setStatus('error')
-      setMessage(t.footer.invalidEmail)
-      return
-    }
-
-    setStatus('loading')
-    setMessage('')
-
-    try {
-      console.log('Newsletter: Sending request for email:', email)
-      
-      const response = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      })
-
-      console.log('Newsletter: Response status:', response.status)
-      console.log('Newsletter: Response ok:', response.ok)
-
-      let data
-      try {
-        const text = await response.text()
-        console.log('Newsletter: Response text:', text)
-        data = text ? JSON.parse(text) : {}
-      } catch (parseError) {
-        console.error('Newsletter: Failed to parse response:', parseError)
-        setStatus('error')
-        setMessage('Ungültige Antwort vom Server. Bitte versuchen Sie es später erneut.')
-        return
-      }
-
-      console.log('Newsletter: Parsed data:', data)
-
-      if (response.ok || data.success) {
-        setStatus('success')
-        setMessage(data.message || t.footer.subscribeSuccess)
-        setEmail('')
-      } else {
-        setStatus('error')
-        setMessage(data.error || data.message || t.footer.subscribeError)
-        console.error('Newsletter: Error response:', data)
-      }
-    } catch (error: any) {
-      console.error('Newsletter: Fetch error:', error)
-      setStatus('error')
-      setMessage(error.message || t.footer.subscribeErrorRetry)
-    }
-  }
-
+export function Footer({ children }: FooterProps) {
   return (
-    <footer className="relative bg-gradient-to-b from-[#020617] to-[#01030c] text-white mt-24 overflow-hidden">
-      {/* Sternenhimmel Hintergrund */}
-      <div 
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='twinkle'%3E%3CfeGaussianBlur stdDeviation='0.5'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle cx='20' cy='30' r='1' fill='white' filter='url(%23twinkle)'/%3E%3Ccircle cx='60' cy='70' r='1.5' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3Ccircle cx='50' cy='50' r='1' fill='white' opacity='0.9' filter='url(%23twinkle)'/%3E%3Ccircle cx='80' cy='10' r='1' fill='white' opacity='0.7' filter='url(%23twinkle)'/%3E%3Ccircle cx='90' cy='40' r='1.5' fill='white' opacity='0.6' filter='url(%23twinkle)'/%3E%3Ccircle cx='33' cy='60' r='1' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3Ccircle cx='15' cy='80' r='1' fill='white' opacity='0.7' filter='url(%23twinkle)'/%3E%3Ccircle cx='45' cy='90' r='1.5' fill='white' opacity='0.6' filter='url(%23twinkle)'/%3E%3Ccircle cx='75' cy='20' r='1' fill='white' opacity='0.9' filter='url(%23twinkle)'/%3E%3Ccircle cx='25' cy='50' r='1' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3Ccircle cx='120' cy='35' r='1' fill='white' opacity='0.7' filter='url(%23twinkle)'/%3E%3Ccircle cx='150' cy='65' r='1.5' fill='white' opacity='0.6' filter='url(%23twinkle)'/%3E%3Ccircle cx='170' cy='25' r='1' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3Ccircle cx='110' cy='85' r='1' fill='white' opacity='0.7' filter='url(%23twinkle)'/%3E%3Ccircle cx='130' cy='55' r='1.5' fill='white' opacity='0.6' filter='url(%23twinkle)'/%3E%3Ccircle cx='35' cy='15' r='1' fill='white' opacity='0.9' filter='url(%23twinkle)'/%3E%3Ccircle cx='95' cy='75' r='1' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3Ccircle cx='155' cy='95' r='1.5' fill='white' opacity='0.6' filter='url(%23twinkle)'/%3E%3Ccircle cx='175' cy='45' r='1' fill='white' opacity='0.7' filter='url(%23twinkle)'/%3E%3Ccircle cx='105' cy='5' r='1' fill='white' opacity='0.8' filter='url(%23twinkle)'/%3E%3C/svg%3E")`,
-          backgroundSize: '200px 200px',
-          backgroundRepeat: 'repeat',
-        }}
-      />
-      <div className="relative max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div>
-            <h3 className="text-2xl font-black mb-4 text-white">
-              <span className="text-white">KI</span>
-              <span className="text-amber-400">.</span>
-              <span className="text-white">LAMPE</span>
-            </h3>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              {process.env.BLOG_DESCRIPTION || 'Der intelligente KI-Blog - Erleuchtung durch künstliche Intelligenz'}
-            </p>
-          </div>
-          <div>
-            <h4 className="font-bold mb-6 text-emerald-400">{t.footer.navigation}</h4>
-            <ul className="space-y-3 text-sm text-slate-400">
-              <li>
-                <Link href="/" className="hover:text-emerald-400 transition-colors">
-                  {t.nav.home}
-                </Link>
-              </li>
-              <li>
-                <Link href="/artikel" className="hover:text-emerald-400 transition-colors">
-                  {t.nav.articles}
-                </Link>
-              </li>
-              <li>
-                <Link href="/ueber" className="hover:text-emerald-400 transition-colors">
-                  {t.nav.about}
-                </Link>
-              </li>
-              <li>
-                <Link href="/kontakt" className="hover:text-emerald-400 transition-colors">
-                  {t.nav.contact}
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold mb-6 text-emerald-400">{t.footer.legal}</h4>
-            <ul className="space-y-3 text-sm text-slate-400">
-              <li>
-                <Link href="/impressum" className="hover:text-emerald-400 transition-colors">
-                  {t.footer.imprint}
-                </Link>
-              </li>
-              <li>
-                <Link href="/datenschutz" className="hover:text-emerald-400 transition-colors">
-                  {t.footer.privacy}
-                </Link>
-              </li>
-              <li>
-                <Link href="/agb" className="hover:text-emerald-400 transition-colors">
-                  {t.footer.terms}
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold mb-6 text-emerald-400">{t.footer.newsletter}</h4>
-            <p className="text-slate-400 text-sm mb-4 leading-relaxed">
-              {t.footer.newsletterDescription}
-            </p>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t.footer.emailPlaceholder}
-                disabled={status === 'loading'}
-                className="px-4 py-3 rounded-lg bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 border border-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
-                required
-              />
-              <button
-                type="submit"
-                disabled={status === 'loading'}
-                className="px-4 py-3 bg-[#fbbf24] text-slate-950 hover:bg-[#facc15] rounded-lg transition-all text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {status === 'loading' ? t.footer.processing : t.footer.subscribe}
-              </button>
-              {message && (
-                <p
-                  className={`text-sm mt-2 ${
-                    status === 'success'
-                      ? 'text-emerald-400'
-                      : status === 'error'
-                      ? 'text-red-400'
-                      : 'text-slate-400'
-                  }`}
-                >
-                  {message}
-                </p>
-              )}
-            </form>
-          </div>
-        </div>
-        <div className="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-500">
-          <p>
-            © {currentYear} <span className="text-white">KI</span><span className="text-amber-400">.</span><span className="text-white">LAMPE</span>. {t.footer.allRightsReserved}
-          </p>
-          <p className="mt-4 text-slate-400">
-            {t.footer.amazonNote}
-          </p>
+    <footer className="
+      w-full
+      mt-20
+      desktop:mt-24
+      border-t
+      border-divider
+      footer-dark-gradient
+      w-screen
+      relative
+      left-1/2
+      right-1/2
+      -ml-[50vw]
+      -mr-[50vw]
+      desktop:-translate-x-40
+    ">
+      <div className="
+        max-w-[1200px]
+        mx-auto
+        py-8
+        desktop:py-10
+        px-6
+        desktop:px-8
+      ">
+        <div className="
+          grid
+          grid-cols-1
+          tablet:grid-cols-2
+          desktop:grid-cols-3
+          gap-8
+          desktop:gap-12
+        ">
+          {children}
         </div>
       </div>
     </footer>
-  )
+  );
 }
-

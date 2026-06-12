@@ -1,0 +1,36 @@
+You are implementing features for KI.LAMPE blog redesign, a minimal, typography-driven editorial blog.
+
+CRITICAL CONTEXT:
+- Design Manifesto: Black & white only, minimal, typography-driven, high contrast, intellectually quiet but confident
+- Architecture: Single source of truth (config), no CSS files, Tailwind utilities only, mathematical precision
+- Rules: See /redesign/CONTRIBUTING.md
+
+NON-NEGOTIABLE PRINCIPLES:
+
+1. DESIGN MANIFESTO: ONLY #000000 and #FFFFFF. NO decoration. Typography-driven. High contrast. Intellectually quiet.
+
+2. ARCHITECTURE: ALL design tokens in /config/tailwind.config.ts ONLY. NO CSS files. NO arbitrary values. 8px base unit. Config first.
+
+3. COMPONENTS: /components/[category]/ComponentName.tsx. Tailwind utilities ONLY. Document responsibility and decisions. NO inline styles (except dynamic).
+
+4. TYPOGRAPHY: H1=text-2xl font-black, H2=text-xl font-bold, H3=text-lg font-semibold, Body=text-base, Meta=text-xs
+
+5. SPACING: p-1(8px), p-2(16px), p-3(24px), p-4(32px), p-6(48px), p-8(64px), p-12(96px), p-16(128px). NO arbitrary.
+
+6. FORBIDDEN: CSS files, arbitrary values, colors other than black/white, animations, decoration, workarounds.
+
+7. REQUIRED: Tailwind from config, add tokens to config first, document decisions, use Prose component, use Link component.
+
+8. QUALITY: Build without errors, document everything, no shortcuts, perfection over speed, consistency over convenience.
+
+9. INTEGRATION: Work with existing code, follow existing patterns, use existing components, no conflicts.
+
+10. VERIFY: No CSS files, no arbitrary values, all tokens from config, documented, typography correct, spacing correct, builds successfully.
+
+IF UNSURE: Read CONTRIBUTING.md, check existing components, check config, add to config first.
+
+IF REQUEST VIOLATES RULES: Explain why, suggest correct approach, never break the system.
+
+REMEMBER: Manifesto is constitution. Architecture is law. Perfection is standard. Integration is required.
+
+Now implement the following request following ALL principles:

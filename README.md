@@ -1,73 +1,30 @@
-# 💡 KI-Lampe Blog
+# KI-LAMPE
 
-Der intelligente KI-Blog - Erleuchtung durch künstliche Intelligenz
+A minimal, calm blog built with Next.js, TypeScript, and Tailwind CSS.
 
-## 🚀 Features
+## Getting Started
 
-- ✅ 37 SEO-optimierte Artikel
-- ✅ Automatische Content-Generierung
-- ✅ Featured Images für alle Artikel
-- ✅ Interne Verlinkung
-- ✅ SEO-optimiert (Schema Markup, Sitemap, RSS)
-- ✅ AdSense-ready
-- ✅ Modernes, dunkles Design mit grünen Akzenten
-
-## 🛠️ Tech Stack
-
-- **Framework:** Next.js 14 (App Router)
-- **Styling:** TailwindCSS
-- **Content:** Markdown/MDX
-- **Deployment:** Vercel
-- **Domain:** ki-lampe.com
-
-## 📦 Installation
+First, install the dependencies:
 
 ```bash
 npm install
 ```
 
-## 🚀 Development
+Then, run the development server:
 
 ```bash
 npm run dev
 ```
 
-## 📝 Content Generierung
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-# Einzelnen Artikel generieren
-npm run generate "Artikel-Titel"
+## Project Structure
 
-# 50 Artikel generieren
-npm run generate:50
+- `/app` - Next.js App Router pages and layouts
+- `/components` - React components
+- `/lib` - Utility functions and helpers
+- `/public` - Static assets
 
-# Featured Images hinzufügen
-npm run add:images
-```
+## Development
 
-## 🔍 SEO Tools
-
-```bash
-# SEO-Analyse
-npm run seo:analyze
-
-# Interne Verlinkung
-npm run seo:internal-links
-```
-
-## 🌐 Deployment
-
-1. Repository zu GitHub pushen
-2. Vercel Deployment
-3. Domain verbinden (ki-lampe.com)
-
-## 📚 Dokumentation
-
-- `DEPLOYMENT_GUIDE.md` - Deployment-Anleitung
-- `GITHUB_PUSH_GUIDE.md` - GitHub Setup
-- `DOMAIN_SETUP.md` - Domain-Konfiguration
-
-## 📄 License
-
-MIT
-"# ki-lampe" 
+This project follows the specifications in `KI-LAMPE-PERFECT-VISUAL-SPEC.md` and is built according to the roadmap in `KI-LAMPE-PROMPT-ROADMAP.md`.

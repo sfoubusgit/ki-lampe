@@ -1,242 +1,241 @@
 ---
-title: "ComfyUI + FLUX lokal einrichten – Eine geführte Anleitung"
-date: '2025-12-13T17:10:00.000Z'
-dateModified: '2025-12-13T17:10:00.000Z'
-excerpt: "Lerne, wie du ComfyUI installierst und Stable Diffusion FLUX lokal nutzt. Geführte Anleitung mit direkten Downloads & Workflow."
-category: KI-Bildgenerierung
-tags:
-  - ComfyUI
-  - FLUX
-  - Stable Diffusion
-  - KI-Bildgenerierung
-  - Lokale Installation
-  - Tutorial
-author: AI Content Team
-seoKeywords:
-  - 'ComfyUI installieren'
-  - 'FLUX lokal nutzen'
-  - 'Stable Diffusion FLUX'
-  - 'ComfyUI FLUX Tutorial'
-  - 'FLUX Workflow ComfyUI'
-image: >-
-  /images/comfyui-flux-lokal-einrichten/flux-tutorial-image-webp.webp
+title: "Flux.1 Dev mit ComfyUI installieren – Schritt-für-Schritt Anleitung (2026)"
+description: "Vollständige Installation von Flux.1 Dev in ComfyUI Desktop – vom Download bis zum ersten Bild."
+topic: "KI"
+level: "BEGINNER"
+readTime: "10 MIN"
+image: "/images/flux_dev_tutorial_image.webp"
+date: 2026-01-15
 ---
 
-# ComfyUI + FLUX lokal einrichten – Eine geführte Anleitung
+# Flux.1 Dev mit ComfyUI installieren – Schritt-für-Schritt Anleitung (2026)
 
-**Stable Diffusion FLUX lokal nutzen – ohne Cloud, ohne Abo, mit voller Kontrolle:**
+**Flux.1 Dev** gehört zu den leistungsfähigsten aktuellen Bildgenerationsmodellen und lässt sich hervorragend mit **ComfyUI** nutzen.  
+Diese Anleitung führt dich vollständig durch die Installation und Einrichtung – vom Download bis zum ersten generierten Bild.
 
-In dieser Anleitung lernst du, wie du ComfyUI installierst und FLUX Schritt für Schritt lokal einrichtest.
-
-Alle benötigten Dateien sind direkt verlinkt, die Einrichtung ist geführt aufgebaut und eignet sich auch für Einsteiger.
-
-## Ziel dieses Tutorials:
-
-➡️ ComfyUI installieren
-
-➡️ FLUX Modell herunterladen
-
-➡️ FLUX lokal in ComfyUI nutzen
-
-➡️ Erstes Bild erfolgreich generieren
+Der Artikel ist so aufgebaut, dass du jederzeit weißt, **wo du dich befindest, was als Nächstes kommt und warum ein Schritt notwendig ist**.
 
 ---
 
-## Voraussetzungen für ComfyUI & FLUX
+## Voraussetzungen
 
-Bevor du startest, prüfe bitte kurz:
-
-- **Betriebssystem**: Windows 10 oder 11
-- **GPU**: NVIDIA-Grafikkarte
-- **VRAM**: mindestens 8 GB (empfohlen: 16 GB)
-
-Wenn das zutrifft, kannst du FLUX lokal ausführen.
+- Windows 10 oder Windows 11  
+  (macOS funktioniert grundsätzlich ähnlich, Pfade unterscheiden sich)
+- Mindestens **12 GB VRAM** empfohlen
+- Stabile Internetverbindung  
+  (mehrere Dateien sind mehrere Gigabyte groß)
 
 ---
 
-## 1) ComfyUI installieren (Windows, lokal)
+## Download-Sektion (alle wichtigen Links gesammelt)
 
-### 1.1 ComfyUI Download
+### ComfyUI Desktop App
+https://www.comfy.org/download
 
-👉 **ComfyUI Windows Portable (ZIP):**
+### Flux Text Encoder
+- `clip_l.safetensors`  
+  https://huggingface.co/comfyanonymous/flux_text_encoders/blob/main/clip_l.safetensors
+- `t5xxl_fp8_e4m3fn.safetensors` (empfohlen)  
+  https://huggingface.co/comfyanonymous/flux_text_encoders/blob/main/t5xxl_fp8_e4m3fn.safetensors
 
-https://github.com/comfyanonymous/ComfyUI/releases/latest/download/ComfyUI_windows_portable.zip
+### Flux VAE
+- `ae.safetensors`  
+  https://huggingface.co/SicariusSicariiStuff/FLUX.1-dev/blob/main/ae.safetensors
 
-Dieser Download enthält bereits alles Nötige, um ComfyUI lokal zu starten.
+### Flux.1 Dev Hauptmodell
+- `flux1-dev-fp8.safetensors`  
+  https://huggingface.co/Kijai/flux-fp8/blob/main/flux1-dev-fp8.safetensors
 
-### 1.2 ComfyUI entpacken
+### Offizielle Flux Workflows
+https://comfyanonymous.github.io/ComfyUI_examples/flux/
 
-Entpacke den ZIP-Ordner nach:
+---
+
+## Schritt 1: ComfyUI Desktop App installieren
+
+1. Öffne die offizielle Download-Seite:  
+   https://www.comfy.org/download
+2. Lade den **ComfyUI Desktop Installer** für Windows herunter.
+3. Starte die heruntergeladene `.exe`-Datei per Doppelklick.
+4. Folge dem Installationsassistenten:
+   - Lizenzbedingungen akzeptieren  
+   - Standard-Installationspfad verwenden  
+   - Installation vollständig abschließen lassen  
+
+Während dieses Vorgangs werden alle benötigten Komponenten automatisch eingerichtet.  
+Die Installation kann je nach Internetgeschwindigkeit mehrere Minuten dauern.
+
+Nach Abschluss findest du **ComfyUI** im Startmenü oder als Desktop-Verknüpfung.
+
+---
+
+## Schritt 2: ComfyUI zum ersten Mal starten
+
+1. Starte die **ComfyUI Desktop App**.
+2. Die Anwendung:
+   - startet automatisch den internen Server
+   - öffnet deinen Browser unter folgender Adresse:
 
 ```
-C:\ComfyUI
+http://127.0.0.1:8188
 ```
 
-### 1.3 ComfyUI starten
+Falls sich kein Browserfenster öffnet, kopiere die Adresse manuell in Chrome, Edge oder Firefox.
 
-1. Öffne `C:\ComfyUI`
-2. Starte: `run_nvidia_gpu.bat`
-3. ComfyUI öffnet sich automatisch im Browser unter: `http://127.0.0.1:8188`
-
-👉 **ComfyUI ist jetzt erfolgreich installiert.**
+Du solltest nun die ComfyUI-Oberfläche sehen.  
+Auf der rechten Seite befindet sich bereits der **Manager-Button**.
 
 ---
 
-## 2) Stable Diffusion FLUX herunterladen
+## Schritt 3: Modellordner öffnen
 
-Für FLUX benötigst du drei Modell-Komponenten.
+Damit ComfyUI die Flux-Modelle korrekt erkennt, müssen sie in die vorgesehenen Ordner kopiert werden.
 
-Alle Dateien sind direkt verlinkt.
-
-### 2.1 FLUX Hauptmodell (empfohlen: FP8)
-
-👉 **FLUX 1 Dev FP8:**
-
-https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8.safetensors
-
-**Speicherort:**
+Öffne den Windows-Explorer und navigiere zu:
 
 ```
-C:\ComfyUI\models\checkpoints
+C:\Users\DeinName\AppData\Local\Programs\ComfyUI\models
 ```
 
-### 2.2 Text-Encoder für FLUX
-
-👉 **CLIP-L:**
-
-https://huggingface.co/comfyanonymous/clip_l/resolve/main/clip_l.safetensors
-
-👉 **T5 XXL FP8:**
-
-https://huggingface.co/comfyanonymous/t5xxl_fp8_e4m3fn/resolve/main/t5xxl_fp8_e4m3fn.safetensors
-
-**Speicherort:**
-
-```
-C:\ComfyUI\models\clip
-```
-
-### 2.3 VAE für FLUX
-
-👉 **FLUX VAE (ae.safetensors):**
-
-https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/ae.safetensors
-
-**Speicherort:**
-
-```
-C:\ComfyUI\models\vae
-```
+Falls der Ordner schwer zu finden ist, kannst du im Explorer einfach nach **ComfyUI** suchen.
 
 ---
 
-## 3) ComfyUI neu starten
+## Schritt 4: Ordnerstruktur prüfen
 
-Damit ComfyUI die FLUX-Modelle erkennt:
+Stelle sicher, dass folgende Unterordner existieren.  
+Falls sie fehlen, kannst du sie einfach manuell anlegen.
 
-1. ComfyUI schließen
-2. Schwarzes Konsolenfenster schließen
-3. `run_nvidia_gpu.bat` erneut starten
+Pflichtordner:
 
----
+- `clip`
+- `vae`
+- `diffusion_models`
 
-## 4) FLUX Workflow für ComfyUI laden
+Alternative für das Hauptmodell:
 
-👉 **FLUX 1 Dev – ComfyUI Workflow (JSON):**
-
-https://openart.ai/workflows/antelove19ai/flux-1---dev---basic/ldumwSmUimyJ1x2NDCQd
-
-So lädst du den Workflow:
-
-1. Datei herunterladen
-2. Per Drag & Drop in das ComfyUI-Browserfenster ziehen
-
-👉 **Der FLUX-Workflow ist jetzt geladen.**
+- `unet`
 
 ---
 
-## 5) FLUX Prompt einfügen
+## Schritt 5: Flux-Modelle herunterladen und einordnen
 
-Klicke auf den Prompt-Node und füge ein:
+### Text Encoder → `models/clip/`
+
+Ordner:
 
 ```
-cinematic portrait of a futuristic architect,
-soft lighting, ultra-detailed,
-realistic skin texture, 35mm photography,
-shallow depth of field
+models/clip/
 ```
 
----
+Dateien:
 
-## 6) Empfohlene FLUX Einstellungen
-
-| Einstellung | Wert |
-|-------------|------|
-| Steps | 25 |
-| CFG | 4.5 |
-| Seed | -1 |
-| Batch Size | 1 |
-| Auflösung | 1024 × 1024 |
-
-Diese Werte sind stabil und einsteigerfreundlich.
+- `clip_l.safetensors`
+- `t5xxl_fp8_e4m3fn.safetensors`
 
 ---
 
-## 7) Bild mit FLUX generieren
+### VAE → `models/vae/`
 
-👉 **Klicke auf Queue Prompt**
-
-Nach wenigen Sekunden wird dein erstes FLUX-Bild lokal generiert.
-
----
-
-## 8) Wo werden die Bilder gespeichert?
-
-Alle Bilder findest du hier:
+Ordner:
 
 ```
-C:\ComfyUI\output
+models/vae/
 ```
 
----
+Datei:
 
-## 9) Häufige Fehler & Lösungen
-
-### CUDA / Out of Memory Fehler
-
-- Auflösung auf 768 × 768 reduzieren
-- Erneut Queue Prompt klicken
-
-### FLUX Modell wird nicht angezeigt
-
-- Ordnerpfade prüfen
-- ComfyUI neu starten
+- `ae.safetensors`
 
 ---
 
-## Fazit: FLUX lokal mit ComfyUI nutzen
+### Hauptmodell → `models/diffusion_models/`
 
-Mit dieser Anleitung hast du gelernt:
+Ordner:
 
-- wie du ComfyUI installierst
-- wie du Stable Diffusion FLUX lokal einrichtest
-- wie du FLUX in ComfyUI nutzt
+```
+models/diffusion_models/
+```
 
-Du hast jetzt eine kontrollierte, lokale KI-Bildgenerierung, ohne Abhängigkeit von Cloud-Diensten.
+Datei:
+
+- `flux1-dev-fp8.safetensors`
+
+Sobald alle Dateien korrekt kopiert wurden, **ComfyUI einmal neu starten**, damit die Modelle erkannt werden.
 
 ---
 
-## ❓ FAQ (für Google Snippets)
+## Schritt 6: Flux Workflow laden
 
-### Was ist FLUX in Stable Diffusion?
+1. Öffne die offiziellen Flux-Beispiele:  
+   https://comfyanonymous.github.io/ComfyUI_examples/flux/
+2. Wähle einen **Flux Dev Text-zu-Bild Workflow**.
+3. Ziehe das Beispielbild oder die JSON-Datei per Drag-and-Drop in die ComfyUI-Arbeitsfläche.
 
-FLUX ist ein modernes Bildmodell mit besonders hoher Detailtreue und starker Prompt-Verarbeitung.
+Der komplette Workflow wird automatisch geladen.
 
-### Kann man FLUX lokal nutzen?
+---
 
-Ja, mit ComfyUI lässt sich FLUX vollständig lokal auf dem eigenen Rechner ausführen.
+## Schritt 7: Workflow korrekt einstellen
 
-### Welche GPU wird für FLUX benötigt?
+Überprüfe die wichtigsten Nodes im Workflow:
 
-Empfohlen wird eine NVIDIA-GPU mit mindestens 8 GB VRAM.
+### Diffusion Model Loader
 
+Modell:
+
+- `flux1-dev-fp8.safetensors`
+
+Einstellung:
+
+- `weight_dtype`: `fp8` (falls auswählbar)
+
+---
+
+### CLIP / DualCLIP Loader
+
+- `clip_l.safetensors`
+- `t5xxl_fp8_e4m3fn.safetensors`
+
+---
+
+### VAE Loader
+
+- `ae.safetensors`
+
+---
+
+### Empfohlene Grundeinstellungen
+
+- Steps: **20–50**
+- Guidance: **ca. 3.5**
+- CFG: **1.0**
+
+Mit **natürlich formulierten, detaillierten Prompts** erzielt Flux besonders gute Ergebnisse.
+
+---
+
+## Schritt 8: Bild generieren
+
+1. Prompt eingeben
+2. Auf **Queue Prompt** klicken
+3. Das Bild wird berechnet und im Output-Fenster angezeigt
+
+Beim ersten Durchlauf kann die Berechnung etwas länger dauern, da die Modelle zunächst in den Grafikspeicher geladen werden.
+
+---
+
+## Hinweise und Tipps
+
+- Die Desktop-App hält ComfyUI automatisch aktuell
+- Fehlende Nodes lassen sich über den **Manager** installieren
+- FP8-Modelle sind ideal für Grafikkarten mit 12–16 GB VRAM
+- Wenn ein Modell nicht auswählbar ist, ComfyUI neu starten
+- Große Modelle profitieren deutlich von SSD-Speicher
+
+---
+
+## Fazit
+
+Mit der ComfyUI Desktop App lässt sich **Flux.1 Dev** stabil, sauber und reproduzierbar einrichten.  
+Nach der einmaligen Einrichtung steht einer effizienten Arbeit mit hochwertigen Bildgenerierungen nichts mehr im Weg.

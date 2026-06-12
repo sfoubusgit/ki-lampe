@@ -1,29 +1,57 @@
-import Link from 'next/link'
+import Link from "next/link";
 
-interface LogoProps {
-  className?: string
-  size?: 'sm' | 'md' | 'lg'
-}
-
-export function Logo({ className = '', size = 'md' }: LogoProps) {
-  const sizeClasses = {
-    sm: 'w-8 h-8',
-    md: 'w-10 h-10',
-    lg: 'w-12 h-12',
-  }
-
+/**
+ * Sidebar Logo Component
+ * 
+ * Specifications:
+ * - Text: "KI-LAMPE" in base font size, semibold weight
+ * - Container:
+ *   - Background: 10% opacity accent blue (15% in dark mode)
+ *   - Border: 1px, 20% opacity accent blue (25% in dark mode)
+ *   - Small rounded corners (2-3px)
+ *   - Padding: 10px horizontal, 6px vertical
+ * - Hover state:
+ *   - Background increases to 15% opacity (20% in dark mode)
+ *   - Text color changes to full accent blue
+ *   - Smooth 200ms transition
+ * - Clickable link to homepage
+ */
+export function Logo() {
   return (
-    <Link href="/" aria-label="KI-Lampe — Home" className={`flex items-center gap-0 ${className}`}>
-      <span
-        className="font-black text-black dark:text-white text-2xl tracking-tight leading-none !text-black"
-        style={{ color: '#000' }}
+    <Link
+      href="/"
+      className="
+        block
+        w-full
+        text-base-custom
+        font-semibold
+        py-[6px]
+        px-[10px]
+        transition-all
+        duration-200
+        ease
+        text-center
+        focus:outline-none
+        focus:ring-2
+        focus:ring-white/50
+        focus:ring-offset-2
+        focus:ring-offset-transparent
+      "
+      aria-label="KI-LAMPE Home"
+    >
+      <span 
+        className="flex items-center justify-center gap-1.5"
+        style={{
+          backgroundImage: 'linear-gradient(to right, white, rgba(255, 255, 255, 0.9))',
+          WebkitBackgroundClip: 'text',
+          backgroundClip: 'text',
+          color: 'transparent',
+        }}
       >
-        <span className="inline-block">K</span>
-        <span className="inline-block">I</span>
-        <span className="inline-block" style={{ color: '#fbbf24' }}>.</span>
-        <span className="inline-block">LAMPE</span>
+        <span>KI</span>
+        <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 dark:bg-yellow-400 flex-shrink-0 logo-yellow-dot"></span>
+        <span>LAMPE</span>
       </span>
     </Link>
-  )
+  );
 }
-
