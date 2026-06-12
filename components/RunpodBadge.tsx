@@ -1,10 +1,16 @@
+"use client";
+
+import { useLanguage } from "@/lib/language";
+
 /**
- * "Powered by RunPod" Referral Badge
+ * "Rent GPUs on RunPod" Referral Badge
  *
  * A subtle, themeable badge linking to RunPod via the site owner's
  * referral link. Rendered as a pill with a small RunPod-style mark
  * (inline SVG — no external asset, no hotlinking) plus a wordmark.
  *
+ * - Text follows the EN/DE language toggle (useLanguage), like the rest
+ *   of the footer.
  * - rel="sponsored" marks the affiliate/referral relationship for SEO.
  * - target="_blank" opens RunPod in a new tab so visitors keep the article.
  * - Brand violet is used for the mark so it stays recognizable in both
@@ -13,13 +19,23 @@
 const RUNPOD_REFERRAL_URL = "https://runpod.io?ref=jo7pk601";
 
 export function RunpodBadge() {
+  const { language } = useLanguage();
+
+  // "RunPod" stays highlighted at the end in both languages.
+  const prefix = language === "de" ? "GPUs mieten bei" : "Rent GPUs on";
+  const ariaLabel =
+    language === "de"
+      ? "GPUs mieten bei RunPod (Empfehlungslink, öffnet in neuem Tab)"
+      : "Rent GPUs on RunPod (referral link, opens in a new tab)";
+  const title = language === "de" ? "GPUs mieten bei RunPod" : "Rent GPUs on RunPod";
+
   return (
     <a
       href={RUNPOD_REFERRAL_URL}
       target="_blank"
       rel="noopener noreferrer sponsored"
-      aria-label="Powered by RunPod (referral link, opens in a new tab)"
-      title="Powered by RunPod"
+      aria-label={ariaLabel}
+      title={title}
       className="
         group
         inline-flex
@@ -71,7 +87,7 @@ export function RunpodBadge() {
       </svg>
 
       <span className="whitespace-nowrap">
-        Powered by{" "}
+        {prefix}{" "}
         <span className="font-semibold text-foreground/80 group-hover:text-[#7c5cff]">
           RunPod
         </span>
