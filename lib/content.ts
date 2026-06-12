@@ -262,3 +262,32 @@ export function generateSlug(title: string): string {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 }
+
+/**
+ * Blog categories (the nav pillars). Articles are assigned to a single
+ * category based on their `topic` frontmatter.
+ */
+export type Category = "games" | "game-design" | "art" | "ai";
+
+export const CATEGORIES: Category[] = ["games", "game-design", "art", "ai"];
+
+/**
+ * Map an article's free-form `topic` to one of the blog categories.
+ * Order matters: "game design" must be checked before "games", and
+ * AI/KI before the generic gaming match.
+ */
+export function categoryOfTopic(topic?: string): Category | null {
+  const t = (topic || "").toLowerCase();
+  if (/game\s*design/.test(t)) return "game-design";
+  if (/\bki\b|ki-?tool|\bai\b|ai-?tool|automat/.test(t)) return "ai";
+  if (/\bart\b|kunst|kreativ/.test(t)) return "art";
+  if (/gaming|games|console|konsol|^pc$|playstation|xbox|nintendo/.test(t)) return "games";
+  return null;
+}
+
+/**
+ * Get all articles belonging to a category, newest first.
+ */
+export function getArticlesByCategory(category: Category): ArticleMetadata[] {
+  return getAllArticles().filter((article) => categoryOfTopic(article.topic) === category);
+}

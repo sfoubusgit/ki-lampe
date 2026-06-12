@@ -4,26 +4,23 @@ import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/language";
 import { NavItem } from "./NavItem";
 import { HomeIcon } from "./HomeIcon";
-import { ClockIcon } from "./ClockIcon";
-import { ReviewsIcon } from "./ReviewsIcon";
 import { ControllerIcon } from "./ControllerIcon";
-import { PcIcon } from "./PcIcon";
-import { VideosIcon } from "./VideosIcon";
-import { MoreIcon } from "./MoreIcon";
+import { GameDesignIcon } from "./GameDesignIcon";
+import { ArtIcon } from "./ArtIcon";
+import { AiIcon } from "./AiIcon";
 
 /**
  * Sidebar Navigation Component
- * 
- * 7 navigation items:
- * 1. Home (filled home icon)
- * 2. News (filled clock icon)
- * 3. Reviews (filled square icon)
- * 4. Consoles (filled controller icon)
- * 5. PC (filled PC icon)
- * 6. Videos (filled play button icon)
- * 7. More (filled three dots icon)
- * 
- * Stacked vertically with 20px gap between each
+ *
+ * Aligned to the blog's pillars: Gaming / Game Design / Art / AI.
+ * 5 items:
+ * 1. Home
+ * 2. Games        -> /category/games
+ * 3. Game Design  -> /category/game-design
+ * 4. Art          -> /category/art
+ * 5. AI (DE: KI)  -> /category/ai
+ *
+ * Stacked vertically with 20px gap between each.
  */
 export function Navigation() {
   const pathname = usePathname();
@@ -32,21 +29,17 @@ export function Navigation() {
   const navLabels = {
     en: {
       home: "Home",
-      news: "News",
-      reviews: "Reviews",
-      consoles: "Consoles",
-      pc: "PC",
-      videos: "Videos",
-      more: "More",
+      games: "Games",
+      gameDesign: "Game Design",
+      art: "Art",
+      ai: "AI",
     },
     de: {
       home: "Start",
-      news: "News",
-      reviews: "Reviews",
-      consoles: "Konsolen",
-      pc: "PC",
-      videos: "Videos",
-      more: "Mehr",
+      games: "Games",
+      gameDesign: "Game Design",
+      art: "Art",
+      ai: "KI",
     },
   };
 
@@ -54,12 +47,10 @@ export function Navigation() {
 
   const navItems = [
     { href: "/", icon: <HomeIcon />, label: labels.home },
-    { href: "/news", icon: <ClockIcon />, label: labels.news },
-    { href: "/reviews", icon: <ReviewsIcon />, label: labels.reviews },
-    { href: "/consoles", icon: <ControllerIcon />, label: labels.consoles },
-    { href: "/pc", icon: <PcIcon />, label: labels.pc },
-    { href: "/videos", icon: <VideosIcon />, label: labels.videos },
-    { href: "/more", icon: <MoreIcon />, label: labels.more },
+    { href: "/category/games", icon: <ControllerIcon />, label: labels.games },
+    { href: "/category/game-design", icon: <GameDesignIcon />, label: labels.gameDesign },
+    { href: "/category/art", icon: <ArtIcon />, label: labels.art },
+    { href: "/category/ai", icon: <AiIcon />, label: labels.ai },
   ];
 
   return (
