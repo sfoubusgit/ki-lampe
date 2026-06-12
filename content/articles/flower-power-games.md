@@ -80,4 +80,4 @@ Eine Blume kann ein Power-up sein, eine Wirtschaft, ein Ökosystem, ein Genetik-
 
 *Flower* ist das kunstvollste, *Plants vs. Zombies* das mechanisch zentralste, *Animal Crossing* das tiefste System. Aber **Pikmin gewinnt**, weil es die Blume die meisten Aufgaben gleichzeitig erledigen lässt – Stärkeanzeige, Progression, Charme und Interface – ohne dir je einen Wert zu zeigen. Das ist Flower Power.
 
-> **Magst du solche Analysen?** [Krafthaus](https://businessflow2.gumroad.com) verwandelt das, was große Spiele zum Ticken bringt, in Guides, aus denen du wirklich bauen kannst – und ein blumenfokussierter ist in Arbeit.
+> **Macht dir das ganze Blumen-Thema Lust, selbst welche zu erschaffen?** [**Sutera Cordata — 20.000+ KI-Art-Prompts**](https://businessflow2.gumroad.com/l/amtcqt) verwandelt eine zarte Blüte in 20.000+ fertige Prompts in 22 Stilen – Aquarell, Holzschnitt, Glasmalerei, Low-Poly und mehr – für Midjourney, Stable Diffusion, DALL·E und Co.

@@ -80,4 +80,4 @@ A flower can be a power-up, an economy, an ecosystem, a genetics system, or a fe
 
 *Flower* is the most artful, *Plants vs. Zombies* the most mechanically central, *Animal Crossing* the deepest system. But **Pikmin wins** because it makes the flower do the most jobs at once — power indicator, progression, charm, and interface — without ever showing you a stat. That's flower power.
 
-> **Like this kind of breakdown?** [Krafthaus](https://businessflow2.gumroad.com) turns what makes great games tick into guides you can actually build from — and a flower-focused one is on the way.
+> **All this flower talk got you wanting to make your own?** [**Sutera Cordata — 20,000+ AI Art Prompts**](https://businessflow2.gumroad.com/l/amtcqt) turns one delicate bloom into 20,000+ ready-to-paste prompts across 22 styles — watercolor, woodblock, stained glass, low-poly and more — for Midjourney, Stable Diffusion, DALL·E and the rest.
