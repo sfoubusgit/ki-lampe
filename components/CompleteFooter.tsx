@@ -2,6 +2,7 @@ import { Footer } from "./Footer";
 import { KeywordsPanel } from "./KeywordsPanel";
 import { NewsletterSection } from "./NewsletterSection";
 import { LegalLinks } from "./LegalLinks";
+import { RunpodBadge } from "./RunpodBadge";
 
 /**
  * Complete Footer Assembly
@@ -26,6 +27,11 @@ export function CompleteFooter() {
 
       {/* Full Width: Legal Links, Copyright & Game of the Day at bottom */}
       <LegalLinks />
+
+      {/* Full Width: Powered by RunPod referral badge */}
+      <div className="col-span-full flex justify-center pt-2">
+        <RunpodBadge />
+      </div>
     </Footer>
   );
 }
