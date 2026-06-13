@@ -91,4 +91,4 @@ Ocarina of Time bleibt für seine Welt, seine Musik, seine Dungeons in Erinnerun
 
 In den 90ern gab es nichts Vergleichbares. Und in fast allem seither steckt ein bisschen davon.
 
-> **Entwickelst du dein eigenes Spiel und ringst mit solchen Systemen?** [**RING-OUT — How to Design a Platform Fighter**](https://businessflow2.gumroad.com/l/lbqyc) zeigt, wie man Kampf baut, der sich lesbar und großartig anfühlt – Frameworks, Charakter-Kits und eine echte Build-Roadmap, dasselbe „mach es lesbar"-Denken von Anfang bis Ende.
+> **Willst du ein Lock-on-System wirklich bauen?** [**LOCK-ON — Designing Target-Lock Combat for 3D Action Games**](https://businessflow2.gumroad.com/l/ayeioc) ist der komplette Leitfaden: Hard- vs. Soft-Lock, die Lock-on-Kamera (der schwere Teil), Zielerfassung und -wechsel, gebundene Bewegung und Angriffe, Retikel und Feedback und eine vollständige Tuning-Checkliste – das ganze System, das Zelda begründete, Entscheidung für Entscheidung, für dein eigenes Spiel.

@@ -91,4 +91,4 @@ Ocarina of Time is remembered for its world, its music, its dungeons. But its qu
 
 There was nothing like it in the 90s. And there's a little bit of it in almost everything since.
 
-> **Designing your own game and wrestling with systems like this?** [**RING-OUT — How to Design a Platform Fighter**](https://businessflow2.gumroad.com/l/lbqyc) breaks down how to build combat that feels legible and great — frameworks, character kits, and a real build roadmap, the same "make it readable" thinking applied end to end.
+> **Want to actually build a lock-on system?** [**LOCK-ON — Designing Target-Lock Combat for 3D Action Games**](https://businessflow2.gumroad.com/l/ayeioc) is the complete guide: hard vs soft lock, the lock-on camera (the hard part), target acquisition and switching, locked movement and attacks, the reticle and feedback, and a full tuning checklist — the whole system Zelda pioneered, decision by decision, for your own game.
