@@ -47,13 +47,13 @@ export function ArticleCard({
       arrow: "text-xs-custom",
     },
     secondary: {
-      media: "aspect-[4/3]",
+      media: "aspect-[16/9]",
       padding: "p-4 tablet:p-5",
       title: "text-[clamp(1.05rem,2.2vw,1.6rem)]",
       arrow: "text-xs-custom",
     },
     tertiary: {
-      media: "aspect-[4/3]",
+      media: "aspect-[16/9]",
       padding: "p-4 tablet:p-5",
       title: "text-[clamp(1rem,2vw,1.4rem)]",
       arrow: "text-xs-custom",
