@@ -31,6 +31,10 @@ export function LegalLinks() {
   // Legal links - can be customized based on your needs
   const legalLinks = [
     {
+      href: "/about",
+      label: language === "en" ? "About" : "Über",
+    },
+    {
       href: "/privacy",
       label: language === "en" ? "Privacy" : "Datenschutz",
     },

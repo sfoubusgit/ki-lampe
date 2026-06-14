@@ -34,26 +34,52 @@ import { useState, FormEvent } from "react";
  * - Hover: Background increases to 15% opacity (20% dark)
  * - 200ms transition
  */
+type Status = "idle" | "ok" | "already" | "error";
+
 export function NewsletterSection() {
   const { language } = useLanguage();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
   const headingText = language === "en" ? "NEWSLETTER" : "NEWSLETTER"; // German uses same word
 
+  const messages = {
+    ok: language === "en" ? "Thanks — you're in! 💡" : "Danke — du bist dabei! 💡",
+    already:
+      language === "en"
+        ? "You're already subscribed."
+        : "Du bist bereits angemeldet.",
+    error:
+      language === "en"
+        ? "Something went wrong. Please try again."
+        : "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setIsSubmitting(true);
-    
-    // TODO: Implement newsletter subscription logic
-    console.log("Newsletter subscription:", email);
-    
-    // Simulate API call
-    setTimeout(() => {
+    setStatus("idle");
+
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) {
+        setStatus(data.already ? "already" : "ok");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    } finally {
       setIsSubmitting(false);
-      setEmail("");
-      // TODO: Show success message
-    }, 1000);
+    }
   };
 
   return (
@@ -143,6 +169,19 @@ export function NewsletterSection() {
             ? language === "en" ? "Subscribing..." : "Abonnieren..."
             : language === "en" ? "Subscribe" : "Abonnieren"}
         </button>
+
+        {status !== "idle" && (
+          <p
+            role="status"
+            className={`text-sm-custom mt-1 ${
+              status === "error"
+                ? "text-red-400"
+                : "text-[#5b9bd5] dark:text-[#5ba3d5]"
+            }`}
+          >
+            {messages[status]}
+          </p>
+        )}
       </form>
     </div>
   );
