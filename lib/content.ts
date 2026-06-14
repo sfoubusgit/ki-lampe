@@ -269,7 +269,9 @@ export function generateSlug(title: string): string {
  */
 export type Category = "games" | "game-design" | "art" | "ai";
 
-export const CATEGORIES: Category[] = ["games", "game-design", "art", "ai"];
+// "games" is intentionally omitted until there is games-specific content
+// (an empty category page reads as thin/low-value content to AdSense).
+export const CATEGORIES: Category[] = ["game-design", "art", "ai"];
 
 /**
  * Map an article's free-form `topic` to one of the blog categories.

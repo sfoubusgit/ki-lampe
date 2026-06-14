@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/language";
 import { NavItem } from "./NavItem";
 import { HomeIcon } from "./HomeIcon";
-import { ControllerIcon } from "./ControllerIcon";
 import { GameDesignIcon } from "./GameDesignIcon";
 import { ArtIcon } from "./ArtIcon";
 import { AiIcon } from "./AiIcon";
@@ -47,7 +46,6 @@ export function Navigation() {
 
   const navItems = [
     { href: "/", icon: <HomeIcon />, label: labels.home },
-    { href: "/category/games", icon: <ControllerIcon />, label: labels.games },
     { href: "/category/game-design", icon: <GameDesignIcon />, label: labels.gameDesign },
     { href: "/category/art", icon: <ArtIcon />, label: labels.art },
     { href: "/category/ai", icon: <AiIcon />, label: labels.ai },
