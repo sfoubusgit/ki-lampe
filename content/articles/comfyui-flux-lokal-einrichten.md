@@ -4,9 +4,11 @@ description: "Vollständige Installation von Flux.1 Dev in ComfyUI Desktop – v
 topic: "KI"
 level: "BEGINNER"
 readTime: "10 MIN"
-image: "/images/flux_dev_tutorial_image.webp"
+image: "/images/comfyui-flux-hero.webp"
 date: 2026-01-15
 ---
+
+![Flux.1 Dev mit ComfyUI installieren – Schritt-für-Schritt Anleitung (2026)](/images/comfyui-flux-hero.webp)
 
 # Flux.1 Dev mit ComfyUI installieren – Schritt-für-Schritt Anleitung (2026)
 

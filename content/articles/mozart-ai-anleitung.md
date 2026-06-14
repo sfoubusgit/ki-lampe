@@ -4,9 +4,11 @@ description: "Praktische, anfängerfreundliche Anleitung für MozartAI: Wie du a
 topic: "KI-TOOLS"
 level: "BEGINNER"
 readTime: "11 MIN"
-image: "/images/mozart-ai-anleitung_article/mozart-vibe-create.webp"
+image: "/images/mozart-hero.webp"
 date: 2026-06-12
 ---
+
+![MozartAI Anleitung: Mit KI eigene Songs erstellen (Schritt für Schritt)](/images/mozart-hero.webp)
 
 # MozartAI Anleitung: Mit KI eigene Songs erstellen
 

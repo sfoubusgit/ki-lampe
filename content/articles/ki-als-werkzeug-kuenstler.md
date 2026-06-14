@@ -4,9 +4,11 @@ description: "Ein ehrlicher Leitfaden für Künstler, die verstehen wollen, wie 
 topic: "KI"
 level: "BEGINNER"
 readTime: "14 MIN"
-image: "/images/ki_fuer_künstler.webp"
+image: "/images/ki-kuenstler-hero.webp"
 date: 2025-01-15
 ---
+
+![KI als Werkzeug: Wie Künstler ihre Kreativität stärken, ohne ihre Seele zu verlieren](/images/ki-kuenstler-hero.webp)
 
 # KI als Werkzeug: Wie Künstler ihre Kreativität stärken, ohne ihre Seele zu verlieren
 

@@ -4,9 +4,11 @@ description: "A practical, beginner-friendly guide to MozartAI: how to turn a si
 topic: "AI TOOLS"
 level: "BEGINNER"
 readTime: "11 MIN"
-image: "/images/mozart-ai-anleitung_article/mozart-vibe-create.webp"
+image: "/images/mozart-hero.webp"
 date: 2026-06-12
 ---
+
+![MozartAI Tutorial: How to Make Your Own Songs With AI (Step by Step)](/images/mozart-hero.webp)
 
 # MozartAI Tutorial: How to Make Your Own Songs With AI
 

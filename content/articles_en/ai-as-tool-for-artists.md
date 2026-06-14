@@ -4,9 +4,11 @@ description: "An honest guide for artists who want to use AI to support their wo
 topic: "AI"
 level: "BEGINNER"
 readTime: "14 MIN"
-image: "/images/ki_fuer_künstler.webp"
+image: "/images/ki-kuenstler-hero.webp"
 date: 2025-01-15
 ---
+
+![AI as a Tool: How Artists Strengthen Creativity Without Losing Their Voice](/images/ki-kuenstler-hero.webp)
 
 # AI as a Tool: How Artists Strengthen Creativity Without Losing Their Voice
 

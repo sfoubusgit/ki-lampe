@@ -4,9 +4,11 @@ description: "Technische und praktische Analyse von MusicGPT: Wie die KI arbeite
 topic: "KI-TOOLS"
 level: "INTERMEDIATE"
 readTime: "9 MIN"
-image: "/images/musicgpt_article/musicgpt-generate-tab.webp"
+image: "/images/musicgpt-hero.webp"
 date: 2026-02-03
 ---
+
+![MusicGPT Funktionsanalyse: Struktur, Workflow und Grenzen eines KI-Musiktools](/images/musicgpt-hero.webp)
 
 # MusicGPT Funktionsanalyse: Struktur, Workflow und Grenzen
 

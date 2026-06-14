@@ -4,9 +4,11 @@ description: "Technical and practical analysis of MusicGPT: how the system works
 topic: "AI-TOOLS"
 level: "INTERMEDIATE"
 readTime: "9 MIN"
-image: "/images/musicgpt_article/musicgpt-generate-tab.webp"
+image: "/images/musicgpt-hero.webp"
 date: 2026-02-03
 ---
+
+![MusicGPT Functional Analysis: Structure, Workflow, and Limits of an AI Music Tool](/images/musicgpt-hero.webp)
 
 # MusicGPT Functional Analysis: Structure, Workflow, and Limits
 

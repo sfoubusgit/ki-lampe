@@ -4,9 +4,11 @@ description: "A structured step-by-step guide for Flux 1 Dev with direct downloa
 topic: "AI"
 level: "BEGINNER"
 readTime: "8 MIN"
-image: "/images/flux_dev_tutorial_image.webp"
+image: "/images/comfyui-flux-hero.webp"
 date: 2026-01-15
 ---
+
+![Flux 1 Dev: Installation Tutorial for ComfyUI](/images/comfyui-flux-hero.webp)
 
 # Flux 1 Dev: Installation Tutorial for ComfyUI
 

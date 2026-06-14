@@ -4,9 +4,11 @@ description: "A true beginner-friendly, step-by-step guide to running n8n locall
 topic: "Automation"
 level: "BEGINNER"
 readTime: "10 MIN"
-image: "/images/n8n_run_locally_windows_tutorial_image.webp"
+image: "/images/n8n-hero.webp"
 date: 2026-01-22
 ---
+
+![How to Run n8n Locally on Windows (For Dummies)](/images/n8n-hero.webp)
 
 # How to Run n8n Locally on Windows (For Dummies)
 
