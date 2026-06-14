@@ -59,14 +59,7 @@ export async function POST(request: NextRequest) {
     }
 
     console.error("Brevo error:", res.status, text);
-    return NextResponse.json(
-      {
-        success: false,
-        error: "provider_error",
-        _debug: { status: res.status, message: data?.message || data?.code || (text || "").slice(0, 240) },
-      },
-      { status: 502 }
-    );
+    return NextResponse.json({ success: false, error: "provider_error" }, { status: 502 });
   } catch (error: any) {
     console.error("Newsletter exception:", error?.message);
     return NextResponse.json({ success: false, error: "server_error" }, { status: 500 });
