@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
+
+const GA_ID = "G-FZ6K9TC66R";
 import { ThemeProvider } from "@/lib/theme";
 import { LanguageProvider } from "@/lib/language";
 import { Sidebar } from "@/components/Sidebar";
@@ -31,6 +34,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="m-0 p-0">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans m-0 p-0`}>
+        {/* Google Analytics (GA4) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
         {/* Skip to content link for accessibility */}
         <a
           href="#main-content"
