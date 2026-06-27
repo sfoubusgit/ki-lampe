@@ -1,6 +1,6 @@
 import { MainContent } from "@/components/MainContent";
 import { CompleteFooter } from "@/components/CompleteFooter";
-import { getArticleBySlugAndLanguage, getAllArticleSlugs, topicAccent } from "@/lib/content";
+import { getArticleBySlugAndLanguage, getAllArticleSlugs } from "@/lib/content";
 import { ArticleViewer } from "@/components/ArticleViewer";
 import { CloudGpuBar } from "@/components/CloudGpuBar";
 import { notFound } from "next/navigation";
@@ -38,11 +38,9 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
-  const accent = topicAccent((articleDe || articleEn)?.metadata.topic);
-
   return (
     <MainContent>
-      <ArticleViewer articleDe={articleDe} articleEn={articleEn} accent={accent} />
+      <ArticleViewer articleDe={articleDe} articleEn={articleEn} />
 
       {/* Footer */}
       <CompleteFooter />
