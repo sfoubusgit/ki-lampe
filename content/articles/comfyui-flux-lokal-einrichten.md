@@ -1,7 +1,7 @@
 ---
 title: "Flux.1 Dev mit ComfyUI installieren – Schritt-für-Schritt Anleitung (2026)"
 description: "Vollständige Installation von Flux.1 Dev in ComfyUI Desktop – vom Download bis zum ersten Bild."
-topic: "KI"
+topic: KI-TOOLS
 level: "BEGINNER"
 readTime: "10 MIN"
 image: "/images/comfyui-flux-hero.webp"
@@ -17,6 +17,8 @@ Diese Anleitung führt dich vollständig durch die Installation und Einrichtung 
 
 Der Artikel ist so aufgebaut, dass du jederzeit weißt, **wo du dich befindest, was als Nächstes kommt und warum ein Schritt notwendig ist**.
 
+> 💡 **Tipp:** Hast du weniger als 12 GB VRAM? Nutze die **fp8**-Variante von Flux.1 Dev – deutlich weniger Speicherbedarf bei kaum sichtbarem Qualitätsverlust.
+
 ---
 
 ## Voraussetzungen
@@ -26,6 +28,12 @@ Der Artikel ist so aufgebaut, dass du jederzeit weißt, **wo du dich befindest, 
 - Mindestens **12 GB VRAM** empfohlen
 - Stabile Internetverbindung  
   (mehrere Dateien sind mehrere Gigabyte groß)
+
+> ⚠️ **Achtung:** Die Modelldateien sind zusammen über **20 GB** groß – prüfe vorher, ob genug Speicherplatz frei ist.
+
+> 📌 **Hinweis:** ComfyUI Desktop und die portable Version teilen sich Modelle nicht automatisch. Lege die Dateien im Ordner der Version ab, die du tatsächlich nutzt.
+
+[[CLOUD_CTA]]
 
 ---
 
