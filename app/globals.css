@@ -890,3 +890,20 @@
   /* Inline code → warm tint */
   .article-content code:not(pre code){ background: color-mix(in srgb, var(--ed-gold) 16%, transparent); color: var(--ed-gold); padding: 1px 6px; border-radius: 5px; font-size: .86em; }
 }
+/* ── KI-Lampe "lamp glow" identity layer (appended) ── */
+:root{ --lamp:#eab308; --lamp-glow:0 0 6px rgba(234,179,8,.5), 0 0 14px rgba(234,179,8,.25); }
+.dark{ --lamp:#facc15; --lamp-glow:0 0 9px rgba(250,204,21,.65), 0 0 20px rgba(250,204,21,.38); }
+
+@layer components{
+  /* H2 → a glowing lamp lighting each section */
+  .article-content h2.ed-lamp-h2{ position: relative; padding-left: 30px; }
+  .article-content h2.ed-lamp-h2::before{ content:''; position:absolute; left:1px; top:.6em; transform:translateY(-50%); width:12px; height:12px; border-radius:50%; background: var(--lamp); box-shadow: var(--lamp-glow); }
+
+  /* Links light up on hover */
+  .article-content a{ transition: color .2s ease, border-color .2s ease, text-shadow .2s ease; }
+  .article-content a:hover{ color: var(--lamp); border-bottom-color: var(--lamp); text-shadow: var(--lamp-glow); }
+
+  /* Lamp-gold text selection */
+  .article-content ::selection{ background: rgba(234,179,8,.22); }
+}
+.dark .article-content ::selection{ background: rgba(250,204,21,.28); }

@@ -82,7 +82,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
         h2: ({ children }) => {
           const id = headingSlug(childText(children));
           return (
-            <h2 id={id} className="scroll-mt-28" style={{ fontFamily: ED_FONT, fontWeight: 600, color: "var(--color-foreground)", borderLeft: `3px solid ${ED_BAR}`, paddingLeft: "0.5em" }}>
+            <h2 id={id} className="scroll-mt-28 ed-lamp-h2" style={{ fontFamily: ED_FONT, fontWeight: 600, color: "var(--color-foreground)" }}>
               {children}
             </h2>
           );
