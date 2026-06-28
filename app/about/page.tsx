@@ -20,7 +20,7 @@ export default function AboutPage() {
         },
         {
           heading: "What we cover",
-          text: "Our writing is organized around four pillars: AI (tools like Stable Diffusion, ComfyUI, RunPod and AI music), Game Design (how great mechanics actually work), Games, and Art. Each article aims to teach something real — whether that's installing a tool step by step or understanding a piece of game design history.",
+          text: "Our writing is organized around three pillars: AI (tools like Stable Diffusion, ComfyUI, RunPod and AI music), Games (how great mechanics, culture and engines actually work), and Art. Each article aims to teach something real — whether that's installing a tool step by step or understanding a piece of game design history.",
         },
         {
           heading: "Our approach",
@@ -46,7 +46,7 @@ export default function AboutPage() {
         },
         {
           heading: "Worüber wir schreiben",
-          text: "Unsere Inhalte gliedern sich in vier Säulen: KI (Tools wie Stable Diffusion, ComfyUI, RunPod und KI-Musik), Game Design (wie großartige Mechaniken wirklich funktionieren), Games und Kunst. Jeder Artikel soll etwas Echtes vermitteln – ob eine Schritt-für-Schritt-Installation oder das Verständnis eines Stücks Game-Design-Geschichte.",
+          text: "Unsere Inhalte gliedern sich in drei Säulen: KI (Tools wie Stable Diffusion, ComfyUI, RunPod und KI-Musik), Games (wie großartige Mechaniken, Kultur und Engines wirklich funktionieren) und Kunst. Jeder Artikel soll etwas Echtes vermitteln – ob eine Schritt-für-Schritt-Installation oder das Verständnis eines Stücks Game-Design-Geschichte.",
         },
         {
           heading: "Unser Ansatz",

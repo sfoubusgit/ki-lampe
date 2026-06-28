@@ -7,7 +7,7 @@ import { THEMEN, MIN_THEMA, PARENTS, themaCounts, type Parent } from "@/lib/them
 export const metadata = {
   title: "Themen — KI-Lampe",
   description:
-    "Alle Themen von KI-Lampe — Bildgenerierung, KI-Musik, Cloud-GPUs, Game Design, KI-Kunst und mehr. Finde die Nische, die dich interessiert.",
+    "Alle Themen von KI-Lampe — Bildgenerierung, KI-Musik, Cloud-GPUs, Games, KI-Kunst und mehr. Finde die Nische, die dich interessiert.",
 };
 
 export default function ThemenPage() {

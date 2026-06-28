@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/language";
 import { NavItem } from "./NavItem";
 import { HomeIcon } from "./HomeIcon";
-import { GameDesignIcon } from "./GameDesignIcon";
+import { ControllerIcon } from "./ControllerIcon";
 import { ArtIcon } from "./ArtIcon";
 import { AiIcon } from "./AiIcon";
 
@@ -22,13 +22,13 @@ function ThemenIcon() {
 /**
  * Sidebar Navigation Component
  *
- * Aligned to the blog's pillars: Gaming / Game Design / Art / AI.
+ * Aligned to the blog's three pillars: AI / Games / Art.
  * 5 items:
  * 1. Home
- * 2. Games        -> /category/games
- * 3. Game Design  -> /category/game-design
- * 4. Art          -> /category/art
- * 5. AI (DE: KI)  -> /category/ai
+ * 2. Topics  -> /themen
+ * 3. Games   -> /category/games   (gaming culture + game design + engines)
+ * 4. Art     -> /category/art
+ * 5. AI (DE: KI) -> /category/ai
  *
  * Stacked vertically with 20px gap between each.
  */
@@ -41,7 +41,6 @@ export function Navigation() {
       home: "Home",
       themen: "Topics",
       games: "Games",
-      gameDesign: "Game Design",
       art: "Art",
       ai: "AI",
     },
@@ -49,7 +48,6 @@ export function Navigation() {
       home: "Start",
       themen: "Themen",
       games: "Games",
-      gameDesign: "Game Design",
       art: "Art",
       ai: "KI",
     },
@@ -60,7 +58,7 @@ export function Navigation() {
   const navItems = [
     { href: "/", icon: <HomeIcon />, label: labels.home },
     { href: "/themen", icon: <ThemenIcon />, label: labels.themen },
-    { href: "/category/game-design", icon: <GameDesignIcon />, label: labels.gameDesign },
+    { href: "/category/games", icon: <ControllerIcon />, label: labels.games },
     { href: "/category/art", icon: <ArtIcon />, label: labels.art },
     { href: "/category/ai", icon: <AiIcon />, label: labels.ai },
   ];

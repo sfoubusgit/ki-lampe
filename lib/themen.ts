@@ -18,7 +18,7 @@ export interface Thema {
 
 export const PARENTS: Record<Parent, { name: string }> = {
   ki: { name: "KI & Tools" },
-  game: { name: "Game Design" },
+  game: { name: "Games" },
   kunst: { name: "Kunst & KI" },
 };
 

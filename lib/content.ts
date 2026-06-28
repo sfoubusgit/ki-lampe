@@ -269,21 +269,20 @@ export function generateSlug(title: string): string {
  */
 export type Category = "games" | "game-design" | "art" | "ai";
 
-// "games" is intentionally omitted until there is games-specific content
-// (an empty category page reads as thin/low-value content to AdSense).
-export const CATEGORIES: Category[] = ["game-design", "art", "ai"];
+// "Games" is the single gaming pillar (gaming culture + game design + engines).
+// The old standalone "game-design" category was too narrow to be a top-level pillar.
+export const CATEGORIES: Category[] = ["games", "art", "ai"];
 
 /**
  * Map an article's free-form `topic` to one of the blog categories.
- * Order matters: "game design" must be checked before "games", and
- * AI/KI before the generic gaming match.
+ * Order matters: AI/KI before the generic gaming match. Game design now
+ * folds into the broader "games" pillar.
  */
 export function categoryOfTopic(topic?: string): Category | null {
   const t = (topic || "").toLowerCase();
-  if (/game\s*design/.test(t)) return "game-design";
   if (/\bki\b|ki-?tool|\bai\b|ai-?tool|automat/.test(t)) return "ai";
   if (/\bart\b|kunst|kreativ/.test(t)) return "art";
-  if (/gaming|games|console|konsol|^pc$|playstation|xbox|nintendo/.test(t)) return "games";
+  if (/gaming|games|game\s*design|game-design|console|konsol|^pc$|playstation|xbox|nintendo/.test(t)) return "games";
   return null;
 }
 
