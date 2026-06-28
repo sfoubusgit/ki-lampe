@@ -43,9 +43,9 @@ function detectCallout(text: string, accent: string): { icon: string; label: str
   const t = text.trim();
   if (/^(💡|🎯)/.test(t) || /^\**\s*(tipp?|tip)\b/i.test(t)) return { icon: "💡", label: "Tipp", color: accent };
   if (/^(⚠|⚠️|🚨)/.test(t) || /^\**\s*(warnung|warning|achtung)\b/i.test(t)) return { icon: "⚠️", label: "Achtung", color: "#e0a23a" };
-  if (/^(🧪)/.test(t) || /^\**\s*(test|ausprobieren)\b/i.test(t)) return { icon: "🧪", label: "Ausprobieren", color: "#14b8a6" };
+  if (/^(🧪)/.test(t) || /^\**\s*(test|ausprobieren)\b/i.test(t)) return { icon: "🧪", label: "Ausprobieren", color: "#b88a2e" };
   if (/^(🔑)/.test(t) || /^\**\s*(key|kernpunkt|merke)\b/i.test(t)) return { icon: "🔑", label: "Merke", color: accent };
-  if (/^(📌|🧭|📐|ℹ️|ℹ)/.test(t) || /^\**\s*(hinweis|note|info)\b/i.test(t)) return { icon: "📌", label: "Hinweis", color: "#8b5cf6" };
+  if (/^(📌|🧭|📐|ℹ️|ℹ)/.test(t) || /^\**\s*(hinweis|note|info)\b/i.test(t)) return { icon: "📌", label: "Hinweis", color: "#b8893a" };
   return null;
 }
 
@@ -54,10 +54,11 @@ function CodeBlock({ lang, text }: { lang: string; text: string }) {
   return (
     <div className="relative my-6 group">
       <div className="absolute right-2 top-2 z-10 flex items-center gap-2">
-        {lang && <span className="text-[11px] font-mono uppercase tracking-wider text-foreground/40">{lang}</span>}
+        {lang && <span className="text-[11px] font-mono uppercase tracking-wider" style={{ color: "rgba(233,221,198,.5)" }}>{lang}</span>}
         <button
           onClick={() => { navigator.clipboard?.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 1200); }}
-          className="text-[11px] font-mono px-2 py-1 rounded border border-foreground/15 bg-background/60 text-foreground/60 hover:text-foreground hover:border-foreground/30 transition-colors"
+          className="text-[11px] font-mono px-2 py-1 rounded border transition-opacity hover:opacity-80"
+          style={{ background: "rgba(201,151,47,.15)", borderColor: "rgba(201,151,47,.32)", color: "#dab35c" }}
         >
           {copied ? "✓ kopiert" : "Kopieren"}
         </button>
@@ -120,9 +121,6 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           if (!c) return <blockquote>{children}</blockquote>;
           return (
             <div className="my-6 rounded-lg p-4 pl-5" style={{ borderLeft: `4px solid ${c.color}`, background: hexA(c.color, 0.08) }}>
-              <div className="flex items-center gap-2 mb-1 font-semibold" style={{ color: c.color }}>
-                <span>{c.icon}</span><span className="text-sm uppercase tracking-wide">{c.label}</span>
-              </div>
               <div className="callout-body [&>p]:my-1 [&>p:last-child]:mb-0">{children}</div>
             </div>
           );

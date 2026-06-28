@@ -27,7 +27,7 @@ export function MetadataLabels({ topic, level, readTime }: MetadataLabelsProps) 
       {topic && (
         <div className="flex items-center gap-1.5" role="listitem">
           <span 
-            className="text-sm-custom bg-gradient-to-r from-[#d55b9b] to-[#5b9bd5] bg-clip-text text-transparent"
+            className="text-sm-custom text-[var(--ed-gold)]"
             aria-hidden="true"
           >
             ◉
@@ -42,7 +42,7 @@ export function MetadataLabels({ topic, level, readTime }: MetadataLabelsProps) 
       {level && (
         <div className="flex items-center gap-1.5" role="listitem">
           <span 
-            className="text-sm-custom bg-gradient-to-r from-[#d55b9b] to-[#5b9bd5] bg-clip-text text-transparent"
+            className="text-sm-custom text-[var(--ed-gold)]"
             aria-hidden="true"
           >
             ▢
@@ -57,7 +57,7 @@ export function MetadataLabels({ topic, level, readTime }: MetadataLabelsProps) 
       {readTime && (
         <div className="flex items-center gap-1.5" role="listitem">
           <span 
-            className="text-sm-custom bg-gradient-to-r from-[#d55b9b] to-[#5b9bd5] bg-clip-text text-transparent opacity-70"
+            className="text-sm-custom text-[var(--ed-gold)] opacity-70"
             aria-hidden="true"
           >
             ◐

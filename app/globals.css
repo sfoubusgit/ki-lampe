@@ -907,3 +907,38 @@
   .article-content ::selection{ background: rgba(234,179,8,.22); }
 }
 .dark .article-content ::selection{ background: rgba(250,204,21,.28); }
+/* ── KI-Lampe polish: robust dot align + editorial code/directory + TOC rail ── */
+@layer components {
+  /* (2) Dot alignment — flex + 1lh, line-height independent, always centered on the first line */
+  .article-content h2.ed-lamp-h2{ display:flex !important; align-items:flex-start; gap:.55em; padding-left:0 !important; position:static; }
+  .article-content h2.ed-lamp-h2::before{ position:static; transform:none; inset:auto; flex:0 0 auto; width:.4em; height:.4em; margin-top: calc((1lh - .4em) / 2 + .02em); }
+
+  /* (1) Code blocks / directories → warm "terminal" panel with a gold accent edge */
+  .article-content pre{ background:#1b1710; color:#e9ddc6; border:1px solid rgba(201,151,47,.22); border-left:3px solid var(--ed-gold-2); border-radius:9px; }
+  .article-content pre code{ color:#e9ddc6; }
+  .dark .article-content pre{ background:#13100a; }
+}
+
+/* (3) Editorial "Inhalt" TOC rail */
+.ed-toc{ font-family: var(--font-inter), sans-serif; }
+.ed-toc-head{ font-family: var(--font-jetbrains-mono), monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color: var(--ed-gold); margin-bottom:12px; }
+.ed-toc-progress{ height:2px; background: var(--color-divider); border-radius:2px; margin-bottom:16px; overflow:hidden; }
+.ed-toc-progress > span{ display:block; height:100%; background: var(--lamp); box-shadow: var(--lamp-glow); transition: width .15s ease; }
+.ed-toc ul{ list-style:none; margin:0; padding:0; }
+.ed-toc li{ margin:0; padding:0; }
+.ed-toc li a{ display:block; position:relative; padding:6px 0 6px 18px; font-size:13px; line-height:1.35; color: color-mix(in srgb, var(--color-foreground) 52%, transparent); text-decoration:none; border:none; transition: color .15s ease; }
+.ed-toc li.sub a{ padding-left:30px; font-size:12px; }
+.ed-toc li a::before{ content:''; position:absolute; left:1px; top:.95em; transform:translateY(-50%); width:6px; height:6px; border-radius:50%; background: color-mix(in srgb, var(--ed-gold) 38%, transparent); transition: all .15s ease; }
+.ed-toc li.sub a::before{ left:15px; width:4px; height:4px; }
+.ed-toc li a:hover{ color: var(--color-foreground); }
+.ed-toc li.on a{ color: var(--color-foreground); font-weight:600; }
+.ed-toc li.on a::before{ background: var(--lamp); box-shadow: var(--lamp-glow); }
+/* (sidebar) Tasteful single "Empfohlen" ad unit in the rail */
+.ed-railad{ margin-top:30px; padding-top:20px; border-top:1px solid var(--color-divider); }
+.ed-railad-label{ font-family: var(--font-jetbrains-mono), monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color: color-mix(in srgb, var(--color-foreground) 38%, transparent); margin-bottom:9px; }
+.ed-railad-card{ display:block; border-radius:12px; padding:15px 16px; background:linear-gradient(150deg,#17130c 0%,#1b1830 60%,#241d3d 100%); border:1px solid rgba(139,92,246,.3); box-shadow:0 8px 26px -14px rgba(124,92,255,.4); text-decoration:none; border-bottom:1px solid rgba(139,92,246,.3); transition:border-color .2s ease, transform .2s ease; }
+.ed-railad-card:hover{ border-color:rgba(139,92,246,.6); transform:translateY(-2px); }
+.ed-railad-card img{ height:18px; width:auto; display:block; margin-bottom:10px; }
+.ed-railad-text{ font-size:12.5px; line-height:1.5; color:rgba(255,255,255,.8); margin-bottom:12px; }
+.ed-railad-text b{ color:#fff; font-weight:600; }
+.ed-railad-btn{ display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:#fff; background:#7c5cff; border-radius:8px; padding:7px 13px; }
