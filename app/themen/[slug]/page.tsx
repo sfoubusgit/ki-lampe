@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { MainContent } from "@/components/MainContent";
 import { CompleteFooter } from "@/components/CompleteFooter";
 import { ThemaIcon } from "@/components/ThemaIcon";
+import { CoverCard } from "@/components/CoverCard";
 import { THEMEN, MIN_THEMA, getThema, getArticlesByThema, themaCounts } from "@/lib/themen";
 
 export function generateStaticParams() {
@@ -26,7 +27,7 @@ export default function ThemaPage({ params }: { params: { slug: string } }) {
 
   return (
     <MainContent>
-      <div className="mx-auto max-w-[1120px]">
+      <div className="mx-auto max-w-[1180px]">
         <div className="th-kicker"><span className="th-dot" />Thema</div>
         <h1 className="th-ptitle th-with-ico">
           <span className="th-hico"><ThemaIcon name={t.icon} size={40} /></span>
@@ -36,29 +37,18 @@ export default function ThemaPage({ params }: { params: { slug: string } }) {
           {t.blurb} <strong style={{ color: "var(--color-foreground)" }}>{articles.length} Artikel.</strong>
         </p>
 
-        <div className="th-agrid">
-          {articles.map((a, i) => (
-            <Link key={a.slug} href={`/article/${a.slug}`} className="th-acard">
-              <div className="th-thumb">
-                {a.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img className="th-g" src={a.image} alt="" loading="lazy" />
-                ) : (
-                  <div className={`th-g g${(i % 6) + 1}`} />
-                )}
-              </div>
-              <div className="th-abody">
-                <div className="th-atitle">{a.title}</div>
-                <div className="th-adate">
-                  {[
-                    a.date?.toLocaleDateString("de-DE", { day: "2-digit", month: "short", year: "numeric" }),
-                    a.readTime,
-                  ]
-                    .filter(Boolean)
-                    .join(" · ")}
-                </div>
-              </div>
-            </Link>
+        <div className="kl-grid">
+          {articles.map((a) => (
+            <CoverCard
+              key={a.slug}
+              href={`/article/${a.slug}`}
+              image={a.image}
+              title={a.title}
+              category={t.name}
+              parent={t.parent}
+              dateLabel={a.date?.toLocaleDateString("de-DE", { day: "2-digit", month: "short", year: "numeric" })}
+              readTime={a.readTime}
+            />
           ))}
         </div>
 

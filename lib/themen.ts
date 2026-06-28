@@ -120,21 +120,67 @@ export interface ArticleLite {
   readTime?: string;
   dateLabel: string;
   themen: string[];
+  language: "en" | "de";
+  category?: string; // display name of the article's primary Thema
+  parent?: Parent; // ki | game | kunst — drives the card accent
 }
 
-/** All articles in a lightweight, client-passable shape (with their Themen tags). */
+/** The article's primary Thema (name + parent), for card labelling/accent. */
+export function firstThemaOf(a: ArticleMetadata): { category?: string; parent?: Parent } {
+  const slugs = themenOfArticle(a);
+  if (!slugs.length) return {};
+  const t = THEMEN.find((x) => x.slug === slugs[0]);
+  return t ? { category: t.name, parent: t.parent } : {};
+}
+
+/** Cornerstone / money pages, surfaced first in the home grid (then by date). */
+const FEATURED_SLUGS = [
+  "runpod-artikel",
+  "comfyui-flux-lokal-einrichten",
+  "stable-diffusion-auf-cpu-nutzen-komplette-anleitung-ohne-gpu",
+  "comfyui-workflow-einrichten-flux-bilder-automatisch-mit-real-esrgan-4x-hochskalieren",
+  "a1111_tutorial_article",
+];
+
+function liteOf(a: ArticleMetadata): ArticleLite {
+  const { category, parent } = firstThemaOf(a);
+  return {
+    slug: a.slug,
+    title: a.title,
+    image: a.image,
+    readTime: a.readTime,
+    dateLabel: a.date
+      ? a.date.toLocaleDateString(a.language === "en" ? "en-US" : "de-DE", { day: "2-digit", month: "short", year: "numeric" })
+      : "",
+    themen: themenOfArticle(a),
+    language: a.language,
+    category,
+    parent,
+  };
+}
+
+function featuredFirst(arr: ArticleLite[]): ArticleLite[] {
+  return arr.slice().sort((a, b) => {
+    const ra = FEATURED_SLUGS.indexOf(a.slug);
+    const rb = FEATURED_SLUGS.indexOf(b.slug);
+    return (ra < 0 ? 999 : ra) - (rb < 0 ? 999 : rb); // stable: keeps incoming date order within ties
+  });
+}
+
+/** Deduped (DE-primary) lite list — used where one language is enough. */
 export function allArticlesLite(): ArticleLite[] {
   return uniqueArticles()
     .slice()
     .sort((a, b) => (b.date?.getTime() || 0) - (a.date?.getTime() || 0))
-    .map((a) => ({
-      slug: a.slug,
-      title: a.title,
-      image: a.image,
-      readTime: a.readTime,
-      dateLabel: a.date
-        ? a.date.toLocaleDateString("de-DE", { day: "2-digit", month: "short", year: "numeric" })
-        : "",
-      themen: themenOfArticle(a),
-    }));
+    .map(liteOf);
+}
+
+/** Every article in BOTH languages, cornerstone-first then newest. The client
+ *  filters by the active language. Powers the home grid. */
+export function allArticlesLiteBoth(): ArticleLite[] {
+  const byDate = getAllArticles()
+    .slice()
+    .sort((a, b) => (b.date?.getTime() || 0) - (a.date?.getTime() || 0))
+    .map(liteOf);
+  return featuredFirst(byDate);
 }
