@@ -49,12 +49,14 @@ export function ArticleHeader({
       )}
 
       {/* Article Title */}
-      <h1 className="
+      <h1
+        style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
+        className="
         text-[36px]
         tablet:text-[48px]
         desktop:text-[60px]
         font-semibold
-        leading-[1.2]
+        leading-[1.08]
         tracking-tight
         text-foreground
         mb-8

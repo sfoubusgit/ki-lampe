@@ -859,3 +859,34 @@
     }
   }
 }
+/* ─────────────────────────────────────────────────────────────
+   KI-Lampe Editorial — typography overrides (appended → wins by order)
+   ───────────────────────────────────────────────────────────── */
+:root{ --ed-gold:#b07d22; --ed-gold-2:#c59a3a; }
+.dark{ --ed-gold:#d8af55; --ed-gold-2:#c9972f; }
+
+@layer components {
+  /* Links → gold underline */
+  .article-content a{ color: var(--ed-gold); text-decoration: none; border-bottom: 2px solid color-mix(in srgb, var(--ed-gold) 45%, transparent); padding-bottom: 1px; font-weight: 500; transition: border-color .2s ease; }
+  .article-content a:hover,.article-content a:active{ text-decoration: none; border-bottom-color: var(--ed-gold); }
+
+  /* Plain blockquote → Fraunces italic + gold rule (callouts are styled in JSX) */
+  .article-content blockquote{ font-family: var(--font-fraunces), Georgia, serif; font-style: italic; font-size: 22px; line-height: 1.45; color: var(--color-foreground); opacity: .85; background: transparent; border-left: 3px solid var(--ed-gold-2); padding: 2px 0 2px 22px; border-radius: 0; margin: 32px 0; }
+  .article-content blockquote p{ margin-bottom: 0; }
+
+  /* Table → clean, gold header underline */
+  .article-content table{ border: none; border-radius: 0; }
+  .article-content th{ background: transparent; border: none; border-bottom: 2px solid var(--ed-gold-2); font-family: var(--font-jetbrains-mono), monospace; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--color-foreground); opacity:.7; padding: 0 16px 9px 0; }
+  .article-content td{ border: none; border-bottom: 1px solid var(--color-divider); padding: 11px 16px 11px 0; }
+
+  /* Lists → gold markers */
+  .article-content ul{ list-style: none; padding-left: 0; }
+  .article-content ul li{ list-style: none; padding-left: 26px; position: relative; }
+  .article-content ul li::before{ content: '\2192'; position: absolute; left: 0; color: var(--ed-gold-2); font-weight: 700; }
+  .article-content ol{ list-style: none; padding-left: 0; counter-reset: ed; }
+  .article-content ol li{ list-style: none; padding-left: 30px; position: relative; counter-increment: ed; }
+  .article-content ol li::before{ content: counter(ed); position: absolute; left: 0; color: var(--ed-gold); font-weight: 700; font-family: var(--font-jetbrains-mono), monospace; font-size: 14px; }
+
+  /* Inline code → warm tint */
+  .article-content code:not(pre code){ background: color-mix(in srgb, var(--ed-gold) 16%, transparent); color: var(--ed-gold); padding: 1px 6px; border-radius: 5px; font-size: .86em; }
+}

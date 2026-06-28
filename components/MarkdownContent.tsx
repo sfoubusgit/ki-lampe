@@ -67,7 +67,13 @@ function CodeBlock({ lang, text }: { lang: string; text: string }) {
   );
 }
 
-export function MarkdownContent({ content, accent = "#facc15" }: MarkdownContentProps) {
+// Editorial design tokens. The H2 bar / H3 dash use a CSS var so they flip in dark mode;
+// the callout colour is a fixed gold hex (hexA() needs a hex to compute the tint).
+const ED_BAR = "var(--ed-gold-2)";
+const ED_FONT = "var(--font-fraunces), Georgia, serif";
+const ED_CALLOUT_GOLD = "#c19a3c";
+
+export function MarkdownContent({ content }: MarkdownContentProps) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
@@ -76,7 +82,7 @@ export function MarkdownContent({ content, accent = "#facc15" }: MarkdownContent
         h2: ({ children }) => {
           const id = headingSlug(childText(children));
           return (
-            <h2 id={id} className="scroll-mt-28" style={{ color: accent, borderLeft: `3px solid ${accent}`, paddingLeft: "0.55em" }}>
+            <h2 id={id} className="scroll-mt-28" style={{ fontFamily: ED_FONT, fontWeight: 600, color: "var(--color-foreground)", borderLeft: `3px solid ${ED_BAR}`, paddingLeft: "0.5em" }}>
               {children}
             </h2>
           );
@@ -84,8 +90,8 @@ export function MarkdownContent({ content, accent = "#facc15" }: MarkdownContent
         h3: ({ children }) => {
           const id = headingSlug(childText(children));
           return (
-            <h3 id={id} className="scroll-mt-28" style={{ color: "var(--color-foreground)" }}>
-              <span style={{ color: accent, marginRight: "0.4em" }}>—</span>{children}
+            <h3 id={id} className="scroll-mt-28" style={{ fontFamily: ED_FONT, fontWeight: 600, color: "var(--color-foreground)" }}>
+              <span style={{ color: ED_BAR, marginRight: "0.4em" }}>—</span>{children}
             </h3>
           );
         },
@@ -110,7 +116,7 @@ export function MarkdownContent({ content, accent = "#facc15" }: MarkdownContent
         },
         code: ({ className, children, ...props }: any) => <code className={className} {...props}>{children}</code>,
         blockquote: ({ children }) => {
-          const c = detectCallout(childText(children), accent);
+          const c = detectCallout(childText(children), ED_CALLOUT_GOLD);
           if (!c) return <blockquote>{children}</blockquote>;
           return (
             <div className="my-6 rounded-lg p-4 pl-5" style={{ borderLeft: `4px solid ${c.color}`, background: hexA(c.color, 0.08) }}>

@@ -28,7 +28,7 @@ export function CloudGpuCTA() {
         </div>
 
         <div>
-          <h3 className="text-xl desktop:text-2xl font-bold leading-snug" style={{ color: "#ffffff" }}>
+          <h3 className="text-xl desktop:text-2xl font-bold leading-snug" style={{ color: "#ffffff", fontFamily: "var(--font-fraunces), Georgia, serif" }}>
             Keine starke Grafikkarte? Führe ComfyUI in der Cloud aus.
           </h3>
           <p className="mt-2 text-sm desktop:text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.72)" }}>

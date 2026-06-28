@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Fraunces } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -21,6 +21,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "KI-LAMPE",
   description: "A minimal, calm blog for ideas and thoughts",
@@ -33,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="m-0 p-0">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans m-0 p-0`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} ${fraunces.variable} font-sans m-0 p-0`}>
         {/* Google Analytics (GA4) */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
