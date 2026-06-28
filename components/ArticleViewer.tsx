@@ -42,7 +42,7 @@ export function ArticleViewer({ articleDe, articleEn }: ArticleViewerProps) {
       </div>
 
       <aside className="hidden min-[1100px]:block w-60 shrink-0 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-auto pb-8">
-        <ArticleRail content={article.content} />
+        <ArticleRail />
       </aside>
     </div>
   );

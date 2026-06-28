@@ -1,86 +1,62 @@
-"use client";
-
-import { useEffect, useMemo, useState } from "react";
-import { headingSlug } from "@/components/MarkdownContent";
-
-type Heading = { level: number; text: string; id: string };
-
-function extractHeadings(md: string): Heading[] {
-  const noCode = md.replace(/```[\s\S]*?```/g, "");
-  const out: Heading[] = [];
-  for (const line of noCode.split("\n")) {
-    const m = line.match(/^(#{2,3})\s+(.+?)\s*$/);
-    if (m) {
-      const text = m[2].replace(/[*_`[\]]/g, "").trim();
-      out.push({ level: m[1].length, text, id: headingSlug(text) });
-    }
-  }
-  return out;
-}
-
 /**
- * Sticky reading-companion rail: an editorial "Inhalt" TOC with glowing lamp-dot
- * section markers + reading progress, and one tasteful "Empfohlen" sidebar ad.
+ * Sticky sidebar — a stack of visual image-cards (full-bleed image + gradient + overlaid
+ * title/pitch/button), in the editorial/lamp identity. No text TOC.
  */
-export function ArticleRail({ content }: { content: string }) {
-  const headings = useMemo(() => extractHeadings(content), [content]);
-  const [active, setActive] = useState("");
-  const [progress, setProgress] = useState(0);
+type Card = {
+  img: string;
+  label: string;
+  title: string;
+  text: string;
+  cta: string;
+  href: string;
+  external?: boolean;
+  accent?: string;
+};
 
-  useEffect(() => {
-    const els = headings.map((h) => document.getElementById(h.id)).filter(Boolean) as HTMLElement[];
-    const obs = new IntersectionObserver(
-      (entries) => {
-        const vis = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (vis[0]) setActive(vis[0].target.id);
-      },
-      { rootMargin: "-90px 0px -70% 0px" }
-    );
-    els.forEach((e) => obs.observe(e));
-    const onScroll = () => {
-      const el = document.documentElement;
-      const max = el.scrollHeight - el.clientHeight;
-      setProgress(max > 0 ? Math.min(100, Math.max(0, (el.scrollTop / max) * 100)) : 0);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      obs.disconnect();
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [headings]);
+const CARDS: Card[] = [
+  {
+    img: "/sidebar/runpod.webp",
+    label: "Empfohlen",
+    title: "ComfyUI in der Cloud",
+    text: "Keine starke GPU? Miete eine — ab 0,50 €/h.",
+    cta: "RunPod testen",
+    href: "https://runpod.io?ref=jo7pk601",
+    external: true,
+    accent: "#7c5cff",
+  },
+  {
+    img: "/sidebar/lamp.webp",
+    label: "KI-Lampe",
+    title: "Mehr KI-Tutorials",
+    text: "Alle Anleitungen, Tools & Guides entdecken.",
+    cta: "Entdecken",
+    href: "/",
+    accent: "#c9972f",
+  },
+];
 
+export function ArticleRail() {
   return (
-    <div>
-      {headings.length >= 3 && (
-        <nav className="ed-toc">
-          <div className="ed-toc-head">Inhalt</div>
-          <div className="ed-toc-progress">
-            <span style={{ width: `${progress}%` }} />
-          </div>
-          <ul>
-            {headings.map((h) => (
-              <li key={h.id} className={`${h.level === 3 ? "sub" : ""} ${active === h.id ? "on" : ""}`}>
-                <a href={`#${h.id}`}>{h.text}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
-
-      <div className="ed-railad">
-        <div className="ed-railad-label">Empfohlen</div>
-        <a className="ed-railad-card" href="https://runpod.io?ref=jo7pk601" target="_blank" rel="sponsored noopener noreferrer">
+    <div className="ed-rail">
+      {CARDS.map((c, i) => (
+        <a
+          key={i}
+          className="ed-card"
+          href={c.href}
+          {...(c.external ? { target: "_blank", rel: "sponsored noopener noreferrer" } : {})}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/runpod-logo-white.svg" alt="RunPod" />
-          <div className="ed-railad-text">
-            Keine starke GPU? Führe ComfyUI in der Cloud aus — ab <b>0,50&nbsp;€/h</b>.
+          <img className="ed-card-img" src={c.img} alt="" loading="lazy" />
+          <div className="ed-card-overlay">
+            <div className="ed-card-label">{c.label}</div>
+            <div className="ed-card-title">{c.title}</div>
+            <div className="ed-card-text">{c.text}</div>
+            <span className="ed-card-btn" style={{ background: c.accent }}>
+              {c.cta} →
+            </span>
           </div>
-          <span className="ed-railad-btn">RunPod testen →</span>
         </a>
-      </div>
+      ))}
     </div>
   );
 }
