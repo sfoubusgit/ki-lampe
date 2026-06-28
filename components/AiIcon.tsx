@@ -1,22 +1,15 @@
 /**
- * AI Icon Component
- * Filled "sparkle" icon, 16x16px — the common visual shorthand for AI.
- * Used for the AI / KI navigation item.
+ * AI Icon — "Lit Glyph" set: monoline lightbulb with a golden glowing core.
+ * KI = the lamp itself — the purest expression of the KI-Lampe brand.
  */
 export function AiIcon() {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      {/* Large four-point sparkle */}
-      <path d="M7 1.5 L8.2 5.6 L12.3 6.8 L8.2 8 L7 12.1 L5.8 8 L1.7 6.8 L5.8 5.6 Z" />
-      {/* Small accent sparkle */}
-      <path d="M12.5 9.5 L13.1 11.4 L15 12 L13.1 12.6 L12.5 14.5 L11.9 12.6 L10 12 L11.9 11.4 Z" fillOpacity="0.7" />
+    <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3.4 a5.6 5.6 0 0 1 3.6 9.9 c-.7.6-1 1.2-1 2 H9.4 c0-.8-.3-1.4-1-2 A5.6 5.6 0 0 1 12 3.4 Z" />
+      <path d="M9.7 17.6 H14.3" />
+      <path d="M10.6 20.1 H13.4" />
+      <circle cx="12" cy="9.6" r="3" fill="#facc15" fillOpacity="0.28" stroke="none" />
+      <circle cx="12" cy="9.6" r="1.7" fill="#facc15" stroke="none" />
     </svg>
   );
 }

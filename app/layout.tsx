@@ -29,6 +29,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ki-lampe.com"),
   title: "KI-LAMPE",
   description: "A minimal, calm blog for ideas and thoughts",
 };

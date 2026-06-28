@@ -9,12 +9,14 @@ import { ArtIcon } from "./ArtIcon";
 import { AiIcon } from "./AiIcon";
 
 function ThemenIcon() {
+  // "Lit Glyph" set: 2x2 grid with one cell lit by the golden lamp-node.
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="3" y="3" width="7" height="7" rx="1.5" />
-      <rect x="14" y="3" width="7" height="7" rx="1.5" />
-      <rect x="3" y="14" width="7" height="7" rx="1.5" />
-      <rect x="14" y="14" width="7" height="7" rx="1.5" />
+    <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3.6" y="3.6" width="7" height="7" rx="1.6" />
+      <rect x="13.4" y="3.6" width="7" height="7" rx="1.6" />
+      <rect x="3.6" y="13.4" width="7" height="7" rx="1.6" />
+      <rect x="12.2" y="12.2" width="9.4" height="9.4" rx="2.4" fill="#facc15" fillOpacity="0.28" stroke="none" />
+      <rect x="13.4" y="13.4" width="7" height="7" rx="1.8" fill="#facc15" stroke="none" />
     </svg>
   );
 }

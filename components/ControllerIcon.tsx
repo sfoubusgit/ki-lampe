@@ -1,29 +1,15 @@
 /**
- * Controller Icon Component
- * Filled game controller icon, 16x16px
- * Used for the Consoles navigation item
+ * Controller Icon — "Lit Glyph" set: monoline gamepad whose action button is
+ * the golden lamp-node.
  */
 export function ControllerIcon() {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      {/* Controller body */}
-      <rect x="2" y="6" width="12" height="6" rx="1" />
-      {/* Left handle */}
-      <path d="M2 8 Q1 8 1 9 Q1 10 2 10 L2 8 Z" />
-      {/* Right handle */}
-      <path d="M14 8 Q15 8 15 9 Q15 10 14 10 L14 8 Z" />
-      {/* D-pad */}
-      <rect x="3" y="7" width="2" height="2" />
-      {/* Action buttons */}
-      <circle cx="11" cy="8" r="1" />
-      <circle cx="13" cy="8" r="1" />
+    <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3.3" y="8.4" width="17.4" height="9.2" rx="4.6" />
+      <path d="M7.2 12.2h2.2M8.3 11.1v2.2" />
+      <circle cx="15.6" cy="12.9" r="2.7" fill="#facc15" fillOpacity="0.28" stroke="none" />
+      <circle cx="15.6" cy="12.9" r="1.5" fill="#facc15" stroke="none" />
+      <circle cx="17.6" cy="14.4" r="1" fill="currentColor" stroke="none" />
     </svg>
   );
 }
