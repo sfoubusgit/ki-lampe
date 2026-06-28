@@ -13,7 +13,7 @@ interface ArticleContentProps {
 
 export function ArticleContent({ children }: ArticleContentProps) {
   return (
-    <article className="article-content max-w-[85ch] pt-8 desktop:pt-10">
+    <article className="article-content max-w-[85ch]">
       {children}
     </article>
   );

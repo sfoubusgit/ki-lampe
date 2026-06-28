@@ -40,7 +40,7 @@ export function ArticleHeader({
   readTime,
 }: ArticleHeaderProps) {
   return (
-    <header className="mb-12 desktop:mb-16">
+    <header className="mb-6 desktop:mb-8">
       {/* Metadata */}
       {(topic || level || readTime) && (
         <div className="flex flex-wrap items-center justify-end gap-4 mb-8">
