@@ -8,6 +8,17 @@ import { GameDesignIcon } from "./GameDesignIcon";
 import { ArtIcon } from "./ArtIcon";
 import { AiIcon } from "./AiIcon";
 
+function ThemenIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1.5" />
+      <rect x="14" y="3" width="7" height="7" rx="1.5" />
+      <rect x="3" y="14" width="7" height="7" rx="1.5" />
+      <rect x="14" y="14" width="7" height="7" rx="1.5" />
+    </svg>
+  );
+}
+
 /**
  * Sidebar Navigation Component
  *
@@ -28,6 +39,7 @@ export function Navigation() {
   const navLabels = {
     en: {
       home: "Home",
+      themen: "Topics",
       games: "Games",
       gameDesign: "Game Design",
       art: "Art",
@@ -35,6 +47,7 @@ export function Navigation() {
     },
     de: {
       home: "Start",
+      themen: "Themen",
       games: "Games",
       gameDesign: "Game Design",
       art: "Art",
@@ -46,6 +59,7 @@ export function Navigation() {
 
   const navItems = [
     { href: "/", icon: <HomeIcon />, label: labels.home },
+    { href: "/themen", icon: <ThemenIcon />, label: labels.themen },
     { href: "/category/game-design", icon: <GameDesignIcon />, label: labels.gameDesign },
     { href: "/category/art", icon: <ArtIcon />, label: labels.art },
     { href: "/category/ai", icon: <AiIcon />, label: labels.ai },
