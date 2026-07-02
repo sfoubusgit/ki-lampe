@@ -10,13 +10,13 @@ date: 2026-07-01
 
 ![Das AURACLASH-Roster — eigene Kämpfer im Smash-Stil](/images/original-smash-style-fighter-roster-ai_article/hero.webp)
 
-**Kurz gesagt:** Ich wollte ein Kämpfer-Roster im Stil von *Super Smash Bros* — aber komplett eigenständig, damit keine fremden Rechte verletzt werden — in einem sauberen, cel-shaded 3D-„Charakterauswahl"-Look. Alle acht habe ich mit **kostenloser, lokaler KI** erstellt (keine Abos, keine Cloud-Kosten). Hier ist genau, wie — die Design-Regeln, die sie zu einem Ensemble machen, und das fertige Roster.
+**Kurz gesagt:** Ich wollte ein Kämpfer-Roster im Stil von *Super Smash Bros* — aber komplett eigenständig, damit keine fremden Rechte verletzt werden — in einem sauberen, cel-shaded 3D-„Charakterauswahl"-Look. Alle acht habe ich mit **kostenloser, lokaler KI** erstellt (keine Abos, keine Cloud-Kosten). Hier ist alles dabei: wie es geht, die Design-Regeln, die sie zu einem Ensemble machen, und das fertige Roster.
 
 ---
 
 ## Warum „eigenständig" besser ist als „Fan-Art", wenn du es wirklich *nutzen* willst
 
-Fan-Art von Nintendo-Figuren macht Spaß, aber du kannst sie nicht verkaufen, drucken oder eine Marke darauf aufbauen — es ist fremdes geistiges Eigentum. Sobald du **Poster, ein Spielkonzept oder ein Produkt** willst, brauchst du **eigene Charaktere**. Der Trick: das *Gefühl* eines Smash-Rosters einfangen (markant, klar lesbar, ikonisch), ohne eine echte Figur zu kopieren.
+Fan-Art von Nintendo-Figuren macht Spaß, aber du kannst sie nicht verkaufen, drucken oder eine Marke darauf aufbauen — sie ist fremdes geistiges Eigentum. Sobald du **Poster, ein Spielkonzept oder ein Produkt** willst, brauchst du **eigene Charaktere**. Der Trick: das *Gefühl* eines Smash-Rosters einfangen (markant, klar lesbar, ikonisch), ohne eine echte Figur zu kopieren.
 
 ## Die Design-Regeln, die 8 Figuren zu einem Roster machen
 
@@ -31,8 +31,8 @@ Ein Roster funktioniert nur, wenn das Ensemble als **Einheit** wirkt. Vier Regel
 
 - **Cinder** 🔥 — der Glut-Brawler. Flammenförmiges Haar, glühendes Brust-Zeichen. Der Rushdown-Einstieg.
 - **Nereo** 💧 — der Gezeiten-Weise. Ein einzelner Bogen aus leuchtendem Wasser als Haar. Ruhiger Zoner.
-- **Nyx** 🌑 — die Schatten-Trickser. Kapuze, die in magentafarbenen Rauch zerfließt. Mixups und Mindgames.
-- **Magnus** 🪨 — das Steinbollwerk. Ein lebender Fels-Golem-Schwergewicht. Langsam, gefährlich, unverrückbar.
+- **Nyx** 🌑 — die Schatten-Trickserin. Kapuze, die in magentafarbenen Rauch zerfließt. Mixups und Mindgames.
+- **Magnus** 🪨 — das Steinbollwerk. Ein lebendes Fels-Golem-Schwergewicht. Langsam, gefährlich, unverrückbar.
 - **Volt** ⚡ — der Speedster. Haar wie ein knisternder Blitz. Hohes Risiko, hohe Belohnung.
 - **Thorne** 🌿 — der Grappler. Eine Krone aus lebenden Ranken. Bodenständig und unerbittlich.
 - **Lumen** ☀️ — der Allrounder. Ein strahlender Heiligenschein aus goldenem Licht. Die ausgewogene Wahl.
