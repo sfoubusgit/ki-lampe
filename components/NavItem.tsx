@@ -44,7 +44,7 @@ export function NavItem({ href, icon, label, isActive = false }: NavItemProps) {
         focus:ring-offset-transparent
         ${
           isActive
-            ? "text-white bg-white/20 dark:bg-white/25"
+            ? "text-white bg-[rgba(250,204,21,0.16)] shadow-[inset_0_0_0_1px_rgba(250,204,21,0.5),0_0_0_3px_rgba(250,204,21,0.1),0_0_20px_-5px_rgba(250,204,21,0.65)]"
             : "text-white/70 dark:text-white/80 bg-transparent hover:text-white hover:bg-white/10 dark:hover:bg-white/15"
         }
       `}
@@ -52,7 +52,7 @@ export function NavItem({ href, icon, label, isActive = false }: NavItemProps) {
       aria-current={isActive ? "page" : undefined}
     >
       {/* Icon - Base font size, monospace, centered */}
-      <span className="text-base-custom font-mono flex items-center justify-center leading-none">
+      <span className={`text-base-custom font-mono flex items-center justify-center leading-none ${isActive ? "text-[#ffe27a]" : ""}`}>
         {icon}
       </span>
       {/* Label - 10px, monospace, uppercase, wide letter spacing, 6px gap from icon */}
