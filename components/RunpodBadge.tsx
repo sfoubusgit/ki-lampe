@@ -57,10 +57,10 @@ export function RunpodBadge() {
         hover:bg-[#7c5cff]/[0.06]
         hover:text-foreground/90
         focus:outline-none
-        focus:ring-2
-        focus:ring-[#7c5cff]/30
-        focus:ring-offset-2
-        focus:ring-offset-background
+        focus-visible:ring-2
+        focus-visible:ring-[#7c5cff]/30
+        focus-visible:ring-offset-2
+        focus-visible:ring-offset-background
       "
     >
       {/* RunPod-style mark: violet rounded square with connected-node motif */}

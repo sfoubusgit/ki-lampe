@@ -2,26 +2,19 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/lib/language";
+import { KEYWORDS } from "@/lib/keywords";
 
 /**
  * Keywords Panel Component
- * 
- * Displays ~40 keywords in a compact panel matching newsletter height
- * Each keyword is clickable and routes to a keyword-specific page
+ *
+ * Displays the real content keywords (lib/keywords.ts). Each keyword links to /keyword/[slug], which
+ * lists the matching articles — every keyword resolves to real content (no dead links).
  */
 export function KeywordsPanel() {
   const { language } = useLanguage();
   const headingText = language === "en" ? "KEYWORDS" : "STICHWÖRTER";
 
-  // Generate ~40 gaming-related keywords
-  const keywords = [
-    "Action", "Adventure", "RPG", "FPS", "Strategy", "Simulation", "Racing", "Sports",
-    "Puzzle", "Platformer", "Horror", "Survival", "Battle Royale", "MOBA", "MMO",
-    "Indie", "AAA", "Retro", "Remaster", "Remake", "Early Access", "Beta", "Alpha",
-    "PC Gaming", "Console Gaming", "Mobile Gaming", "VR Gaming", "Cloud Gaming",
-    "Nintendo Switch", "PlayStation", "Xbox", "Steam", "Epic Games", "GOG",
-    "Ray Tracing", "DLSS", "FSR", "4K", "8K", "60fps", "120fps", "144fps",
-  ];
+  const keywords = KEYWORDS;
 
   return (
     <div>
@@ -50,10 +43,10 @@ export function KeywordsPanel() {
         gap-y-1.5
         content-start
       ">
-        {keywords.map((keyword, index) => (
+        {keywords.map((keyword) => (
           <Link
-            key={index}
-            href={`/keyword/${keyword.toLowerCase().replace(/\s+/g, "-")}`}
+            key={keyword.slug}
+            href={`/keyword/${keyword.slug}`}
             className="
               text-xs-custom
               font-mono
@@ -63,13 +56,13 @@ export function KeywordsPanel() {
               duration-200
               ease
               focus:outline-none
-              focus:ring-1
-              focus:ring-accent/30
-              focus:ring-offset-1
-              focus:ring-offset-background
+              focus-visible:ring-1
+              focus-visible:ring-accent/30
+              focus-visible:ring-offset-1
+              focus-visible:ring-offset-background
             "
           >
-            {keyword}
+            {keyword.label}
           </Link>
         ))}
       </div>

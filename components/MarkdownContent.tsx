@@ -125,15 +125,25 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             </div>
           );
         },
+        // Images render as a <figure>; the alt text becomes a visible <figcaption> (so the hero image —
+        // whose alt is the article title — carries the same caption you see on the article thumbnails).
         img: ({ node, src, alt, ...props }: any) => {
-          if (isLocalImage(src)) {
-            return (
-              <div className="relative w-full my-8 desktop:my-10">
-                <Image src={src} alt={alt || ""} width={1200} height={600} className="w-full h-auto rounded-sm border border-foreground/10" style={{ objectFit: "contain" }} />
-              </div>
-            );
-          }
-          return <img src={src} alt={alt || ""} className="w-full h-auto rounded-sm border border-foreground/10 my-8 desktop:my-10" {...props} />;
+          const caption = (alt || "").trim();
+          const inner = isLocalImage(src) ? (
+            <Image src={src} alt={caption} width={1200} height={600} className="w-full h-auto rounded-sm border border-foreground/10" style={{ objectFit: "contain" }} />
+          ) : (
+            <img src={src} alt={caption} className="w-full h-auto rounded-sm border border-foreground/10" {...props} />
+          );
+          return (
+            <figure className="my-8 desktop:my-10">
+              <div className="relative w-full">{inner}</div>
+              {caption && (
+                <figcaption className="mt-3 text-sm-custom font-mono text-foreground/55 text-center leading-snug">
+                  {caption}
+                </figcaption>
+              )}
+            </figure>
+          );
         },
         table: ({ node, ...props }) => <table {...props} />,
         thead: ({ node, ...props }) => <thead {...props} />,

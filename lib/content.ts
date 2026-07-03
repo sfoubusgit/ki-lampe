@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { keywordBySlug } from "./keywords";
 
 /**
  * Content Management System
@@ -291,4 +292,19 @@ export function categoryOfTopic(topic?: string): Category | null {
  */
 export function getArticlesByCategory(category: Category): ArticleMetadata[] {
   return getAllArticles().filter((article) => categoryOfTopic(article.topic) === category);
+}
+
+/**
+ * Get all articles matching a keyword tag (see lib/keywords.ts), newest first. Matches the keyword's
+ * substrings against the article's title + description + topic + BODY (so a keyword used only in the
+ * article text still surfaces). Returns [] for an unknown keyword slug.
+ */
+export function getArticlesByKeyword(slug: string): ArticleMetadata[] {
+  const def = keywordBySlug(slug);
+  if (!def) return [];
+  return getAllArticles().filter((article) => {
+    const body = getArticleBySlugAndLanguage(article.slug, article.language)?.content || "";
+    const hay = `${article.title} ${article.description} ${article.topic || ""} ${body}`.toLowerCase();
+    return def.match.some((m) => hay.includes(m));
+  });
 }

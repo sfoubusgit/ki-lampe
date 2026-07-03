@@ -32,10 +32,10 @@ export function Logo() {
         ease
         text-center
         focus:outline-none
-        focus:ring-2
-        focus:ring-white/50
-        focus:ring-offset-2
-        focus:ring-offset-transparent
+        focus-visible:ring-2
+        focus-visible:ring-white/50
+        focus-visible:ring-offset-2
+        focus-visible:ring-offset-transparent
       "
       aria-label="KI-LAMPE Home"
     >

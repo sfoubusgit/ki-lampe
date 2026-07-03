@@ -60,10 +60,10 @@ export function MobileMenu() {
           hover:bg-accent/5
           hover:border-accent/30
           focus:outline-none
-          focus:ring-2
-          focus:ring-accent/30
-          focus:ring-offset-2
-          focus:ring-offset-background
+          focus-visible:ring-2
+          focus-visible:ring-accent/30
+          focus-visible:ring-offset-2
+          focus-visible:ring-offset-background
         "
         aria-label={isOpen ? "Close menu" : "Open menu"}
         aria-expanded={isOpen}
@@ -166,10 +166,10 @@ export function MobileMenu() {
             duration-200
             ease
             focus:outline-none
-            focus:ring-2
-            focus:ring-accent/30
-            focus:ring-offset-2
-            focus:ring-offset-background
+            focus-visible:ring-2
+            focus-visible:ring-accent/30
+            focus-visible:ring-offset-2
+            focus-visible:ring-offset-background
           "
           aria-label="Close menu"
           type="button"

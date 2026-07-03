@@ -43,10 +43,10 @@ export function DarkModeToggle() {
         active:bg-white/15
         dark:active:bg-white/20
         focus:outline-none
-        focus:ring-2
-        focus:ring-white/50
-        focus:ring-offset-2
-        focus:ring-offset-transparent
+        focus-visible:ring-2
+        focus-visible:ring-white/50
+        focus-visible:ring-offset-2
+        focus-visible:ring-offset-transparent
       "
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       type="button"

@@ -76,10 +76,10 @@ export function LegalLinks() {
               hover:text-accent
               active:text-accent
               focus:outline-none
-              focus:ring-2
-              focus:ring-accent/30
-              focus:ring-offset-2
-              focus:ring-offset-background
+              focus-visible:ring-2
+              focus-visible:ring-accent/30
+              focus-visible:ring-offset-2
+              focus-visible:ring-offset-background
             "
             aria-label={link.label}
           >

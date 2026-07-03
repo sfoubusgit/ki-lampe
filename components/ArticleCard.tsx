@@ -83,10 +83,10 @@ export function ArticleCard({
         hover:border-accent/40
         hover:shadow-[0_10px_24px_rgba(0,0,0,0.12)]
         focus:outline-none
-        focus:ring-2
-        focus:ring-accent/30
-        focus:ring-offset-2
-        focus:ring-offset-background
+        focus-visible:ring-2
+        focus-visible:ring-accent/30
+        focus-visible:ring-offset-2
+        focus-visible:ring-offset-background
       "
       aria-label={`Read article: ${title}`}
     >

@@ -155,10 +155,10 @@ export function NewsletterSection() {
             active:bg-accent/15
             dark:active:bg-accent/20
             focus:outline-none
-            focus:ring-2
-            focus:ring-accent/20
-            focus:ring-offset-2
-            focus:ring-offset-background
+            focus-visible:ring-2
+            focus-visible:ring-accent/20
+            focus-visible:ring-offset-2
+            focus-visible:ring-offset-background
             disabled:opacity-50
             disabled:cursor-not-allowed
             disabled:pointer-events-none

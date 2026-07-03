@@ -38,10 +38,10 @@ export function NavItem({ href, icon, label, isActive = false }: NavItemProps) {
         duration-200
         ease
         focus:outline-none
-        focus:ring-2
-        focus:ring-white/50
-        focus:ring-offset-2
-        focus:ring-offset-transparent
+        focus-visible:ring-2
+        focus-visible:ring-white/50
+        focus-visible:ring-offset-2
+        focus-visible:ring-offset-transparent
         ${
           isActive
             ? "text-white bg-[rgba(250,204,21,0.16)] shadow-[inset_0_0_0_1px_rgba(250,204,21,0.5),0_0_0_3px_rgba(250,204,21,0.1),0_0_20px_-5px_rgba(250,204,21,0.65)]"

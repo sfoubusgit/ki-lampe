@@ -43,10 +43,10 @@ export function BackLink() {
           active:text-accent
           group
           focus:outline-none
-          focus:ring-2
-          focus:ring-accent/30
-          focus:ring-offset-2
-          focus:ring-offset-background
+          focus-visible:ring-2
+          focus-visible:ring-accent/30
+          focus-visible:ring-offset-2
+          focus-visible:ring-offset-background
         "
         aria-label={language === "en" ? "Back to homepage" : "Zurück zur Startseite"}
       >

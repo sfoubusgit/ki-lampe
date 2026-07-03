@@ -72,9 +72,9 @@ export default function RootLayout({
             focus:rounded-sm
             focus:font-semibold
             focus:outline-none
-            focus:ring-2
-            focus:ring-accent
-            focus:ring-offset-2
+            focus-visible:ring-2
+            focus-visible:ring-accent
+            focus-visible:ring-offset-2
           "
         >
           Skip to main content
