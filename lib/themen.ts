@@ -184,3 +184,10 @@ export function allArticlesLiteBoth(): ArticleLite[] {
     .map(liteOf);
   return featuredFirst(byDate);
 }
+
+/** Convert an arbitrary (both-language) ArticleMetadata list to the lite shape the CoverCard grid needs
+ *  — so category / keyword / news listings render with the same universal home-grid cards. The client
+ *  filters to the active language. */
+export function liteList(articles: ArticleMetadata[]): ArticleLite[] {
+  return articles.map(liteOf);
+}
