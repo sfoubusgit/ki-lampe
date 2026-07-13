@@ -29,6 +29,7 @@ export const KEYWORDS: KeywordDef[] = [
   def("Stable Diffusion", ["stable diffusion"]),
   def("ComfyUI", ["comfyui"]),
   def("Flux", ["flux"]),
+  def("Flux Kontext", ["flux kontext"]),
   def("Automatic1111", ["automatic1111", "a1111"]),
   def("RunPod", ["runpod"]),
   def("ChatGPT", ["chatgpt"]),
