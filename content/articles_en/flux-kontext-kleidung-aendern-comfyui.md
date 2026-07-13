@@ -187,7 +187,7 @@ A few proven patterns:
 
 If your GPU can't keep up or lacks VRAM: run the same workflow on a cloud GPU – an **RTX 4090 (24 GB) from ~$0.59/h** renders Kontext in seconds and with no quant compromise. The full setup is in our hub:
 
-👉 **[Set up ComfyUI on RunPod (Network Volume)](/comfyui-auf-runpod)**
+👉 **[Set up ComfyUI on RunPod (Network Volume)](/article/comfyui-auf-runpod)**
 
 [[CLOUD_CTA]]
 
@@ -198,7 +198,7 @@ If your GPU can't keep up or lacks VRAM: run the same workflow on a cloud GPU �
 Flux Kontext isn't image **generation**, it's image **direction**: you keep your subject and swap individual elements on purpose. Changing clothes is the easiest entry point – the same technique carries hairstyles, backgrounds and product variants.
 
 - 📥 **Download:** The finished workflow JSON is at the end of the article – created in ComfyUI via **Workflow → Export**, ready to run.
-- 🔗 **Missing the basics?** → [Install Flux.1 Dev with ComfyUI](/flux1-dev-comfyui-desktop)
+- 🔗 **Missing the basics?** → [Install Flux.1 Dev with ComfyUI](/article/flux1-dev-comfyui-desktop)
 - ⏭️ **Next in the series:** "Flux Kontext: change hairstyle" and "Flux Kontext: swap the background".
 
 One photo, one sentence, a new outfit – and everything else stays exactly as it was.

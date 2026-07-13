@@ -187,7 +187,7 @@ Ein paar erprobte Muster:
 
 Läuft deine GPU nicht mit oder fehlt der VRAM: Denselben Workflow startest du auf einer Cloud-GPU – eine **RTX 4090 (24 GB) ab ~0,59 $/h** rechnet Kontext in Sekunden und ohne Quant-Kompromiss. Die komplette Einrichtung steht in unserem Hub:
 
-👉 **[ComfyUI auf RunPod einrichten (Network Volume)](/comfyui-auf-runpod)**
+👉 **[ComfyUI auf RunPod einrichten (Network Volume)](/article/comfyui-auf-runpod)**
 
 [[CLOUD_CTA]]
 
@@ -198,7 +198,7 @@ Läuft deine GPU nicht mit oder fehlt der VRAM: Denselben Workflow startest du a
 Flux Kontext ist keine Bild-**Generierung**, sondern Bild-**Regie**: Du behältst dein Motiv und tauschst gezielt einzelne Elemente. Das Kleidungs-Tauschen ist der einfachste Einstieg – dieselbe Technik trägt Frisuren, Hintergründe und Produktvarianten.
 
 - 📥 **Download:** Den fertigen Workflow als JSON gibt's am Ende des Artikels – in ComfyUI per **Workflow → Export** erzeugt und einsatzbereit.
-- 🔗 **Grundlagen fehlen?** → [Flux.1 Dev mit ComfyUI installieren](/comfyui-flux-lokal-einrichten)
+- 🔗 **Grundlagen fehlen?** → [Flux.1 Dev mit ComfyUI installieren](/article/comfyui-flux-lokal-einrichten)
 - ⏭️ **Als Nächstes in der Reihe:** „Flux Kontext: Frisur ändern" und „Flux Kontext: Hintergrund tauschen".
 
 Ein Foto, ein Satz, ein neues Outfit – und der Rest bleibt genau so, wie er war.
