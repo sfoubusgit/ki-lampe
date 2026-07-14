@@ -1,6 +1,6 @@
 {
-  "last_node_id": 13,
-  "last_link_id": 15,
+  "last_node_id": 14,
+  "last_link_id": 16,
   "nodes": [
     {
       "id": 1,
@@ -35,6 +35,45 @@
       ]
     },
     {
+      "id": 14,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        40,
+        150
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            2
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly"
+      },
+      "widgets_values": [
+        "Ghibli_lora_weights.safetensors",
+        1.0
+      ]
+    },
+    {
       "id": 2,
       "type": "DualCLIPLoader",
       "pos": [
@@ -54,7 +93,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            2
+            3
           ],
           "slot_index": 0
         }
@@ -89,8 +128,8 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            5,
-            14
+            6,
+            15
           ],
           "slot_index": 0
         }
@@ -122,7 +161,7 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            3
+            4
           ],
           "slot_index": 0
         },
@@ -159,7 +198,7 @@
         {
           "name": "image",
           "type": "IMAGE",
-          "link": 3
+          "link": 4
         }
       ],
       "outputs": [
@@ -167,7 +206,7 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            4
+            5
           ],
           "slot_index": 0
         }
@@ -195,12 +234,12 @@
         {
           "name": "pixels",
           "type": "IMAGE",
-          "link": 4
+          "link": 5
         },
         {
           "name": "vae",
           "type": "VAE",
-          "link": 5
+          "link": 6
         }
       ],
       "outputs": [
@@ -208,8 +247,8 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            7,
-            12
+            8,
+            13
           ],
           "slot_index": 0
         }
@@ -237,7 +276,7 @@
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 2
+          "link": 3
         }
       ],
       "outputs": [
@@ -245,8 +284,8 @@
           "name": "CONDITIONING",
           "type": "CONDITIONING",
           "links": [
-            6,
-            9
+            7,
+            10
           ],
           "slot_index": 0
         }
@@ -255,7 +294,7 @@
         "Node name for S&R": "CLIPTextEncode"
       },
       "widgets_values": [
-        "convert this photo into Studio Ghibli style anime, hand-painted illustration, soft cel shading, warm watercolor background, keep the same face, pose and composition"
+        "Turn this image into the Ghibli style."
       ]
     },
     {
@@ -276,12 +315,12 @@
         {
           "name": "conditioning",
           "type": "CONDITIONING",
-          "link": 6
+          "link": 7
         },
         {
           "name": "latent",
           "type": "LATENT",
-          "link": 7
+          "link": 8
         }
       ],
       "outputs": [
@@ -289,7 +328,7 @@
           "name": "CONDITIONING",
           "type": "CONDITIONING",
           "links": [
-            8
+            9
           ],
           "slot_index": 0
         }
@@ -317,7 +356,7 @@
         {
           "name": "conditioning",
           "type": "CONDITIONING",
-          "link": 8
+          "link": 9
         }
       ],
       "outputs": [
@@ -325,7 +364,7 @@
           "name": "CONDITIONING",
           "type": "CONDITIONING",
           "links": [
-            10
+            11
           ],
           "slot_index": 0
         }
@@ -334,7 +373,7 @@
         "Node name for S&R": "FluxGuidance"
       },
       "widgets_values": [
-        3.0
+        2.5
       ]
     },
     {
@@ -355,7 +394,7 @@
         {
           "name": "conditioning",
           "type": "CONDITIONING",
-          "link": 9
+          "link": 10
         }
       ],
       "outputs": [
@@ -363,7 +402,7 @@
           "name": "CONDITIONING",
           "type": "CONDITIONING",
           "links": [
-            11
+            12
           ],
           "slot_index": 0
         }
@@ -391,22 +430,22 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 1
+          "link": 2
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 10
+          "link": 11
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 11
+          "link": 12
         },
         {
           "name": "latent_image",
           "type": "LATENT",
-          "link": 12
+          "link": 13
         }
       ],
       "outputs": [
@@ -414,7 +453,7 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            13
+            14
           ],
           "slot_index": 0
         }
@@ -450,12 +489,12 @@
         {
           "name": "samples",
           "type": "LATENT",
-          "link": 13
+          "link": 14
         },
         {
           "name": "vae",
           "type": "VAE",
-          "link": 14
+          "link": 15
         }
       ],
       "outputs": [
@@ -463,7 +502,7 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            15
+            16
           ],
           "slot_index": 0
         }
@@ -491,7 +530,7 @@
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 15
+          "link": 16
         }
       ],
       "outputs": [],
@@ -508,12 +547,20 @@
       1,
       1,
       0,
-      11,
+      14,
       0,
       "MODEL"
     ],
     [
       2,
+      14,
+      0,
+      11,
+      0,
+      "MODEL"
+    ],
+    [
+      3,
       2,
       0,
       7,
@@ -521,7 +568,7 @@
       "CLIP"
     ],
     [
-      3,
+      4,
       4,
       0,
       5,
@@ -529,7 +576,7 @@
       "IMAGE"
     ],
     [
-      4,
+      5,
       5,
       0,
       6,
@@ -537,7 +584,7 @@
       "IMAGE"
     ],
     [
-      5,
+      6,
       3,
       0,
       6,
@@ -545,7 +592,7 @@
       "VAE"
     ],
     [
-      6,
+      7,
       7,
       0,
       8,
@@ -553,7 +600,7 @@
       "CONDITIONING"
     ],
     [
-      7,
+      8,
       6,
       0,
       8,
@@ -561,7 +608,7 @@
       "LATENT"
     ],
     [
-      8,
+      9,
       8,
       0,
       9,
@@ -569,7 +616,7 @@
       "CONDITIONING"
     ],
     [
-      9,
+      10,
       7,
       0,
       10,
@@ -577,7 +624,7 @@
       "CONDITIONING"
     ],
     [
-      10,
+      11,
       9,
       0,
       11,
@@ -585,7 +632,7 @@
       "CONDITIONING"
     ],
     [
-      11,
+      12,
       10,
       0,
       11,
@@ -593,7 +640,7 @@
       "CONDITIONING"
     ],
     [
-      12,
+      13,
       6,
       0,
       11,
@@ -601,7 +648,7 @@
       "LATENT"
     ],
     [
-      13,
+      14,
       11,
       0,
       12,
@@ -609,7 +656,7 @@
       "LATENT"
     ],
     [
-      14,
+      15,
       3,
       0,
       12,
@@ -617,7 +664,7 @@
       "VAE"
     ],
     [
-      15,
+      16,
       12,
       0,
       13,
