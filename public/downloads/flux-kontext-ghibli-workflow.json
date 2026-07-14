@@ -1,0 +1,632 @@
+{
+  "last_node_id": 13,
+  "last_link_id": 15,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UnetLoaderGGUF",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UnetLoaderGGUF"
+      },
+      "widgets_values": [
+        "flux1-kontext-dev-Q4_K_M.gguf"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "DualCLIPLoader",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DualCLIPLoader"
+      },
+      "widgets_values": [
+        "t5xxl_fp8_e4m3fn.safetensors",
+        "clip_l.safetensors",
+        "flux",
+        "default"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "VAELoader",
+      "pos": [
+        40,
+        420
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            5,
+            14
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "ae.safetensors"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "LoadImage",
+      "pos": [
+        40,
+        560
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "example.png",
+        "image"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "FluxKontextImageScale",
+      "pos": [
+        360,
+        560
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FluxKontextImageScale"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 6,
+      "type": "VAEEncode",
+      "pos": [
+        640,
+        560
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            7,
+            12
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [
+        360,
+        200
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            6,
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "convert this photo into Studio Ghibli style anime, hand-painted illustration, soft cel shading, warm watercolor background, keep the same face, pose and composition"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "ReferenceLatent",
+      "pos": [
+        720,
+        200
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 6
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ReferenceLatent"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 9,
+      "type": "FluxGuidance",
+      "pos": [
+        1000,
+        200
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            10
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FluxGuidance"
+      },
+      "widgets_values": [
+        3.0
+      ]
+    },
+    {
+      "id": 10,
+      "type": "ConditioningZeroOut",
+      "pos": [
+        720,
+        380
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            11
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 11,
+      "type": "KSampler",
+      "pos": [
+        1280,
+        200
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 10
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 11
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            13
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        8,
+        1.0,
+        "euler",
+        "simple",
+        1.0
+      ]
+    },
+    {
+      "id": 12,
+      "type": "VAEDecode",
+      "pos": [
+        1620,
+        200
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 13
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            15
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 13,
+      "type": "SaveImage",
+      "pos": [
+        1880,
+        200
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 15
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ghibli"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      11,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      2,
+      0,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      4,
+      0,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      5,
+      0,
+      6,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      3,
+      0,
+      6,
+      1,
+      "VAE"
+    ],
+    [
+      6,
+      7,
+      0,
+      8,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      7,
+      6,
+      0,
+      8,
+      1,
+      "LATENT"
+    ],
+    [
+      8,
+      8,
+      0,
+      9,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      9,
+      7,
+      0,
+      10,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      10,
+      9,
+      0,
+      11,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      11,
+      10,
+      0,
+      11,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      12,
+      6,
+      0,
+      11,
+      3,
+      "LATENT"
+    ],
+    [
+      13,
+      11,
+      0,
+      12,
+      0,
+      "LATENT"
+    ],
+    [
+      14,
+      3,
+      0,
+      12,
+      1,
+      "VAE"
+    ],
+    [
+      15,
+      12,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

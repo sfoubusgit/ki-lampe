@@ -37,6 +37,8 @@ export const KEYWORDS: KeywordDef[] = [
   def("NVIDIA", ["nvidia"]),
   def("Microsoft", ["microsoft"]),
   def("LoRA", ["lora"]),
+  def("Anime", ["anime"]),
+  def("Ghibli", ["ghibli"]),
   def("Prompts", ["prompt"]),
   def("Upscaling", ["upscal", "hochskal"]),
   def("Real-ESRGAN", ["esrgan"]),
